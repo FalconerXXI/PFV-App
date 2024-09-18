@@ -8,9 +8,9 @@ def main():
     cpus.scrape_hardware()
 
     # Scrape GPU Scores
-    gpu_scraper = WebScraper('https://www.videocardbenchmark.net/gpu_list.php')
-    gpu_scraper.scrape_hardware()
-    
+    #gpu_scraper = WebScraper('https://www.videocardbenchmark.net/gpu_list.php')
+    #gpu_scraper.scrape_hardware()
+
     # Scrape Notebooks Specs
     #products = WebScraper('https://www.directdial.com/ca/search/computer-systems/notebooks?instock=true&productType=Notebook&productType=Ultrabook&productType=Chromebook&productType=2%20in%201%20Chromebook&productType=Thin%20Client%20Notebook&productType=2%20in%201%20Notebook&productType=Gaming%20Notebook&brand=Dell&brand=HP&brand=Lenovo')
     #products.scrape_product_page()
@@ -21,8 +21,8 @@ def main():
     #products.scrape_product_page()
     #products.scrape_individual_products()
 
-    #exporter = DatabaseExporter('products.db')
-    #exporter.export_table_to_csv('products', 'products.csv')
+    exporter = DatabaseExporter('products.db')
+    exporter.export_table_to_csv('products', 'products.csv')
 
 if __name__ == "__main__":
     main()
