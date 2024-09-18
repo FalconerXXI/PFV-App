@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 from hardware import HardwareManager, CPU, GPU
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
+from selenium_stealth import stealth
 
 class WebScraper:
     def __init__(self, url):
@@ -299,22 +300,27 @@ class WebScraper:
     def scrape_product_page(self):
         """Scrapes product data from a paginated website."""
         options = uc.ChromeOptions()
-        options.headless = False
+        options.headless = True
         driver = uc.Chrome(use_subprocess=True, options=options)
+        stealth(driver,
+            languages=["en-US", "en"],
+            vendor="Google Inc.",
+            platform="Win32",
+            webgl_vendor="Intel Inc.",
+            renderer="Intel Iris OpenGL Engine",
+            fix_hairline=True)
         driver.get(self.url)
-        
-        # Click on the top list button
-        #WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="list-btn-top"]'))).click()
-        time.sleep(5)
+        driver.save_screenshot('screenshot1.png')
+        time.sleep(2)
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="list-btn-top"]'))).click()
+        driver.save_screenshot('screenshot2.png')
         driver.find_element(By.XPATH, '//*[@id="list-btn-top"]').click()
-
-        # Select 240 products per page
-        #WebDriverWait(driver, 10).until( EC.presence_of_element_located((By.XPATH, '//*[@id="hits-per-page"]/div/select')))
-        time.sleep(5)
+        WebDriverWait(driver, 10).until( EC.presence_of_element_located((By.XPATH, '//*[@id="hits-per-page"]/div/select')))
         dropdown = Select(driver.find_element(By.XPATH, '//*[@id="hits-per-page"]/div/select'))
         dropdown.select_by_value("240")
+        driver.save_screenshot('screenshot3.png')
+        time.sleep(2)
 
-        # Wait for the products to load
         #WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "products")))
         time.sleep(2)
         container = driver.find_element(By.CLASS_NAME, "products")

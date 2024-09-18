@@ -1,4 +1,5 @@
 # Ignore virtual environment folder
 venv/
 __pycache__/
+*.png
 *.pyc
