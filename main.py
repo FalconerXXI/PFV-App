@@ -4,7 +4,8 @@ from hardware import CPU, GPU
 import ssl
 
 
-def main():
+def main(): 
+    #test
     # Scrape CPU Scores
     #cpus = WebScraper('https://www.cpubenchmark.net/cpu_list.php')
     #cpus.scrape_hardware()
