@@ -12,6 +12,7 @@ from hardware import HardwareManager, CPU, GPU
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from selenium_stealth import stealth
+import random
 
 class WebScraper:
     def __init__(self, url):
@@ -21,6 +22,7 @@ class WebScraper:
         """Extracts product details from the HTML using BeautifulSoup."""
         soup = BeautifulSoup(products_html, 'lxml')
         products = soup.find_all('li', class_='product list-view')
+        products = products[0:10]
         for product in products:
             sku = self.extract_sku(product)
             price = self.extract_price(product)
@@ -30,10 +32,12 @@ class WebScraper:
             sale = self.extract_sale(product)
             brand = self.extract_brand(product)
             url = self.extract_url(product)
-            if "notebook" in url:
+            if "notebook" in self.url:
                 type = "notebook"
-            elif "desktop" in url:
+            elif "desktop" in self.url:
                 type = "desktop"
+            else:
+                type = "N/A"
             updated = datetime.now().strftime("%m/%d/%Y")
             discovered = datetime.now().strftime("%m/%d/%Y")
             product_manager = ProductManager('sqlite:///products.db')
@@ -272,12 +276,21 @@ class WebScraper:
     def scrape_hardware(self):
         """General scraping method to retrieve names and scores from the page."""
         options = uc.ChromeOptions() 
-        options.headless = False
-        driver = uc.Chrome(use_subprocess=True, options=options) 
+        options.headless = True
+        driver = uc.Chrome(use_subprocess=True, options=options)
+        stealth(driver,
+            languages=["en-US", "en"],
+            vendor="Google Inc.",
+            platform="Win32",
+            webgl_vendor="Intel Inc.",
+            renderer="Intel Iris OpenGL Engine",
+            fix_hairline=True) 
         driver.get(self.url)
-
+        wait = WebDriverWait(driver, 20)
         # Wait for the table to appear
-        item_table = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'cputable')))
+        driver.save_screenshot('screenshot_cpu_score1.png')
+        item_table = wait.until(EC.visibility_of_element_located((By.ID, 'cputable')))
+        driver.save_screenshot('screenshot_cpu_score2.png')
         item_html = item_table.get_attribute("innerHTML")
         driver.close()
         
@@ -299,6 +312,70 @@ class WebScraper:
 
     def scrape_product_page(self):
         """Scrapes product data from a paginated website."""
+        print()
+        options = uc.ChromeOptions()
+        options.headless = False
+        driver = uc.Chrome(use_subprocess=True, options=options)
+        stealth(driver,
+            languages=["en-US", "en"],
+            vendor="Google Inc.",
+            platform="Win32",
+            webgl_vendor="Intel Inc.",
+            renderer="Intel Iris OpenGL Engine",
+            fix_hairline=True)
+        driver.get(self.url)
+        wait = WebDriverWait(driver, 20)
+        wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")
+        wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="list-btn-top"]')))
+        wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="list-btn-top"]'))).click()
+        driver.save_screenshot('screenshot.png')
+        driver.find_element(By.XPATH, '//*[@id="list-btn-top"]').click()
+        driver.save_screenshot('screenshot-clikc.png')
+        wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="hits-per-page"]/div/select')))
+        wait.until( EC.presence_of_element_located((By.XPATH, '//*[@id="hits-per-page"]/div/select')))
+        dropdown = Select(driver.find_element(By.XPATH, '//*[@id="hits-per-page"]/div/select'))
+        dropdown.select_by_value("240")
+        driver.save_screenshot('screenshot-240.png')
+        wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "products")))
+        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "products")))
+        driver.save_screenshot('screenshot-container.png')
+        container = driver.find_element(By.CLASS_NAME, "products")
+        products_html = container.get_attribute("innerHTML")
+        products_html = self.handle_pagination(driver, products_html, wait)
+        driver.quit()
+        product_split = self.extract_product_info(products_html)
+
+        return product_split
+
+    def handle_pagination(self, driver, products_html, wait):
+        try:
+            wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="pagination"]/div/ul')))
+            number_of_pages = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="pagination"]/div/ul')))
+            number_of_pages = driver.find_element(By.XPATH, '//*[@id="pagination"]/div/ul')
+            number_of_pages_html = number_of_pages.get_attribute("innerHTML")
+            count_number_of_pages = number_of_pages_html.count('href')
+            operation_count = 4
+            while operation_count <= count_number_of_pages:
+                page_xpath = '//*[@id="pagination"]/div/ul/li['+str(operation_count)+']/a'
+                wait.until(EC.visibility_of_element_located((By.XPATH, page_xpath)))
+                wait.until(EC.element_to_be_clickable((By.XPATH, page_xpath))).click()
+                wait.until(EC.presence_of_element_located((By.CLASS_NAME, "products")))
+                wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "products")))
+                driver.save_screenshot('screenshot-page2.png')
+                products = driver.find_element(By.CLASS_NAME, "products")
+                products_html += products.get_attribute("innerHTML")
+                operation_count += 1
+        except Exception as e:
+            pass
+        return products_html
+    
+    def scrape_individual_products(self):
+        print("Scraping individual products")
+        engine = create_engine('sqlite:///products.db')
+        Session = sessionmaker(bind=engine)
+        session = Session()
+
+
         options = uc.ChromeOptions()
         options.headless = True
         driver = uc.Chrome(use_subprocess=True, options=options)
@@ -309,74 +386,27 @@ class WebScraper:
             webgl_vendor="Intel Inc.",
             renderer="Intel Iris OpenGL Engine",
             fix_hairline=True)
-        driver.get(self.url)
-        time.sleep(2)
-        wait = WebDriverWait(driver, 20)
-        wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")
-        wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="list-btn-top"]')))
-        wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="list-btn-top"]'))).click()
-        driver.save_screenshot('screenshot.png')
-        driver.find_element(By.XPATH, '//*[@id="list-btn-top"]').click()
-        WebDriverWait(driver, 10).until( EC.presence_of_element_located((By.XPATH, '//*[@id="hits-per-page"]/div/select')))
-        dropdown = Select(driver.find_element(By.XPATH, '//*[@id="hits-per-page"]/div/select'))
-        dropdown.select_by_value("240")
-        time.sleep(2)
-
-        #WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "products")))
-        time.sleep(2)
-        container = driver.find_element(By.CLASS_NAME, "products")
-        products_html = container.get_attribute("innerHTML")
-        products_html = self.handle_pagination(driver, products_html)
-        time.sleep(2)
-        driver.quit()
-        product_split = self.extract_product_info(products_html)
-
-        return product_split
-
-    def handle_pagination(self, driver, products_html):
-
-        """Handles the pagination and concatenates product HTML."""
-        try:
-            #number_of_pages = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="pagination"]/div/ul')))
-            number_of_pages = driver.find_element(By.XPATH, '//*[@id="pagination"]/div/ul')
-            number_of_pages_html = number_of_pages.get_attribute("innerHTML")
-            count_number_of_pages = number_of_pages_html.count('href')
-            operation_count = 4
-
-            while operation_count <= count_number_of_pages:
-                page_xpath = '//*[@id="pagination"]/div/ul/li['+str(operation_count)+']/a'
-                #WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, page_xpath))).click()
-                time.sleep(2)
-                driver.find_element(By.XPATH, page_xpath).click() 
-                # Wait for the products to load on the new page
-                #WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "products")))
-                time.sleep(2)
-                products = driver.find_element(By.CLASS_NAME, "products")
-                products_html += products.get_attribute("innerHTML")
-                operation_count += 1
-
-        except Exception as e:
-            pass
         
-        return products_html
-    
-    def scrape_individual_products(self):
-        print("Scraping individual products")
-        engine = create_engine('sqlite:///products.db')
-        Session = sessionmaker(bind=engine)
-        session = Session()
-        products = session.query(Product).all()
-        num_products = len(products)
-        scanned_products = 0
-        for product in products:
-            print(f"Scanning product {scanned_products+1} of {num_products}")
-            if product.scanned == False:
+
+        products_left = True  # Flag to continue processing unscanned products
+
+        while products_left:
+            # Query the number of unscanned products
+            num_products = session.query(Product).filter_by(scanned=False).count()
+            scanned_products = 0
+            if num_products == 0:
+                print("All products have been scanned.")
+                break
+            
+            print(f"Remaining products to scan: {num_products}")
+            num_products = session.query(Product).filter_by(scanned=False).count()
+            products = session.query(Product).filter_by(scanned=False).yield_per(1)
+            for product in products:
+                print(f"Scanning product {scanned_products+1} of {num_products}")
+                #if product.scanned == False:
                 try:
                     url = product.url
                     specs = {}
-                    options = uc.ChromeOptions()
-                    options.headless = False
-                    driver = uc.Chrome(use_subprocess=True, options=options)
                     driver.get(url)
                     time.sleep(2)
                     container = driver.find_element(By.ID, 'tab-specification')
@@ -412,19 +442,16 @@ class WebScraper:
                         product.warranty_desc = self.extract_warranty_desc(specs)
                         product.release_year = self.extract_release_year(specs)
                         product.scanned = True
-                        time.sleep(2)
-                        driver.quit()
                         session.commit()
                         scanned_products += 1
+                        time.sleep(random.uniform(1, 5))
                     except:
-                        driver.quit()
+                        session.commit()
                         product.scanned = True
                         session.commit()
                 except NoSuchElementException:
-                    driver.quit()
-                    products.append(product)
-            else:
-                scanned_products += 1
+                    time.sleep(random.uniform(1, 3))
+                    session.rollback()
+        driver.quit()
         session.close()
-        print(f"Scanning product {scanned_products} of {num_products}")
         print("Scanning complete")
