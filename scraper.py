@@ -22,7 +22,7 @@ class WebScraper:
         """Extracts product details from the HTML using BeautifulSoup."""
         soup = BeautifulSoup(products_html, 'lxml')
         products = soup.find_all('li', class_='product list-view')
-        products = products[0:10]
+        #products = products[0:10]
         for product in products:
             sku = self.extract_sku(product)
             price = self.extract_price(product)
@@ -287,19 +287,13 @@ class WebScraper:
             fix_hairline=True) 
         driver.get(self.url)
         wait = WebDriverWait(driver, 20)
-        # Wait for the table to appear
-        driver.save_screenshot('screenshot_cpu_score1.png')
         item_table = wait.until(EC.visibility_of_element_located((By.ID, 'cputable')))
-        driver.save_screenshot('screenshot_cpu_score2.png')
         item_html = item_table.get_attribute("innerHTML")
         driver.close()
-        
-        # Parse the HTML
         soup = BeautifulSoup(item_html, 'lxml')
         hardware = soup.find('tbody').find_all('tr')
-
         for item in hardware:
-            name = item.find('a').text if item.find('a') else None
+            name = item.find('a').text.split('@')[0].strip() if item.find('a') else None
             score = int(item.find_all('td')[1].text.replace(',', '')) if len(item.find_all('td')) > 1 else None
             
             if name and score:
@@ -312,7 +306,7 @@ class WebScraper:
 
     def scrape_product_page(self):
         """Scrapes product data from a paginated website."""
-        print()
+        print('Scraping product page')
         options = uc.ChromeOptions()
         options.headless = False
         driver = uc.Chrome(use_subprocess=True, options=options)

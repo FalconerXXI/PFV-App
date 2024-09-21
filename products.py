@@ -9,48 +9,46 @@ Base = declarative_base()
 class Product(Base):
     __tablename__ = 'products'
     sku = Column("SKU", String, primary_key=True)
-    stock = Column("stock", Integer)
-    price = Column("price", Float)
-    msrp = Column("msrp", Float)
-    rebate = Column("rebate", Float)
-    sale = Column("sale", String)   
+    type = Column("type", String, default="N/A")
     name = Column("name", String, default="N/A")
-    brand = Column("brand", String)
-    category = Column("category", String, default="N/A")
+    brand = Column("brand", String, default="N/A")   
     form_factor = Column("form factor", String, default="N/A")
+    stock = Column("stock", Integer, default=0)
+    price = Column("price", Float, default=0.0)
+    msrp = Column("msrp", Float, default=0.0)
+    rebate = Column("rebate", Float, default=0.0)
+    sale = Column("sale", Float, default=0.0)
     cpu = Column("CPU", String, default="N/A")
+    gpu = Column("GPU", String, default="N/A")
+    storage = Column("storage", Integer, default=0)
     ram = Column("RAM", Integer, default=0)
     ddr = Column("DDR", String, default="N/A")
-    storage = Column("storage", Integer, default=0)
     os = Column("OS", String, default="N/A")
-    gpu = Column("GPU", String, default="N/A")
-    vram = Column("VRAM", String, default="N/A")
     screen_res = Column("screen res.", String, default="N/A")
     screen_type = Column("screen type", String, default="N/A")
-    #screen_size = Column("screen size", String, default="N/A")
+    screen_size = Column("screen size", String, default="N/A")
     wifi = Column("WiFi", String, default="N/A")
     keyboard = Column("keyboard", String, default="N/A")
     touch = Column("touch", String, default="N/A")
     ethernet = Column("ethernet", String, default="N/A")
-    release_year = Column("release year", String, default="N/A")
-    warranty = Column("warranty", String, default="N/A")
-    warranty_desc = Column("warranty desc.", String, default="N/A")
-    type = Column("type", String, default="N/A")
+    warranty = Column("warranty", Integer, default=0)
     cpu_score = Column("cpu score", Integer, default=0)
-    #gpu_score = Column("gpu score", Integer, default=0)
-    #ff_score = Column("ff score", Integer, default=0)
-    #ram_score = Column("ram score", Integer, default=0)
-    #storage_score = Column("storage score", Integer, default=0)
-    score = Column("score", String, default=0)
-    url = Column("url", String)
-    updated = Column("updated", String)
-    discovered = Column("discovered", String)
-    error = Column("error", String, default="N/A")
+    gpu_score = Column("gpu score", Integer, default=0)
+    ff_score = Column("ff score", Integer, default=0)
+    ram_score = Column("ram score", Integer, default=0)
+    storage_score = Column("storage score", Integer, default=0)
+    score = Column("score", Integer, default=0)
+    url = Column("url", String, default="N/A")
+    orig_cpu = Column("orig. cpu", String, default="N/A")
+    orig_gpu = Column("orig. gpu", String, default="N/A")
+    updated = Column("updated", String, default="N/A")
+    discovered = Column("discovered", String, default="N/A")
+    error = Column("error", Boolean, default=False)
     scanned = Column("scanned", Boolean, default=False)
 
 
     def __repr__(self):
-        return f"Product({self.sku}, {self.stock}, {self.price}, {self.msrp} {self.rebate}, {self.sale}, {self.brand}, {self.url}, {self.updated}, {self.discovered}, {self.scanned})"
+        return f"Product({self.sku}, {self.price}, {self.url}, {self.updated})"
 
 class ProductManager:
     def __init__(self, db_url):
@@ -61,47 +59,48 @@ class ProductManager:
     def get_session(self):
         return self.Session()
 
-    def add_product(self, sku, stock, price, msrp, rebate, sale, brand, type, url, updated, discovered):
+    def add_cdw_product(self, sku, price, type, url, updated, discovered):
         session = self.get_session()
-        updated = "09/15/2024"
         try:
             product = session.query(Product).filter_by(sku=sku).first()
             if product:
-                product.stock = stock
                 product.price = price
-                product.msrp = msrp
-                product.rebate = rebate
-                product.sale = sale
-                product.brand = brand
                 product.type = type
                 product.url = url
                 product.updated = updated
                 product.discovered = discovered
             else:
-                product = Product(sku=sku, stock=stock, price=price, msrp=msrp, rebate=rebate, sale=sale, brand=brand, type=type, url=url, updated=updated, discovered=discovered)
+                product = Product(sku=sku, price=price, type=type, url=url, updated=updated, discovered=discovered)
                 session.add(product)
-
-            price_tracker_entry = session.query(Price).filter_by(sku=sku, date=updated).first()
-            if price_tracker_entry:
-                price_tracker_entry.price = price
-            else:
-                price_tracker_entry = Price(sku=sku, date=updated, price=price)
-                session.add(price_tracker_entry)
-
-            stock_tracker_entry = session.query(Stock).filter_by(sku=sku, date=updated).first()
-            if stock_tracker_entry:
-                stock_tracker_entry.stock = stock
-            else:
-                stock_tracker_entry = Stock(sku=sku, date=updated, stock=stock)
-                session.add(stock_tracker_entry)
-
+                
             session.commit()
         except Exception as e:
             session.rollback()
             print(f"Error adding/updating product: {e}")
         finally:
             session.close()
-            
+
+    def add_product(self, sku, price, type, url, updated, discovered):
+        session = self.get_session()
+        try:
+            product = session.query(Product).filter_by(sku=sku).first()
+            if product:
+                product.price = price
+                product.type = type
+                product.url = url
+                product.updated = updated
+                product.discovered = discovered
+            else:
+                product = Product(sku=sku, price=price, type=type, url=url, updated=updated, discovered=discovered)
+                session.add(product)
+                
+            session.commit()
+        except Exception as e:
+            session.rollback()
+            print(f"Error adding/updating product: {e}")
+        finally:
+            session.close()
+
     def get_products(self):
         """
         Fetches and returns a list of all products from the database.
