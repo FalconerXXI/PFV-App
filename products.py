@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, String, Float, Integer, Date, UniqueConstraint, PrimaryKeyConstraint, Boolean
+from sqlalchemy import create_engine, Column, String, Float, Integer, PrimaryKeyConstraint, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import sqlite3
@@ -80,18 +80,23 @@ class ProductManager:
         finally:
             session.close()
 
-    def add_product(self, sku, price, type, url, updated, discovered):
+    def add_direct_dial_product(self, sku, stock, price, msrp, rebate, sale, brand, type, url, updated, discovered):
         session = self.get_session()
         try:
             product = session.query(Product).filter_by(sku=sku).first()
             if product:
                 product.price = price
+                product.stock = stock
+                product.msrp = msrp
+                product.rebate = rebate
+                product.sale = sale
+                product.brand = brand
                 product.type = type
                 product.url = url
                 product.updated = updated
                 product.discovered = discovered
             else:
-                product = Product(sku=sku, price=price, type=type, url=url, updated=updated, discovered=discovered)
+                product = Product(sku=sku, price=price, stock=stock, msrp=msrp, rebate=rebate, sale=sale, brand=brand,type=type, url=url, updated=updated, discovered=discovered)
                 session.add(product)
                 
             session.commit()
@@ -110,28 +115,26 @@ class ProductManager:
         session.close()
         return products
     
-class Price(Base):
-    __tablename__ = 'prices'
-    sku = Column("sku", String)
-    date = Column("date", String)
-    price = Column("price", Float)
-    __table_args__ = (PrimaryKeyConstraint('sku', 'date'),)
-    #__table_args__ = (UniqueConstraint('sku', 'date', name='_sku_date_uc'),)
+#class Price(Base):
+#    __tablename__ = 'prices'
+#    sku = Column("sku", String)
+#    date = Column("date", String)
+#    price = Column("price", Float)
+#    __table_args__ = (PrimaryKeyConstraint('sku', 'date'),)
 
-    def __repr__(self):
-        return f"PriceTracker(SKU: {self.sku}, Date: {self.date}, Price: {self.price})"
+#    def __repr__(self):
+#        return f"PriceTracker(SKU: {self.sku}, Date: {self.date}, Price: {self.price})"
     
-class Stock(Base):
+#class Stock(Base):
+#
+#    __tablename__ = 'stocks'
+#    sku = Column("sku", String)
+#    date = Column("date", String)
+#    stock = Column("stock", Float)
+#    __table_args__ = (PrimaryKeyConstraint('sku', 'date'),)#
 
-    __tablename__ = 'stocks'
-    sku = Column("sku", String)
-    date = Column("date", String)
-    stock = Column("stock", Float)
-    __table_args__ = (PrimaryKeyConstraint('sku', 'date'),)
-
-    def __repr__(self):
-        return f"PriceTracker(SKU: {self.sku}, Date: {self.date}, Stock: {self.stock})"
-
+#    def __repr__(self):
+#        return f"PriceTracker(SKU: {self.sku}, Date: {self.date}, Stock: {self.stock})"
 
 class DatabaseExporter:
     def __init__(self, db_path):

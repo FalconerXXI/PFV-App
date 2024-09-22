@@ -8,40 +8,14 @@ import time
 from datetime import datetime
 from products import ProductManager, Product
 from bs4 import BeautifulSoup
-from hardware import HardwareManager, CPU, GPU
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from selenium_stealth import stealth
 import random
 
-class WebScraper:
+class DirectDialScraper:
     def __init__(self, url):
         self.url = url
-
-    def extract_product_info(self, products_html):
-        """Extracts product details from the HTML using BeautifulSoup."""
-        soup = BeautifulSoup(products_html, 'lxml')
-        products = soup.find_all('li', class_='product list-view')
-        #products = products[0:10]
-        for product in products:
-            sku = self.extract_sku(product)
-            price = self.extract_price(product)
-            msrp = self.extract_msrp(product)
-            stock = self.extract_stock(product)
-            rebate = self.extract_rebate(product)
-            sale = self.extract_sale(product)
-            brand = self.extract_brand(product)
-            url = self.extract_url(product)
-            if "notebook" in self.url:
-                type = "notebook"
-            elif "desktop" in self.url:
-                type = "desktop"
-            else:
-                type = "N/A"
-            updated = datetime.now().strftime("%m/%d/%Y")
-            discovered = datetime.now().strftime("%m/%d/%Y")
-            product_manager = ProductManager('sqlite:///products.db')
-            product_manager.add_product(sku, stock, price, msrp, rebate, sale, brand, type, url, updated, discovered)
 
     @classmethod
     def extract_sku(cls, product):
@@ -273,40 +247,8 @@ class WebScraper:
     def extract_type(cls, product):
         pass
 
-    def scrape_hardware(self):
-        """General scraping method to retrieve names and scores from the page."""
-        options = uc.ChromeOptions() 
-        options.headless = True
-        driver = uc.Chrome(use_subprocess=True, options=options)
-        stealth(driver,
-            languages=["en-US", "en"],
-            vendor="Google Inc.",
-            platform="Win32",
-            webgl_vendor="Intel Inc.",
-            renderer="Intel Iris OpenGL Engine",
-            fix_hairline=True) 
-        driver.get(self.url)
-        wait = WebDriverWait(driver, 20)
-        item_table = wait.until(EC.visibility_of_element_located((By.ID, 'cputable')))
-        item_html = item_table.get_attribute("innerHTML")
-        driver.close()
-        soup = BeautifulSoup(item_html, 'lxml')
-        hardware = soup.find('tbody').find_all('tr')
-        for item in hardware:
-            name = item.find('a').text.split('@')[0].strip() if item.find('a') else None
-            score = int(item.find_all('td')[1].text.replace(',', '')) if len(item.find_all('td')) > 1 else None
-            
-            if name and score:
-                hardware_manager = HardwareManager('sqlite:///products.db')
-                
-                if 'cpu' in self.url:
-                    hardware_manager.add_hardware(name, score, CPU)
-                elif 'gpu' in self.url:
-                    hardware_manager.add_hardware(name, score, GPU)
-
     def scrape_product_page(self):
-        """Scrapes product data from a paginated website."""
-        print('Scraping product page')
+        print('Scraping DirectDial product page')
         options = uc.ChromeOptions()
         options.headless = False
         driver = uc.Chrome(use_subprocess=True, options=options)
@@ -321,25 +263,25 @@ class WebScraper:
         wait = WebDriverWait(driver, 20)
         wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")
         wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="list-btn-top"]')))
-        wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="list-btn-top"]'))).click()
-        driver.save_screenshot('screenshot.png')
+        time.sleep(2)
+        wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="list-btn-top"]')))
         driver.find_element(By.XPATH, '//*[@id="list-btn-top"]').click()
-        driver.save_screenshot('screenshot-clikc.png')
+        time.sleep(2)
         wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="hits-per-page"]/div/select')))
         wait.until( EC.presence_of_element_located((By.XPATH, '//*[@id="hits-per-page"]/div/select')))
         dropdown = Select(driver.find_element(By.XPATH, '//*[@id="hits-per-page"]/div/select'))
         dropdown.select_by_value("240")
-        driver.save_screenshot('screenshot-240.png')
+        time.sleep(2)
         wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "products")))
         wait.until(EC.presence_of_element_located((By.CLASS_NAME, "products")))
-        driver.save_screenshot('screenshot-container.png')
+        time.sleep(2)
         container = driver.find_element(By.CLASS_NAME, "products")
         products_html = container.get_attribute("innerHTML")
         products_html = self.handle_pagination(driver, products_html, wait)
         driver.quit()
-        product_split = self.extract_product_info(products_html)
-
-        return product_split
+        self.extract_product_info(products_html)
+        print('Scraping complete')
+        #return product_split
 
     def handle_pagination(self, driver, products_html, wait):
         try:
@@ -363,9 +305,33 @@ class WebScraper:
             pass
         return products_html
     
+    def extract_product_info(self, products_html):
+        """Extracts product details from the HTML using BeautifulSoup."""
+        soup = BeautifulSoup(products_html, 'lxml')
+        products = soup.find_all('li', class_='product list-view')
+        for product in products:
+            sku = self.extract_sku(product)
+            price = self.extract_price(product)
+            msrp = self.extract_msrp(product)
+            stock = self.extract_stock(product)
+            rebate = self.extract_rebate(product)
+            sale = self.extract_sale(product)
+            brand = self.extract_brand(product)
+            url = self.extract_url(product)
+            if "notebook" in self.url:
+                type = "notebook"
+            elif "desktop" in self.url:
+                type = "desktop"
+            else:
+                type = "N/A"
+            updated = datetime.now().strftime("%m/%d/%Y")
+            discovered = datetime.now().strftime("%m/%d/%Y")
+            product_manager = ProductManager('sqlite:///direct_dial.db')
+            product_manager.add_direct_dial_product(sku, stock, price, msrp, rebate, sale, brand, type, url, updated, discovered)
+
     def scrape_individual_products(self):
         print("Scraping individual products")
-        engine = create_engine('sqlite:///products.db')
+        engine = create_engine('sqlite:///direct_dial.db')
         Session = sessionmaker(bind=engine)
         session = Session()
 

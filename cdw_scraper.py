@@ -46,7 +46,7 @@ class CDWScraper:
         """Extracts product details from the HTML using BeautifulSoup."""
         soup = BeautifulSoup(products_html, 'lxml')
         products = soup.find_all('div', class_='search-result')
-        #products = products[0:10]
+        products = products[0:20]
         for product in products:
             sku = self.extract_sku(product)
             price = self.extract_price(product)
@@ -54,7 +54,7 @@ class CDWScraper:
             updated = datetime.now().strftime("%m/%d/%Y")
             discovered = datetime.now().strftime("%m/%d/%Y")
             product_manager = ProductManager('sqlite:///cdw.db')
-            if "notebook" in self.url:
+            if "notebook" in self.url or "laptop" in self.url:
                 type = "notebook"
             elif "desktop" in self.url:
                 type = "desktop"
@@ -116,8 +116,8 @@ class CDWScraper:
                                     specs[label] = value
                             product.brand = self.extract_brand(specs)
                             product.name = self.extract_name(specs, product.brand)
-                            #if product.type == "notebook":
-                            #    product.form_factor = self.extract_form_factor_notebook(specs)
+                            if product.type == "notebook":
+                                product.form_factor = self.extract_form_factor_notebook(specs)
                             if product.type == "desktop":
                                 product.form_factor = self.extract_form_factor_desktop(specs)
                             if product.type == "workstation":
@@ -130,10 +130,10 @@ class CDWScraper:
                             product.ethernet = self.extract_ethernet(specs)
                             product.gpu = self.extract_gpu(specs)
                             product.wifi = self.extract_wifi(specs)
-                            #product.touch = self.extract_touch(specs)
-                            #product.screen_res = self.extract_screen_res(specs)
-                            #product.screen_type = self.extract_screen_type(specs)
-                            #product.screen_size = self.extract_screen_size(specs)
+                            product.touch = self.extract_touch(specs)
+                            product.screen_res = self.extract_screen_res(specs)
+                            product.screen_type = self.extract_screen_type(specs)
+                            product.screen_size = self.extract_screen_size(specs)
                             product.keyboard = self.extract_keyboard(specs)
                             product.warranty = self.extract_warranty(specs)
                             product.error = error
@@ -166,27 +166,22 @@ class CDWScraper:
         session.close()
         print("Scanning complete")
 
-    ## DONE
     @classmethod
     def extract_sku(cls, product):
         return product.find('span',class_="mfg-code").find(text=True).strip().replace('MFG#: ', '') if product.find('span',class_="mfg-code") else "N/A"
      
-    ## NOT USED
     @classmethod
     def extract_stock(cls, product):
         return product.find_all('div', class_='col-6')[1].find(text=True).strip().replace('Stock: ', '').replace(',', '') if product.find_all('div', class_='col-6')[1] else 0
 
-    ## DONE
     @classmethod
     def extract_price(cls, product):
         return product.find('div', class_="price-type-price").find(text=True).strip().replace('$', '').replace(',', '') if product.find('div', class_="price-type-price") else 0
 
-    ## NOT USED
     @classmethod
     def extract_msrp(cls, product):
         return product.find('div', style="background-color:#ddd; display:none;").find(text=lambda text: 'item.msrp:' in text).find_next(text=True).strip() if product.find('div', style="background-color:#ddd; display:none;").find(text=lambda text: 'item.msrp:' in text) else 0
 
-    ## NOT USED
     @classmethod
     def extract_rebate(cls, product):
         # Try to find the 'div' containing the rebate info
@@ -207,7 +202,6 @@ class CDWScraper:
     # Return 0 if no rebate info is found
         return 0
     
-    ## NOT USED
     @classmethod
     def extract_sale(cls, product):
         sale_div = product.find('div', class_='save-list')
@@ -226,17 +220,14 @@ class CDWScraper:
                         return 0
         return 0
 
-    ## DONE
     @classmethod
     def extract_brand(cls, product):
          return product.get('Brand') if product.get('Brand') else 'N/A'
 
-    ## DONE
     @classmethod
     def extract_url(cls, product):
         return "https://www.cdw.com"+product.find('a', class_='search-result-product-url')['href']
 
-    ## DONE
     @classmethod
     def extract_name(cls, product, brand):
         line = product.get('Product Line', None)
@@ -255,19 +246,18 @@ class CDWScraper:
             return "N/A"
         return name
     
-    ## NOT USED
     @classmethod
     def extract_category(cls, product):
          return f"{product.get('Product Type', None)}" if product.get('Product Type', None) else 'N/A'
 
-    ## NOT DONE
     @classmethod
     def extract_form_factor_notebook(cls, product):
         screen_size = product.get('Screen Size', None)
         if screen_size:
-            return int(float(screen_size.replace('"', '').strip()))
+            return int(float(screen_size.lower().replace('"', '').replace('inch','').strip()))
+        else:
+            return "N/A"
     
-    ## DONE
     @classmethod
     def extract_form_factor_desktop(cls, product):
         form_factor = product.get('Form Factor', "N/A").strip().lower()
@@ -288,7 +278,6 @@ class CDWScraper:
         }
         return form_factor_map.get(form_factor, "N/A")
 
-    ## DONE
     @classmethod
     def extract_cpu(cls, product):
         processor_brand = product.get('Processor Brand', None)
@@ -329,12 +318,10 @@ class CDWScraper:
             cpu = "N/A"
         return cpu
 
-    ## DONE 
     @classmethod
     def extract_ram(cls, product):
         return product.get('RAM Installed').upper().replace('GB','').strip() if product.get('RAM Installed') else "N/A"
 
-    ## DONE
     @classmethod
     def extract_ddr(cls, product):
         try:
@@ -348,7 +335,6 @@ class CDWScraper:
         except:
             return "N/A"
         
-    ## DONE
     @classmethod
     def extract_storage(cls, product):
         storage = product.get('Hard Drive Capacity').upper() if product.get('Hard Drive Capacity').upper() else None
@@ -361,23 +347,20 @@ class CDWScraper:
         else:
             return 0
 
-    ## DONE
     @classmethod
     def extract_os(cls, product):
         return product.get('Operating System') if product.get('Operating System') else "N/A"
 
-    ## NOT DONE
     @classmethod
     def extract_gpu(cls, product):
         shared = product.get("Memory Allocation Technology", None)
         graphics_controller_model = product.get("Graphics Controller Model", None)
-        #print(f"Shared: {shared}")
-        #print(f"Graphics Controller Model: {graphics_controller_model}")
         if shared:
             if "shared" in shared.lower():
                 return "Integrated"
         if graphics_controller_model:
-            if re.sub(r'\d+', '', graphics_controller_model).strip().lower().replace('intel', '').strip() == "uhd graphics":
+            gpu_clean = re.sub(r'\d+', '', graphics_controller_model).lower().replace('intel', '').strip()
+            if gpu_clean == "uhd graphics" or gpu_clean == "iris xe graphics" or gpu_clean == "graphics":
                 return "Integrated"
             else:
                 if "/" in graphics_controller_model:
@@ -388,28 +371,32 @@ class CDWScraper:
                         return temp[0].strip()
                 else:
                     return graphics_controller_model
-        
-    ## NOT USED
-    @classmethod
-    def extract_vram(cls, product):
-        pass
+        else:
+            return "N/A"
 
-    ## NOT DONE
     @classmethod
     def extract_screen_res(cls, product):
-        return product.get('Screen Mode', "N/A")
+        screen_resolution_abv = product.get('Display Resolution Abbreviation', None)
+        screen_resolution = product.get('Native Resolution', None)
+        if screen_resolution_abv:
+            return screen_resolution_abv
+        elif screen_resolution:
+            return screen_resolution
+        else:
+            return "N/A"
     
-    ## NOT DONE
     @classmethod
     def extract_screen_type(cls, product):
-        return product.get('Display Screen Type', "N/A")
+        return product.get('TFT Technology', "N/A")
     
-    ## NOT DONE
     @classmethod
     def extract_screen_size(cls, product):
-        return product.get('Screen Size', "N/A")
+        screen_size = product.get('Screen Size', None)
+        if screen_size:
+            return int(float(screen_size.lower().replace('"', '').replace('inch','').strip()))
+        else:
+            return "N/A"
 
-    ## DONE
     @classmethod
     def extract_wifi(cls, product):
         wifi = product.get('Wireless LAN', "N/A").lower()
@@ -419,17 +406,18 @@ class CDWScraper:
             wifi = "No"
         return wifi
 
-    ## DONE
     @classmethod
     def extract_keyboard(cls, product):
         return product.get('Keyboard Localization', "N/A")
 
-    ## NOT DONE
     @classmethod
     def extract_touch(cls, product):
-        return product.get('Touchscreen', "N/A")
+        touch = product.get('Touchscreen', None)
+        if touch:
+            return touch
+        else:
+            return "N/A"
 
-    ## DONE 
     @classmethod
     def extract_ethernet(cls, product):
         ethernet = product.get('Data Link Protocols', "N/A").lower()
@@ -438,12 +426,10 @@ class CDWScraper:
         else:
             ethernet = "No"
         return ethernet
-
-    ## DONE
+    
     @classmethod
     def extract_warranty(cls, product):
         warranty = product.get('Limited Warranty', product.get('Bundled Services', None))
-        print(f"Warranty: {warranty}")
         if warranty:
             warranty = warranty.lower()
             match = re.search(r'(\d+)\s*(?=year[s]?\b)', warranty.lower())

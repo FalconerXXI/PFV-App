@@ -1,6 +1,14 @@
 from sqlalchemy import create_engine, Column, String, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import undetected_chromedriver as uc
+from bs4 import BeautifulSoup
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from selenium_stealth import stealth
 
 Base = declarative_base()
 
@@ -58,3 +66,40 @@ class HardwareManager:
             return {}
         finally:
             session.close()
+
+class HardwareScraper:
+    def __init__(self, url):
+        self.url = url
+
+    def scrape_hardware(self):
+        """General scraping method to retrieve names and scores from the page."""
+        print(f"Scraping Hardware Scores from: {self.url}")
+        options = uc.ChromeOptions() 
+        options.headless = True
+        driver = uc.Chrome(use_subprocess=True, options=options)
+        stealth(driver,
+            languages=["en-US", "en"],
+            vendor="Google Inc.",
+            platform="Win32",
+            webgl_vendor="Intel Inc.",
+            renderer="Intel Iris OpenGL Engine",
+            fix_hairline=True) 
+        driver.get(self.url)
+        wait = WebDriverWait(driver, 20)
+        item_table = wait.until(EC.visibility_of_element_located((By.ID, 'cputable')))
+        item_html = item_table.get_attribute("innerHTML")
+        driver.close()
+        soup = BeautifulSoup(item_html, 'lxml')
+        hardware = soup.find('tbody').find_all('tr')
+        for item in hardware:
+            name = item.find('a').text.split('@')[0].strip() if item.find('a') else None
+            score = int(item.find_all('td')[1].text.replace(',', '')) if len(item.find_all('td')) > 1 else None
+            
+            if name and score:
+                hardware_manager = HardwareManager('sqlite:///hardware.db')
+                
+                if 'cpu' in self.url:
+                    hardware_manager.add_hardware(name, score, CPU)
+                elif 'gpu' in self.url:
+                    hardware_manager.add_hardware(name, score, GPU)
+        print("Scraping Complete")

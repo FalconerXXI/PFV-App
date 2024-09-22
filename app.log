@@ -1,0 +1,325 @@
+2024-09-22 16:04:23,135 - WARNING - No match found for hardware: Intel N-Series N100
+2024-09-22 16:04:23,139 - WARNING - No match found for hardware: NVIDIA RTX A500
+2024-09-22 16:04:23,143 - WARNING - No match found for hardware: Radeon Graphics
+2024-09-22 16:28:12,506 - ERROR - Error processing product 11T300C0US: expected string or bytes-like object, got 'type'
+2024-09-22 16:31:52,044 - ERROR - Error processing product 11T300C0US: expected string or bytes-like object, got 'type'
+2024-09-22 16:35:09,052 - WARNING - No match found for hardware: Intel N-Series N100
+2024-09-22 16:35:09,056 - WARNING - No match found for hardware: NVIDIA RTX A500
+2024-09-22 16:35:09,061 - WARNING - No match found for hardware: Radeon Graphics
+2024-09-22 16:40:29,235 - WARNING - No match found for hardware: Intel N-Series N100
+2024-09-22 16:40:29,240 - WARNING - No match found for hardware: NVIDIA RTX A500
+2024-09-22 16:40:29,245 - WARNING - No match found for hardware: Radeon Graphics
+2024-09-22 16:46:33,062 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,121 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,178 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,236 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,293 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,350 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,408 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,467 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,525 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,584 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,641 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,698 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,755 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,812 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,870 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,927 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:33,985 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,041 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,099 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,155 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,213 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,272 - INFO - Fuzzy matched 'N/A' to 'RADEON A9800XT'
+2024-09-22 16:46:34,343 - INFO - Fuzzy matched 'Intel N-Series N100' to 'AMD Embedded G-Series GX-215JJ Radeon R2E'
+2024-09-22 16:46:34,401 - INFO - Fuzzy matched 'N/A' to 'RADEON A9800XT'
+2024-09-22 16:46:34,458 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,514 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,573 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,630 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,687 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,743 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,799 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,848 - INFO - Fuzzy matched 'NVIDIA RTX A500' to 'GeForce RTX 2060 (Mobile)'
+2024-09-22 16:46:34,905 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:34,964 - INFO - Fuzzy matched 'N/A' to 'RADEON A9800XT'
+2024-09-22 16:46:35,021 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:35,078 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:35,134 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:35,190 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:35,247 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:35,303 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU'
+2024-09-22 16:46:35,350 - INFO - Fuzzy matched 'Radeon Graphics' to 'Radeon Ryzen 5 4600GE with Radeon Graphics'
+2024-09-22 16:51:01,017 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,018 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,077 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,077 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,134 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,134 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,191 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,191 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,247 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,247 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,304 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,304 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,361 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,361 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,417 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,418 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,475 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,475 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,534 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,534 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,592 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,592 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,651 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,651 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,709 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,709 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,769 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,769 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,828 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,828 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,886 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,886 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,942 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,942 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:01,999 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:01,999 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:02,055 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:02,055 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:02,111 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:02,111 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:02,168 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:02,168 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:02,227 - INFO - Attempting to match 'N/A' - Best match: 'RADEON A9800XT' with score: 90%
+2024-09-22 16:51:02,227 - INFO - Fuzzy matched 'N/A' to 'RADEON A9800XT' with score 90%
+2024-09-22 16:51:02,299 - INFO - Attempting to match 'Intel N-Series N100' - Best match: 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score: 86%
+2024-09-22 16:51:02,299 - INFO - Fuzzy matched 'Intel N-Series N100' to 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score 86%
+2024-09-22 16:51:02,358 - INFO - Attempting to match 'N/A' - Best match: 'RADEON A9800XT' with score: 90%
+2024-09-22 16:51:02,358 - INFO - Fuzzy matched 'N/A' to 'RADEON A9800XT' with score 90%
+2024-09-22 16:51:02,414 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:02,414 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:02,470 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:02,470 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:02,526 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:02,526 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:02,583 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:02,583 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:02,639 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:02,639 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:02,696 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:02,696 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:02,752 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:02,752 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:02,801 - INFO - Attempting to match 'NVIDIA RTX A500' - Best match: 'GeForce RTX 2060 (Mobile)' with score: 86%
+2024-09-22 16:51:02,801 - INFO - Fuzzy matched 'NVIDIA RTX A500' to 'GeForce RTX 2060 (Mobile)' with score 86%
+2024-09-22 16:51:02,858 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:02,858 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:02,918 - INFO - Attempting to match 'N/A' - Best match: 'RADEON A9800XT' with score: 90%
+2024-09-22 16:51:02,918 - INFO - Fuzzy matched 'N/A' to 'RADEON A9800XT' with score 90%
+2024-09-22 16:51:02,975 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:02,975 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:03,032 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:03,032 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:03,089 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:03,090 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:03,148 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:03,148 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:03,205 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:03,205 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:03,262 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:51:03,262 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:51:03,310 - INFO - Attempting to match 'Radeon Graphics' - Best match: 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score: 90%
+2024-09-22 16:51:03,310 - INFO - Fuzzy matched 'Radeon Graphics' to 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score 90%
+2024-09-22 16:52:26,621 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:26,622 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:26,682 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:26,682 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:26,742 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:26,743 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:26,800 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:26,800 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:26,857 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:26,857 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:26,914 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:26,914 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:26,971 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:26,971 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,028 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,028 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,085 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,085 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,144 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,144 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,202 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,202 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,260 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,260 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,318 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,318 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,377 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,377 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,435 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,435 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,493 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,493 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,550 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,550 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,607 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,607 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,663 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,663 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,720 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,720 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,777 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:27,777 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:27,837 - INFO - Attempting to match 'N/A' - Best match: 'RADEON A9800XT' with score: 90%
+2024-09-22 16:52:27,837 - INFO - Fuzzy matched 'N/A' to 'RADEON A9800XT' with score 90%
+2024-09-22 16:52:27,910 - INFO - Attempting to match 'Intel N-Series N100' - Best match: 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score: 86%
+2024-09-22 16:52:27,910 - INFO - Fuzzy matched 'Intel N-Series N100' to 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score 86%
+2024-09-22 16:52:27,970 - INFO - Attempting to match 'N/A' - Best match: 'RADEON A9800XT' with score: 90%
+2024-09-22 16:52:27,970 - INFO - Fuzzy matched 'N/A' to 'RADEON A9800XT' with score 90%
+2024-09-22 16:52:28,027 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,027 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,084 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,084 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,140 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,140 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,198 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,198 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,255 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,255 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,313 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,313 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,370 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,370 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,420 - INFO - Attempting to match 'NVIDIA RTX A500' - Best match: 'GeForce RTX 2060 (Mobile)' with score: 86%
+2024-09-22 16:52:28,420 - INFO - Fuzzy matched 'NVIDIA RTX A500' to 'GeForce RTX 2060 (Mobile)' with score 86%
+2024-09-22 16:52:28,477 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,477 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,537 - INFO - Attempting to match 'N/A' - Best match: 'RADEON A9800XT' with score: 90%
+2024-09-22 16:52:28,537 - INFO - Fuzzy matched 'N/A' to 'RADEON A9800XT' with score 90%
+2024-09-22 16:52:28,595 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,595 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,652 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,652 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,709 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,709 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,766 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,766 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,823 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,823 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,881 - INFO - Attempting to match 'Integrated' - Best match: 'GeForce2 Integrated GPU' with score: 90%
+2024-09-22 16:52:28,881 - INFO - Fuzzy matched 'Integrated' to 'GeForce2 Integrated GPU' with score 90%
+2024-09-22 16:52:28,928 - INFO - Attempting to match 'Radeon Graphics' - Best match: 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score: 90%
+2024-09-22 16:52:28,928 - INFO - Fuzzy matched 'Radeon Graphics' to 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score 90%
+2024-09-22 16:54:40,010 - INFO - Attempting to match 'N/A' - Best match: 'RADEON A9800XT' with score: 90%
+2024-09-22 16:54:40,011 - INFO - Fuzzy matched 'N/A' to 'RADEON A9800XT' with score 90%
+2024-09-22 16:54:40,083 - INFO - Attempting to match 'Intel N-Series N100' - Best match: 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score: 86%
+2024-09-22 16:54:40,083 - INFO - Fuzzy matched 'Intel N-Series N100' to 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score 86%
+2024-09-22 16:54:40,142 - INFO - Attempting to match 'N/A' - Best match: 'RADEON A9800XT' with score: 90%
+2024-09-22 16:54:40,142 - INFO - Fuzzy matched 'N/A' to 'RADEON A9800XT' with score 90%
+2024-09-22 16:54:40,199 - INFO - Attempting to match 'NVIDIA RTX A500' - Best match: 'GeForce RTX 2060 (Mobile)' with score: 86%
+2024-09-22 16:54:40,200 - INFO - Fuzzy matched 'NVIDIA RTX A500' to 'GeForce RTX 2060 (Mobile)' with score 86%
+2024-09-22 16:54:40,260 - INFO - Attempting to match 'N/A' - Best match: 'RADEON A9800XT' with score: 90%
+2024-09-22 16:54:40,260 - INFO - Fuzzy matched 'N/A' to 'RADEON A9800XT' with score 90%
+2024-09-22 16:54:40,313 - INFO - Attempting to match 'Radeon Graphics' - Best match: 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score: 90%
+2024-09-22 16:54:40,314 - INFO - Fuzzy matched 'Radeon Graphics' to 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score 90%
+2024-09-22 16:55:30,164 - INFO - Attempting to match 'Intel N-Series N100' - Best match: 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score: 86%
+2024-09-22 16:55:30,164 - INFO - Fuzzy matched 'Intel N-Series N100' to 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score 86%
+2024-09-22 16:55:30,226 - INFO - Attempting to match 'NVIDIA RTX A500' - Best match: 'GeForce RTX 2060 (Mobile)' with score: 86%
+2024-09-22 16:55:30,226 - INFO - Fuzzy matched 'NVIDIA RTX A500' to 'GeForce RTX 2060 (Mobile)' with score 86%
+2024-09-22 16:55:30,278 - INFO - Attempting to match 'Radeon Graphics' - Best match: 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score: 90%
+2024-09-22 16:55:30,279 - INFO - Fuzzy matched 'Radeon Graphics' to 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score 90%
+2024-09-22 16:55:45,602 - INFO - Attempting to match 'Intel N-Series N100' - Best match: 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score: 86%
+2024-09-22 16:55:45,602 - INFO - Fuzzy matched 'Intel N-Series N100' to 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score 86%
+2024-09-22 16:55:45,656 - INFO - Attempting to match 'NVIDIA RTX A500' - Best match: 'GeForce RTX 2060 (Mobile)' with score: 86%
+2024-09-22 16:55:45,656 - INFO - Fuzzy matched 'NVIDIA RTX A500' to 'GeForce RTX 2060 (Mobile)' with score 86%
+2024-09-22 16:55:45,707 - INFO - Attempting to match 'Radeon Graphics' - Best match: 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score: 90%
+2024-09-22 16:55:45,707 - INFO - Fuzzy matched 'Radeon Graphics' to 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score 90%
+2024-09-22 16:58:15,256 - INFO - Attempting to match 'Intel N-Series N100' - Best match: 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score: 86%
+2024-09-22 16:58:15,258 - INFO - Fuzzy matched 'Intel N-Series N100' to 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score 86%
+2024-09-22 16:58:15,311 - INFO - Attempting to match 'NVIDIA RTX A500' - Best match: 'GeForce RTX 2060 (Mobile)' with score: 86%
+2024-09-22 16:58:15,311 - INFO - Fuzzy matched 'NVIDIA RTX A500' to 'GeForce RTX 2060 (Mobile)' with score 86%
+2024-09-22 16:58:15,363 - INFO - Attempting to match 'Radeon Graphics' - Best match: 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score: 90%
+2024-09-22 16:58:15,363 - INFO - Fuzzy matched 'Radeon Graphics' to 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score 90%
+2024-09-22 16:59:41,695 - INFO - Attempting to match 'Intel N-Series N100' - Best match: 'AMD Embedded G-Series GX-215JJ Radeon R2E' with score: 86%
+2024-09-22 16:59:41,696 - INFO - No suitable match for 'Intel N-Series N100' (best score was 86%)
+2024-09-22 16:59:41,696 - WARNING - No suitable match found for CPU: Intel N-Series N100
+2024-09-22 16:59:41,752 - INFO - Attempting to match 'NVIDIA RTX A500' - Best match: 'GeForce RTX 2060 (Mobile)' with score: 86%
+2024-09-22 16:59:41,752 - INFO - No suitable match for 'NVIDIA RTX A500' (best score was 86%)
+2024-09-22 16:59:41,753 - WARNING - No suitable match found for GPU: NVIDIA RTX A500
+2024-09-22 16:59:41,806 - INFO - Attempting to match 'Radeon Graphics' - Best match: 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score: 90%
+2024-09-22 16:59:41,806 - INFO - Fuzzy matched 'Radeon Graphics' to 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score 90%
+2024-09-22 17:08:07,869 - INFO - Attempting to match 'Intel N-Series N100' - Best match: 'Intel N100' with score: 100%
+2024-09-22 17:08:07,870 - INFO - Fuzzy matched 'Intel N-Series N100' to 'Intel N100' with score 100%
+2024-09-22 17:08:07,892 - INFO - Attempting to match 'NVIDIA RTX A500' - Best match: 'NVIDIA A10' with score: 75%
+2024-09-22 17:08:07,892 - INFO - No suitable match for 'NVIDIA RTX A500' (best score was 75%)
+2024-09-22 17:08:07,892 - WARNING - No suitable match found for GPU: NVIDIA RTX A500
+2024-09-22 17:08:07,916 - INFO - Attempting to match 'Radeon Graphics' - Best match: 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score: 100%
+2024-09-22 17:08:07,916 - INFO - Fuzzy matched 'Radeon Graphics' to 'Radeon Ryzen 5 4600GE with Radeon Graphics' with score 100%
+2024-09-22 17:14:01,011 - INFO - Attempting to match 'Intel N-Series N100' - Best match: 'N100' with score: 100%
+2024-09-22 17:14:01,011 - INFO - Fuzzy matched 'Intel N-Series N100' to 'N100' with score 100%
+2024-09-22 17:14:01,011 - WARNING - No match found for hardware: N100
+2024-09-22 17:14:01,037 - INFO - Attempting to match 'NVIDIA RTX A500' - Best match: 'RTX A500 Laptop GPU' with score: 100%
+2024-09-22 17:14:01,037 - INFO - Fuzzy matched 'NVIDIA RTX A500' to 'RTX A500 Laptop GPU' with score 100%
+2024-09-22 17:14:01,062 - INFO - Attempting to match 'Radeon Graphics' - Best match: 'Graphics' with score: 100%
+2024-09-22 17:14:01,062 - INFO - Fuzzy matched 'Radeon Graphics' to 'Graphics' with score 100%
+2024-09-22 17:14:01,062 - WARNING - No match found for hardware: Graphics
+2024-09-22 17:17:17,819 - INFO - Attempting to match 'N-Series N100' (original: 'Intel N-Series N100') - Best match: 'Intel N100' with score: 90%
+2024-09-22 17:17:17,819 - INFO - Fuzzy matched 'Intel N-Series N100' to 'Intel N100' with score 90%
+2024-09-22 17:17:17,882 - INFO - Attempting to match 'RTX A500' (original: 'NVIDIA RTX A500') - Best match: 'RTX A4500' with score: 94%
+2024-09-22 17:17:17,882 - INFO - Fuzzy matched 'NVIDIA RTX A500' to 'RTX A4500' with score 94%
+2024-09-22 17:17:17,940 - INFO - Attempting to match 'Graphics' (original: 'Radeon Graphics') - Best match: 'Intel Graphics' with score: 100%
+2024-09-22 17:17:17,940 - INFO - Fuzzy matched 'Radeon Graphics' to 'Intel Graphics' with score 100%
+2024-09-22 17:18:55,296 - INFO - Attempting to match 'N-Series N100' (original: 'Intel N-Series N100') - Best match: 'Intel N100' with score: 90%
+2024-09-22 17:18:55,296 - INFO - Fuzzy matched 'Intel N-Series N100' to 'Intel N100' with score 90%
+2024-09-22 17:18:55,355 - INFO - Attempting to match 'RTX A500' (original: 'NVIDIA RTX A500') - Best match: 'RTX A4500' with score: 94%
+2024-09-22 17:18:55,355 - INFO - Fuzzy matched 'NVIDIA RTX A500' to 'RTX A4500' with score 94%
+2024-09-22 17:18:55,408 - INFO - Attempting to match 'Graphics' (original: 'Radeon Graphics') - Best match: 'Intel Graphics' with score: 100%
+2024-09-22 17:18:55,408 - INFO - Fuzzy matched 'Radeon Graphics' to 'Intel Graphics' with score 100%
+2024-09-22 17:20:44,345 - INFO - Attempting to match 'Quadro T1000' (original: 'NVIDIA Quadro T1000') - Best match: 'Quadro T1000' with score: 100%
+2024-09-22 17:20:44,345 - INFO - Fuzzy matched 'NVIDIA Quadro T1000' to 'Quadro T1000' with score 100%
+2024-09-22 17:20:44,411 - INFO - Attempting to match 'RTX A2000' (original: 'NVIDIA RTX A2000') - Best match: 'RTX A2000' with score: 100%
+2024-09-22 17:20:44,411 - INFO - Fuzzy matched 'NVIDIA RTX A2000' to 'RTX A2000' with score 100%
+2024-09-22 17:20:44,476 - INFO - Attempting to match 'RTX A2000' (original: 'NVIDIA RTX A2000') - Best match: 'RTX A2000' with score: 100%
+2024-09-22 17:20:44,476 - INFO - Fuzzy matched 'NVIDIA RTX A2000' to 'RTX A2000' with score 100%
+2024-09-22 17:20:44,535 - INFO - Attempting to match 'RTX 3050' (original: 'GeForce RTX 3050') - Best match: 'GeForce RTX 3050 4GB Laptop GPU' with score: 90%
+2024-09-22 17:20:44,535 - INFO - Fuzzy matched 'GeForce RTX 3050' to 'GeForce RTX 3050 4GB Laptop GPU' with score 90%
+2024-09-22 17:20:44,612 - INFO - Attempting to match 'RTX 2000 Ada' (original: 'NVIDIA RTX 2000 Ada') - Best match: 'RTX 2000 Ada Generation' with score: 90%
+2024-09-22 17:20:44,612 - INFO - Fuzzy matched 'NVIDIA RTX 2000 Ada' to 'RTX 2000 Ada Generation' with score 90%
+2024-09-22 17:20:44,748 - INFO - Attempting to match 'N/A' (original: 'N/A') - Best match: 'AMD Ryzen AI 9 365' with score: 90%
+2024-09-22 17:20:44,748 - INFO - Fuzzy matched 'N/A' to 'AMD Ryzen AI 9 365' with score 90%
+2024-09-22 17:20:44,748 - ERROR - Invalid desktop model: n/a
+2024-09-22 17:20:44,807 - INFO - Attempting to match 'T400' (original: 'NVIDIA T400') - Best match: 'T400' with score: 100%
+2024-09-22 17:20:44,807 - INFO - Fuzzy matched 'NVIDIA T400' to 'T400' with score 100%
+2024-09-22 17:20:44,933 - INFO - Attempting to match 'N/A' (original: 'N/A') - Best match: 'AMD Ryzen AI 9 365' with score: 90%
+2024-09-22 17:20:44,933 - INFO - Fuzzy matched 'N/A' to 'AMD Ryzen AI 9 365' with score 90%
+2024-09-22 17:20:44,933 - ERROR - Invalid desktop model: n/a
+2024-09-22 17:20:45,001 - INFO - Attempting to match 'Pro W6600' (original: 'Radeon Pro W6600') - Best match: 'Radeon PRO W6600' with score: 100%
+2024-09-22 17:20:45,001 - INFO - Fuzzy matched 'Radeon Pro W6600' to 'Radeon PRO W6600' with score 100%
+2024-09-22 17:20:45,079 - INFO - Attempting to match 'Ryzen V1756B' (original: 'AMD Ryzen V1756B') - Best match: 'AMD Ryzen 3 PRO 2100GE' with score: 86%
+2024-09-22 17:20:45,079 - INFO - Fuzzy matched 'AMD Ryzen V1756B' to 'AMD Ryzen 3 PRO 2100GE' with score 86%
+2024-09-22 17:20:45,079 - ERROR - Invalid desktop model: n/a
+2024-09-22 17:20:45,085 - ERROR - Error processing product 9J2K4UT#ABA: expected string or bytes-like object, got 'NoneType'
+2024-09-22 17:54:37,701 - INFO - Attempting to match 'Quadro T1000' (original: 'NVIDIA Quadro T1000') - Best match: 'Quadro T1000' with score: 100%
+2024-09-22 17:54:37,702 - INFO - Fuzzy matched 'NVIDIA Quadro T1000' to 'Quadro T1000' with score 100%
+2024-09-22 17:54:37,761 - INFO - Attempting to match 'RTX A2000' (original: 'NVIDIA RTX A2000') - Best match: 'RTX A2000' with score: 100%
+2024-09-22 17:54:37,761 - INFO - Fuzzy matched 'NVIDIA RTX A2000' to 'RTX A2000' with score 100%
+2024-09-22 17:54:37,821 - INFO - Attempting to match 'RTX A2000' (original: 'NVIDIA RTX A2000') - Best match: 'RTX A2000' with score: 100%
+2024-09-22 17:54:37,821 - INFO - Fuzzy matched 'NVIDIA RTX A2000' to 'RTX A2000' with score 100%
+2024-09-22 17:54:37,879 - INFO - Attempting to match 'RTX 3050' (original: 'GeForce RTX 3050') - Best match: 'GeForce RTX 3050 4GB Laptop GPU' with score: 90%
+2024-09-22 17:54:37,879 - INFO - Fuzzy matched 'GeForce RTX 3050' to 'GeForce RTX 3050 4GB Laptop GPU' with score 90%
+2024-09-22 17:54:37,950 - INFO - Attempting to match 'RTX 2000 Ada' (original: 'NVIDIA RTX 2000 Ada') - Best match: 'RTX 2000 Ada Generation' with score: 90%
+2024-09-22 17:54:37,950 - INFO - Fuzzy matched 'NVIDIA RTX 2000 Ada' to 'RTX 2000 Ada Generation' with score 90%
+2024-09-22 17:54:37,963 - ERROR - Invalid desktop model: n/a
+2024-09-22 17:54:38,023 - INFO - Attempting to match 'T400' (original: 'NVIDIA T400') - Best match: 'T400' with score: 100%
+2024-09-22 17:54:38,023 - INFO - Fuzzy matched 'NVIDIA T400' to 'T400' with score 100%
+2024-09-22 17:54:38,028 - ERROR - Invalid desktop model: n/a
+2024-09-22 17:54:38,194 - INFO - Attempting to match 'Pro W6600' (original: 'Radeon Pro W6600') - Best match: 'Radeon PRO W6600' with score: 100%
+2024-09-22 17:54:38,194 - INFO - Fuzzy matched 'Radeon Pro W6600' to 'Radeon PRO W6600' with score 100%
+2024-09-22 17:54:38,300 - INFO - Attempting to match 'V1756B' (original: 'AMD Ryzen V1756B') - Best match: 'AMD Ryzen Embedded V1756B' with score: 100%
+2024-09-22 17:54:38,300 - INFO - Fuzzy matched 'AMD Ryzen V1756B' to 'AMD Ryzen Embedded V1756B' with score 100%
+2024-09-22 17:54:38,300 - ERROR - Invalid desktop model: n/a
+2024-09-22 17:54:38,304 - ERROR - Error processing product 9J2K4UT#ABA: expected string or bytes-like object, got 'NoneType'
