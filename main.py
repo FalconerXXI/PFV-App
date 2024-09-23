@@ -30,9 +30,12 @@ def main():
     #products.scrape_individual_products()
 
     #cdw_products = CDWScraper('https://www.cdw.com/category/computers/desktops/?w=CA&b=CPQ.DLE.LVO&SortBy=BestMatch&maxrecords=1000&instock=1')
-    #cdw_products = CDWScraper('https://www.cdw.com/category/computers/laptops-2-in-1s/?w=CB&b=CPQ.DLE.LVO&instock=1&maxrecords=500')
-    #cdw_products.scrape_product_page()
-    #cdw_products.scrape_individual_products()
+    cdw_products = CDWScraper('https://www.cdw.com/category/computers/laptops-2-in-1s/?w=CB&b=CPQ.DLE.LVO&instock=1&maxrecords=500')
+    cdw_products.scrape_product_page()
+    cdw_products.scrape_individual_products()
+    cdw_products = CDWScraper('https://www.cdw.com/category/computers/desktops/?w=CA&b=CPQ.DLE.LVO&SortBy=BestMatch&maxrecords=1000&instock=1')
+    cdw_products.scrape_product_page()
+    cdw_products.scrape_individual_products()
     cdw_score = Score('sqlite:///cdw.db', 'sqlite:///hardware.db')
     cdw_score.calculate_scores()
 

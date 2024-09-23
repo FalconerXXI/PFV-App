@@ -46,7 +46,7 @@ class CDWScraper:
         """Extracts product details from the HTML using BeautifulSoup."""
         soup = BeautifulSoup(products_html, 'lxml')
         products = soup.find_all('div', class_='search-result')
-        products = products[0:20]
+        #products = products[0:20]
         for product in products:
             sku = self.extract_sku(product)
             price = self.extract_price(product)
