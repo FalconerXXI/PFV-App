@@ -349,3 +349,30 @@
 2024-09-22 18:38:05,512 - INFO - Fuzzy matched 'AMD Ryzen V1756B' to 'AMD Ryzen Embedded V1756B' with score 100%
 2024-09-22 18:38:05,512 - ERROR - Invalid desktop model: n/a
 2024-09-22 18:38:05,515 - ERROR - Error processing product 9J2K4UT#ABA: expected string or bytes-like object, got 'NoneType'
+2024-09-23 10:52:02,366 - INFO - patching driver executable C:\Users\lfaulkner\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-23 10:53:12,156 - INFO - patching driver executable C:\Users\lfaulkner\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-23 10:53:30,892 - INFO - patching driver executable C:\Users\lfaulkner\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-23 10:56:09,468 - INFO - patching driver executable C:\Users\lfaulkner\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-23 10:56:39,414 - INFO - patching driver executable C:\Users\lfaulkner\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-23 10:58:00,747 - INFO - patching driver executable C:\Users\lfaulkner\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-23 10:58:16,060 - INFO - patching driver executable C:\Users\lfaulkner\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-23 10:58:19,685 - INFO - Attempting to match 'Quadro T1000' (original: 'NVIDIA Quadro T1000') - Best match: 'Quadro T1000' with score: 100%
+2024-09-23 10:58:19,686 - INFO - Fuzzy matched 'NVIDIA Quadro T1000' to 'Quadro T1000' with score 100%
+2024-09-23 10:58:20,992 - INFO - Attempting to match 'RTX A2000' (original: 'NVIDIA RTX A2000') - Best match: 'RTX A2000' with score: 100%
+2024-09-23 10:58:20,998 - INFO - Fuzzy matched 'NVIDIA RTX A2000' to 'RTX A2000' with score 100%
+2024-09-23 10:58:22,665 - INFO - Attempting to match 'RTX A2000' (original: 'NVIDIA RTX A2000') - Best match: 'RTX A2000' with score: 100%
+2024-09-23 10:58:22,665 - INFO - Fuzzy matched 'NVIDIA RTX A2000' to 'RTX A2000' with score 100%
+2024-09-23 10:58:23,489 - INFO - Attempting to match 'RTX 3050' (original: 'GeForce RTX 3050') - Best match: 'GeForce RTX 3050 4GB Laptop GPU' with score: 90%
+2024-09-23 10:58:23,489 - INFO - Fuzzy matched 'GeForce RTX 3050' to 'GeForce RTX 3050 4GB Laptop GPU' with score 90%
+2024-09-23 10:58:24,294 - INFO - Attempting to match 'RTX 2000 Ada' (original: 'NVIDIA RTX 2000 Ada') - Best match: 'RTX 2000 Ada Generation' with score: 90%
+2024-09-23 10:58:24,295 - INFO - Fuzzy matched 'NVIDIA RTX 2000 Ada' to 'RTX 2000 Ada Generation' with score 90%
+2024-09-23 10:58:24,338 - ERROR - Invalid desktop model: n/a
+2024-09-23 10:58:24,712 - INFO - Attempting to match 'T400' (original: 'NVIDIA T400') - Best match: 'T400' with score: 100%
+2024-09-23 10:58:24,712 - INFO - Fuzzy matched 'NVIDIA T400' to 'T400' with score 100%
+2024-09-23 10:58:24,729 - ERROR - Invalid desktop model: n/a
+2024-09-23 10:58:25,160 - INFO - Attempting to match 'Pro W6600' (original: 'Radeon Pro W6600') - Best match: 'Radeon PRO W6600' with score: 100%
+2024-09-23 10:58:25,161 - INFO - Fuzzy matched 'Radeon Pro W6600' to 'Radeon PRO W6600' with score 100%
+2024-09-23 10:58:25,833 - INFO - Attempting to match 'V1756B' (original: 'AMD Ryzen V1756B') - Best match: 'AMD Ryzen Embedded V1756B' with score: 100%
+2024-09-23 10:58:25,834 - INFO - Fuzzy matched 'AMD Ryzen V1756B' to 'AMD Ryzen Embedded V1756B' with score 100%
+2024-09-23 10:58:25,834 - ERROR - Invalid desktop model: n/a
+2024-09-23 10:58:25,844 - ERROR - Error processing product 9J2K4UT#ABA: expected string or bytes-like object, got 'NoneType'
