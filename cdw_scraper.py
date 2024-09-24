@@ -14,6 +14,8 @@ from sqlalchemy import create_engine
 from selenium_stealth import stealth
 import random
 import re
+import traceback
+import logging
 
 class CDWScraper:
     def __init__(self, url):
@@ -145,13 +147,13 @@ class CDWScraper:
                             session.commit()
                             scanned_products += 1
                             time.sleep(random.uniform(0, 2))
-                        except:
+                        except Exception as e:
                             product.scanned = True
                             product.error = True
                             session.commit()
-                            print("***Error while scanning")
+                            logging.error(f"***Error while scanning product {product.id}: {traceback.format_exc()}")
                     except TimeoutException:
-                        print("***Timeout error")
+                        logging.error(f"***Timeout error on product {product.id} URL: {product.url}")
                         session.rollback()
                         product.error = True
                         product.scanned = True
@@ -161,10 +163,10 @@ class CDWScraper:
                     time.sleep(random.uniform(0, 2))
                     scanned_products += 1
                     session.rollback()
-                    print("***Error page loading")
+                    logging.error(f"***Error page loading product {product.id}: {traceback.format_exc()}")
         driver.quit()
         session.close()
-        print("Scanning complete")
+        logging.info("Scanning complete")
 
     @classmethod
     def extract_sku(cls, product):
@@ -337,7 +339,7 @@ class CDWScraper:
         
     @classmethod
     def extract_storage(cls, product):
-        storage = product.get('Hard Drive Capacity').upper() if product.get('Hard Drive Capacity').upper() else None
+        storage = product.get('Hard Drive Capacity').upper() if product.get('Hard Drive Capacity') else None
         if storage:
             if "GB" in storage:
                 storage = int(storage.replace("GB", "").strip())

@@ -34,17 +34,23 @@ class Score:
             gpu_names = list(gpus.keys())
             try:
                 for product in products:
-                    if product.cpu in cpus:
-                        matched_cpu_name = product.cpu  # Exact match found
+                    if product.cpu:
+                        if product.cpu in cpus:
+                            matched_cpu_name = product.cpu  # Exact match found
+                        else:
+                            matched_cpu_name = self.fuzzy_match_name(product.cpu, cpu_names)  # Fuzzy match if no exact match
                     else:
-                        matched_cpu_name = self.fuzzy_match_name(product.cpu, cpu_names)  # Fuzzy match if no exact match
-
+                        logging.error(f"Product {product.id} has no CPU information.")
+                        matched_cpu_name = "N/A"
                     # Check for an exact GPU match first
-                    if product.gpu in gpus:
-                        matched_gpu_name = product.gpu  # Exact match found
+                    if product.gpu:
+                        if product.gpu in gpus:
+                            matched_gpu_name = product.gpu  # Exact match found
+                        else:
+                            matched_gpu_name = self.fuzzy_match_name(product.gpu, gpu_names)  # Fuzzy match if no exact match
                     else:
-                        matched_gpu_name = self.fuzzy_match_name(product.gpu, gpu_names)  # Fuzzy match if no exact match
-
+                        logging.error(f"Product {product.id} has no GPU information.")
+                        matched_gpu_name = "N/A"
                     # Only score if a match is found
                     if matched_cpu_name:
                         product.cpu_score = self.hardware_score(matched_cpu_name, cpus)
