@@ -4,7 +4,6 @@ from products import DatabaseExporter
 from hardware import HardwareScraper
 from score import Score
 import logging
-from fuzzywuzzy import fuzz
 
 def main(): 
     logging.basicConfig(

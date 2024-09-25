@@ -66,7 +66,7 @@ class Score:
                     product.ram_score = self.ram_score(product.ram)
                     product.ff_score = self.ff_score(product.form_factor)
                     session_cdw.commit()
-                    print(f"Product {product.sku}, CPU Score: {product.cpu_score}, GPU Score: {product.gpu_score}, Storage Score: {product.storage_score}, RAM Score: {product.ram_score}")
+                    print(f"Product {product.sku}, FF Score: {product.ff_score} CPU Score: {product.cpu_score}, GPU Score: {product.gpu_score}, Storage Score: {product.storage_score}, RAM Score: {product.ram_score}")
            
             except KeyError as e:
                 logging.warning(f"Hardware not found for product {product.sku}: {e}")
@@ -147,6 +147,9 @@ class Score:
                     return 4
                 elif ff_value == 'all-in-one':
                     return 1
+                if ff_value == 'n/a':
+                    logging.warning("No form factor information available.")
+                    return 0
                 else:
                     logging.error(f"Invalid desktop model: {ff_value}")
                     return 0

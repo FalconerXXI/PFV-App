@@ -12,6 +12,7 @@ from hardware import HardwareManager, CPU, GPU
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from selenium_stealth import stealth
+from ai_scraper import AIScraper
 import random
 import re
 import traceback
@@ -22,10 +23,18 @@ class CDWScraper:
         self.url = url
 
     def scrape_product_page(self):
-        """Scrapes product data from a paginated website."""
         print('Scraping product page')
+        driver = self.setup_driver()
+        self.navigate_to_page(driver)
+        item = '.search-results'
+        self.wait_for_elements(driver, item, timeout=5)
+        products_html = self.extract_html(driver)
+        driver.quit()
+        self.extract_product_info(products_html)
+
+    def setup_driver(self):
         options = uc.ChromeOptions()
-        options.headless = True
+        options.headless = False
         driver = uc.Chrome(use_subprocess=True, options=options)
         stealth(driver,
             languages=["en-US", "en"],
@@ -34,21 +43,20 @@ class CDWScraper:
             webgl_vendor="Intel Inc.",
             renderer="Intel Iris OpenGL Engine",
             fix_hairline=True)
+        return driver
+    
+    def navigate_to_page(self, driver):
         driver.get(self.url)
-        wait = WebDriverWait(driver, 20)
-        wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")
-        wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="main"]/div/div[1]/div[2]/div[6]')))
-        wait.until( EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/div/div[1]/div[2]/div[6]')))
+
+    def extract_html(self, driver):
+        self.wait_for_elements(driver, '.search-results', timeout=5)
         container = driver.find_element(By.CLASS_NAME, "search-results")
-        products_html = container.get_attribute("innerHTML")
-        driver.quit()
-        self.extract_product_info(products_html)
+        return container.get_attribute("innerHTML")
     
     def extract_product_info(self, products_html):
-        """Extracts product details from the HTML using BeautifulSoup."""
         soup = BeautifulSoup(products_html, 'lxml')
         products = soup.find_all('div', class_='search-result')
-        #products = products[0:20]
+        products = products[0:15]
         for product in products:
             sku = self.extract_sku(product)
             price = self.extract_price(product)
@@ -66,112 +74,147 @@ class CDWScraper:
                 type = "N/A"
             product_manager.add_cdw_product(sku, price, type, url, updated, discovered)
 
+    def wait_for_elements(self, driver, item_class, timeout):
+        wait = WebDriverWait(driver, timeout)
+        wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")
+        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, item_class)))
+        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, item_class)))
+
     def scrape_individual_products(self):
-        print("Scraping individual products")
         engine = create_engine('sqlite:///cdw.db')
-        Session = sessionmaker(bind=engine)
-        session = Session()
-        options = uc.ChromeOptions()
-        options.headless = True
-        driver = uc.Chrome(use_subprocess=True, options=options)
-        stealth(driver,
-            languages=["en-US", "en"],
-            vendor="Google Inc.",
-            platform="Win32",
-            webgl_vendor="Intel Inc.",
-            renderer="Intel Iris OpenGL Engine",
-            fix_hairline=True)
-        products_left = True
-        while products_left:
+        session = sessionmaker(bind=engine)()
+        driver = self.setup_driver()
+        while True:
             num_products = session.query(Product).filter_by(scanned=False).count()
-            scanned_products = 0
             if num_products == 0:
                 print("All products have been scanned.")
                 break
             print(f"Remaining products to scan: {num_products}")
-            num_products = session.query(Product).filter_by(scanned=False).count()
             products = session.query(Product).filter_by(scanned=False).yield_per(1)
             for product in products:
-                print(f"Scanning product {scanned_products+1} of {num_products}")
-                try:
-                    url = product.url
-                    specs = {}
-                    driver.get(url)
-                    time.sleep(.5)
-                    driver.refresh()
-                    wait = WebDriverWait(driver, 20)
-                    try:
-                        wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")
-                        wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="modal-product-spec"]/div/div/div/div[2]')))
-                        wait.until( EC.presence_of_element_located((By.XPATH, '//*[@id="modal-product-spec"]/div/div/div/div[2]')))
-                        container = driver.find_element(By.ID, 'TS')
-                        try:
-                            products_html = container.get_attribute("innerHTML")
-                            soup = BeautifulSoup(products_html, 'lxml')
-                            spec = soup.find_all('div', class_="panel-row")
-                            error = False
-                            for row in spec:
-                                columns = row.find_all('span')
-                                if len(columns) == 2:
-                                    label = columns[0].get_text(strip=True)
-                                    value = columns[1].get_text(strip=True)
-                                    specs[label] = value
-                            product.brand = self.extract_brand(specs)
-                            product.name = self.extract_name(specs, product.brand)
-                            if product.type == "notebook":
-                                product.form_factor = self.extract_form_factor_notebook(specs)
-                            if product.type == "desktop":
-                                product.form_factor = self.extract_form_factor_desktop(specs)
-                            if product.type == "workstation":
-                                product.form_factor = self.extract_form_factor_desktop(specs)
-                            product.cpu = self.extract_cpu(specs)
-                            product.ram = self.extract_ram(specs)
-                            product.ddr = self.extract_ddr(specs)
-                            product.storage = self.extract_storage(specs)
-                            product.os = self.extract_os(specs)
-                            product.ethernet = self.extract_ethernet(specs)
-                            product.gpu = self.extract_gpu(specs)
-                            product.wifi = self.extract_wifi(specs)
-                            product.touch = self.extract_touch(specs)
-                            product.screen_res = self.extract_screen_res(specs)
-                            product.screen_type = self.extract_screen_type(specs)
-                            product.screen_size = self.extract_screen_size(specs)
-                            product.keyboard = self.extract_keyboard(specs)
-                            product.warranty = self.extract_warranty(specs)
-                            product.error = error
-                            if product.cpu == "N/A" or product.gpu == "N/A" or product.form_factor == "N/A":
-                                product.error = True
-                            if product.storage == 0 or product.ram == 0:
-                                product.error = True
-                            product.scanned = True
-                            session.commit()
-                            scanned_products += 1
-                            time.sleep(random.uniform(0, 2))
-                        except Exception as e:
-                            product.scanned = True
-                            product.error = True
-                            session.commit()
-                            logging.error(f"***Error while scanning product {product.id}: {traceback.format_exc()}")
-                    except TimeoutException:
-                        logging.error(f"***Timeout error on product {product.id} URL: {product.url}")
-                        session.rollback()
-                        product.error = True
-                        product.scanned = True
-                        scanned_products += 1
-                        session.commit()
-                except NoSuchElementException:
-                    time.sleep(random.uniform(0, 2))
-                    scanned_products += 1
-                    session.rollback()
-                    logging.error(f"***Error page loading product {product.id}: {traceback.format_exc()}")
+                print(f"Scanning product {product.sku}")
+                self.scan_product(driver, product, session)
         driver.quit()
         session.close()
         logging.info("Scanning complete")
 
+    def scan_product(self, driver, product, session):
+        try:
+            url = product.url
+            specs = {}
+            driver.get(url)
+            item_class = ".accordion-wrapper"
+            try:
+                self.wait_for_elements(driver, item_class, timeout=5)
+            except TimeoutException:
+                logging.info(f"First attempt failed for product {product.sku}, refreshing page...")
+                driver.refresh()
+                try:
+                    self.wait_for_elements(driver, item_class, timeout=5)
+                except TimeoutException:
+                    logging.error(f"Second attempt failed for product {product.sku}, moving on...")
+                    product.scanned = True
+                    product.error = True
+                    session.commit()
+                    return
+            self.extract_product_specs(driver, specs, product.type)
+            self.update_product_in_db(product, specs, session)
+        
+        except (TimeoutException, NoSuchElementException) as e:
+            logging.error(f"Error scanning product {product.sku}: {traceback.format_exc()}")
+            product.scanned = True
+            product.error = True
+            session.commit()
+
+    def extract_product_specs(self, driver, specs, type):
+        """Extracts the product specs using Selenium and BeautifulSoup."""
+        unrefined_data = {}
+        try:
+            container = driver.find_element(By.ID, 'TS')
+            specs_html = container.get_attribute("innerHTML")
+            soup = BeautifulSoup(specs_html, 'html.parser')
+            rows = soup.find_all('div', class_="panel-row")
+            for row in rows:
+                columns = row.find_all('span')
+                if len(columns) == 2:
+                    label = columns[0].get_text(strip=True)
+                    value = columns[1].get_text(strip=True)
+                    unrefined_data[label] = value
+            specs['brand'] = self.extract_brand(unrefined_data)
+            specs['name'] = self.extract_name(unrefined_data, specs['brand'])
+            specs['form_factor'] = self.extract_form_factor(unrefined_data, type)
+            specs['cpu'] = self.extract_cpu(unrefined_data)
+            specs['gpu'] = self.extract_gpu(unrefined_data)
+            specs['storage'] = self.extract_storage(unrefined_data)
+            specs['ram'] = self.extract_ram(unrefined_data)
+            specs['keyboard'] = self.extract_keyboard(unrefined_data)
+            specs['warranty'] = self.extract_warranty(unrefined_data)
+            specs['ddr'] = self.extract_ddr(unrefined_data)
+            specs['os'] = self.extract_os(unrefined_data)
+            specs['ethernet'] = self.extract_ethernet(unrefined_data)
+            specs['wifi'] = self.extract_wifi(unrefined_data)
+            specs['screen_resolution'] = self.extract_screen_res(unrefined_data)          
+            specs['screen_type'] = self.extract_screen_type(unrefined_data)
+            specs['screen_size'] = self.extract_screen_size(unrefined_data)
+            specs['touch'] = self.extract_touch(unrefined_data)
+
+        except NoSuchElementException as e:
+            logging.error(f"Error extracting product specs: {traceback.format_exc()}")
+            specs['brand'] = specs.get('brand', 'N/A')
+            specs['name'] = specs.get('name', 'N/A')
+            specs['form_factor'] = specs.get('form_factor', 'N/A')
+            specs['cpu'] = specs.get('cpu', 'N/A')
+            specs['gpu'] = specs.get('gpu', 'N/A')
+            specs['storage'] = specs.get('storage', 0)
+            specs['ram'] = specs.get('ram', 0)
+            specs['warranty'] = specs.get('warranty', 'N/A')
+            specs['ddr'] = specs.get('ddr', 'N/A')
+            specs['os'] = specs.get('os', 'N/A')
+            specs['ethernet'] = specs.get('ethernet', 'N/A')
+            specs['wifi'] = specs.get('wifi', 'N/A')
+            specs['keyboard'] = specs.get('keyboard', 'N/A')
+            specs['screen_resolution'] = specs.get('screen_resolution', 'N/A')
+            specs['screen_size'] = specs.get('screen_size', 'N/A')
+            specs['screen_type'] = specs.get('screen_type', 'N/A')
+            specs['touch'] = specs.get('touch', 'N/A')
+
+    def update_product_in_db(self, product, specs, session):
+        try:
+            product.brand = specs.get('brand', 'N/A')
+            product.name = specs.get('name', 'N/A')
+            product.form_factor = specs.get('form_factor', 'N/A')
+            product.cpu = specs.get('cpu', 'N/A')
+            product.gpu = specs.get('gpu', 'N/A')
+            product.storage = specs.get('storage', 0)
+            product.ram = specs.get('ram', 0)
+            product.keyboard = specs.get('keyboard', 'N/A')
+            product.warranty = specs.get('warranty', 'N/A')
+            product.ddr = specs.get('ddr', 'N/A')
+            product.os = specs.get('os', 'N/A')
+            product.ethernet = specs.get('ethernet', 'N/A')
+            product.wifi = specs.get('wifi', 'N/A')
+            product.screen_resolution = specs.get('screen_resolution', 'N/A')
+            product.screen_size = specs.get('screen_size', 'N/A')
+            product.screen_type = specs.get('screen_type', 'N/A')
+            product.touch = specs.get('touch', 'N/A')
+
+            product.scanned = True
+            if product.cpu == "N/A" or product.gpu == "N/A" or product.storage == 0 or product.ram == 0:
+                product.error = True
+            session.commit()
+        except Exception as e:
+            logging.error(f"Error updating product {product.sku} in the database: {traceback.format_exc()}")
+            session.rollback()  
+
+        
     @classmethod
     def extract_sku(cls, product):
         return product.find('span',class_="mfg-code").find(text=True).strip().replace('MFG#: ', '') if product.find('span',class_="mfg-code") else "N/A"
      
+    @classmethod
+    def extract_brand(cls, product):
+         return product.get('Brand') if product.get('Brand') else 'N/A'
+
     @classmethod
     def extract_stock(cls, product):
         return product.find_all('div', class_='col-6')[1].find(text=True).strip().replace('Stock: ', '').replace(',', '') if product.find_all('div', class_='col-6')[1] else 0
@@ -223,10 +266,6 @@ class CDWScraper:
         return 0
 
     @classmethod
-    def extract_brand(cls, product):
-         return product.get('Brand') if product.get('Brand') else 'N/A'
-
-    @classmethod
     def extract_url(cls, product):
         return "https://www.cdw.com"+product.find('a', class_='search-result-product-url')['href']
 
@@ -236,6 +275,7 @@ class CDWScraper:
         series = product.get('Series', product.get('Product Series', None))
         model = product.get('Model', None)
         name_parts = []
+        name = ''
         if line:
             name_parts.append(line.strip()+' ')
         if series:
@@ -253,32 +293,33 @@ class CDWScraper:
          return f"{product.get('Product Type', None)}" if product.get('Product Type', None) else 'N/A'
 
     @classmethod
-    def extract_form_factor_notebook(cls, product):
-        screen_size = product.get('Screen Size', None)
-        if screen_size:
-            return int(float(screen_size.lower().replace('"', '').replace('inch','').strip()))
-        else:
-            return "N/A"
-    
-    @classmethod
-    def extract_form_factor_desktop(cls, product):
-        form_factor = product.get('Form Factor', "N/A").strip().lower()
-        form_factor_map = {
-            "desktop mini": "Tiny",
-            "ultra small form factor": "Tiny",
-            "micro pc": "Tiny",
-            "tiny": "Tiny",
-            "mini pc": "Tiny",
-            "mini-tower": "SFF",
-            "mini tower": "SFF",
-            "small form factor": "SFF",
-            "sff": "SFF",
-            "ultra small": "SFF",
-            "tower": "Tower",
-            "desktop": "All-in-One",
-            "all-in-one": "All-in-One"
-        }
-        return form_factor_map.get(form_factor, "N/A")
+    def extract_form_factor(cls, product, type):
+            if type == "desktop":
+                form_factor = product.get('Form Factor', "N/A").strip().lower()
+                form_factor_map = {
+                    "desktop mini": "Tiny",
+                    "ultra small form factor": "Tiny",
+                    "micro pc": "Tiny",
+                    "tiny": "Tiny",
+                    "mini pc": "Tiny",
+                    "mini-tower": "SFF",
+                    "mini tower": "SFF",
+                    "small form factor": "SFF",
+                    "sff": "SFF",
+                    "ultra small": "SFF",
+                    "tower": "Tower",
+                    "desktop": "All-in-One",
+                    "all-in-one": "All-in-One"
+                }
+                return form_factor_map.get(form_factor, "N/A")
+            elif type == "notebook":
+                screen_size = product.get('Screen Size', None)
+                if screen_size:
+                    return int(float(screen_size.lower().replace('"', '').replace('inch','').strip()))
+                else:
+                    return "N/A"
+            else:
+                return "N/A"
 
     @classmethod
     def extract_cpu(cls, product):

@@ -1,0 +1,127 @@
+    "You are tasked with extracting computer specifications from a webpage. The webpage contains one computer"
+    "Please follow these instructions carefully: \n\n"
+    "1. **Extract Information:** Only extract the information that directly pertains to the computer being scanned. "
+    "2. **No Extra Content:** Do not include any additional text, comments, or explanations in your response. "
+    "3. **Empty Response:** If no information matches the description, return an empty string ('')."
+    "4. **Format:** The extracted information should be in the following format in a dictionary that I can manipulate directly: \n\n"
+	e.g.:
+    "Brand:"
+    "Name:"
+    "Form Factor:"
+    "Processor:"
+    "RAM:"
+    "Storage:"
+    "OS:"
+    "Graphics:"
+    "Warranty:"
+    "Screen Size:"
+    "Screen Resolution:"
+    "Keyboard: English\n"
+    "DDR:"
+    "WiFi:"
+    "Ethernet:"
+    "Touch:"
+    "4. **Direct Data Only:** Your output should contain only the data that is explicitly requested, with no other text."
+
+< class="title" role="cell">Brand</>
+< class="desc" role="cell">HP</>
+< class="title" role="cell">Series</>
+< class="desc" role="cell">250 G9</>
+< class="title" role="cell">Manufacturer</>
+< class="desc" role="cell">HP Inc.</>
+< class="title" role="cell">Chipset Manufacturer</>
+< class="desc" role="cell">Intel</>
+< class="title" role="cell">Cores</>
+< class="desc" role="cell">Deca-core (10 Core)</>
+< class="title" role="cell">Processor Brand</>
+< class="desc" role="cell">Intel</>
+< class="title" role="cell">Processor Generation</>
+< class="desc" role="cell">12th Gen</>
+< class="title" role="cell">Processor Model</>
+< class="desc" role="cell">i5-1235U</>
+< class="title" role="cell">Processor Speed</>
+< class="desc" role="cell">1.30 GHZ</>
+< class="title" role="cell">Processor Type</>
+< class="desc" role="cell">Core i5</>
+< class="title" role="cell">Available Memory Slots</>
+< class="desc" role="cell">1</>
+< class="title" role="cell">Occupied Memory Slots</>
+< class="desc" role="cell">1</>
+< class="title" role="cell">RAM Installed</>
+< class="desc" role="cell">16 GB</>
+< class="title" role="cell">Hard Drive Capacity</>
+< class="desc" role="cell">512 GB</>
+< class="title" role="cell">SSD Form Factor</>
+< class="desc" role="cell">M.2</>
+< class="title" role="cell">Storage Type</>
+< class="desc" role="cell">SSD</>
+< class="title" role="cell">Display Screen Technology</>
+< class="desc" role="cell">In-plane Switching (IPS) Technology</>
+< class="title" role="cell">Graphics Controller Model</>
+< class="desc" role="cell">Iris Xe Graphics</>
+< class="title" role="cell">Screen Mode</>
+< class="desc" role="cell">Full HD</>
+< class="title" role="cell">Screen Resolution</>
+< class="desc" role="cell">1920 x 1080</>
+< class="title" role="cell">Screen Size</>
+< class="desc" role="cell">15.6 inch</>
+< class="title" role="cell">Touchscreen</>
+< class="desc" role="cell">No</>
+< class="title" role="cell">V-Sync Rate at Max Res.</>
+< class="desc" role="cell">60 hertz</>
+< class="title" role="cell">Data Link Protocols</>
+< class="desc" role="cell">Gigabit Ethernet</>
+< class="title" role="cell">Wireless LAN</>
+< class="desc" role="cell">IEEE 802.11ax</>
+< class="title" role="cell">HDMI</>
+< class="desc" role="cell">Yes</>
+< class="title" role="cell">Network (RJ-45)</>
+< class="desc" role="cell">Yes</>
+< class="title" role="cell">Total USB Ports</>
+< class="desc" role="cell">3</>
+< class="title" role="cell">USB 3.2 Gen 1 Type-A Ports</>
+< class="desc" role="cell">2</>
+< class="title" role="cell">USB Type-C</>
+< class="desc" role="cell">Yes</>
+< class="title" role="cell">USB Type-C Detail</>
+< class="desc" role="cell">1 SuperSpeed USB TypeC® 5Gbps signaling rate</>
+< class="title" role="cell">Front Camera</>
+< class="desc" role="cell">Yes</>
+< class="title" role="cell">Country of Origin</>
+< class="desc" role="cell">China</>
+< class="title" role="cell">Features</>
+< class="desc" role="cell">Anti-glare Screen, Miracast Technology</>
+< class="title" role="cell">Keyboard Localization</>
+< class="desc" role="cell">English</>
+< class="title" role="cell">Product Type</>
+< class="desc" role="cell">Notebook</spa
+< class="title" role="cell">Wireless LAN</>
+< class="desc" role="cell">Yes</>
+< class="title" role="cell">Battery Chemistry</>
+< class="desc" role="cell">Lithium Ion (Li-Ion)</>
+< class="title" role="cell">Battery Run Time</>
+< class="desc" role="cell">8.30 Hours</>
+< class="title" role="cell">Battery Weight</>
+< class="desc" role="cell">6.24 ounce</>
+< class="title" role="cell">Max Power Supply Wattage</>
+< class="desc" role="cell">45 watt</>
+< class="title" role="cell">Operating System</>
+< class="desc" role="cell">Windows 11 Pro</>
+< class="title" role="cell">Operating System Language</>
+< class="desc" role="cell">English</>
+< class="title" role="cell">Operating System Platform</>
+< class="desc" role="cell">Windows</>
+< class="title" role="cell">ENERGY STAR Certified</>
+< class="desc" role="cell">Yes</>
+< class="title" role="cell">Environmentally Friendly</>
+< class="desc" role="cell">Yes</>
+< class="title" role="cell">Height</>
+< class="desc" role="cell">0.78 inch</>
+< class="title" role="cell">Weight</>
+< class="desc" role="cell">3.84 lb</>
+< class="title" role="cell">Width</>
+< class="desc" role="cell">14.1 inch</>
+< class="title" role="cell">Depth</>
+< class="desc" role="cell">9.5 inch</>
+< class="title" role="cell">Limited Warranty</>
+< class="desc" role="cell">1 Year</>
