@@ -1,4 +1,4 @@
-from scraper import DirectDialScraper
+from direct_dial_scraper import DirectDialScraper
 from cdw_scraper import CDWScraper
 from products import DatabaseExporter
 from hardware import HardwareScraper
@@ -29,18 +29,18 @@ def main():
     #products.scrape_individual_products()
 
     #cdw_products = CDWScraper('https://www.cdw.com/category/computers/desktops/?w=CA&b=CPQ.DLE.LVO&SortBy=BestMatch&maxrecords=1000&instock=1')
-    cdw_products = CDWScraper('https://www.cdw.com/category/computers/laptops-2-in-1s/?w=CB&b=CPQ.DLE.LVO&instock=1&maxrecords=500')
-    cdw_products.scrape_product_page()
-    cdw_products.scrape_individual_products()
-    cdw_products = CDWScraper('https://www.cdw.com/category/computers/desktops/?w=CA&b=CPQ.DLE.LVO&SortBy=BestMatch&maxrecords=1000&instock=1')
-    cdw_products.scrape_product_page()
-    cdw_products.scrape_individual_products()
-    cdw_score = Score('sqlite:///cdw.db', 'sqlite:///hardware.db')
-    cdw_score.calculate_scores()
+    #cdw_products = CDWScraper('https://www.cdw.com/category/computers/laptops-2-in-1s/?w=CB&b=CPQ.DLE.LVO&instock=1&maxrecords=500')
+    #cdw_products.scrape_product_page()
+    #cdw_products.scrape_individual_products()
+    #cdw_products = CDWScraper('https://www.cdw.com/category/computers/desktops/?w=CA&b=CPQ.DLE.LVO&SortBy=BestMatch&maxrecords=1000&instock=1')
+    #cdw_products.scrape_product_page()
+    #cdw_products.scrape_individual_products()
+    #cdw_score = Score('sqlite:///cdw.db', 'sqlite:///hardware.db')
+    #cdw_score.calculate_scores()
 
     # Scrape Desktops Specs
-    #products = WebScraper('https://www.directdial.com/ca/search/computer-systems/desktop-computers/desktop-computer?instock=true&productType=Desktop%20Computer&brand=Lenovo&brand=Dell&brand=HP')
-    #products.scrape_product_page()
+    products = DirectDialScraper('https://www.directdial.com/ca/search/computer-systems/desktop-computers/desktop-computer?instock=true&productType=Desktop%20Computer&brand=Lenovo&brand=Dell&brand=HP')
+    products.scrape_product_page()
     #products.scrape_individual_products()
 
     #exporter = DatabaseExporter('products.db')
