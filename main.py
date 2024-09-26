@@ -39,9 +39,9 @@ def main():
     #cdw_score.calculate_scores()
 
     # Scrape Desktops Specs
-    products = DirectDialScraper('https://www.directdial.com/ca/search/computer-systems/desktop-computers/desktop-computer?instock=true&productType=Desktop%20Computer&brand=Lenovo&brand=Dell&brand=HP')
+    products = DirectDialScraper('https://www.directdial.com/ca/search/computer-systems?instock=true&productType=Desktop%20Computer&brand=Dell&brand=Lenovo&brand=HP')
     products.scrape_product_page()
-    #products.scrape_individual_products()
+    products.scrape_individual_products()
 
     #exporter = DatabaseExporter('products.db')
     #exporter.export_table_to_csv('products', 'products.csv')

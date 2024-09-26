@@ -292,3 +292,926 @@
 2024-09-25 21:30:45,867 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
 2024-09-25 21:31:37,169 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
 2024-09-25 21:32:05,516 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-25 22:04:16,298 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 22:05:13,852 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 22:05:44,096 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 22:06:43,696 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 22:07:28,180 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 22:08:13,879 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 22:10:32,225 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 22:11:25,042 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 22:14:05,686 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:05:50,004 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:13:44,127 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:16:43,429 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:20:48,885 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:21:57,876 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:36:33,777 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:38:42,966 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:39:32,819 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:40:52,468 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:41:19,999 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:42:55,124 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:43:59,704 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:45:04,815 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:47:19,376 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:50:31,563 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:52:40,612 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:53:37,350 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:54:19,528 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-25 23:55:13,120 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:03:53,897 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:37:03,803 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:38:12,480 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:41:13,552 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:43:51,767 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:44:35,058 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:44:57,686 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:45:19,721 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:45:32,011 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:46:26,122 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:46:38,627 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:47:58,964 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:48:57,066 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:50:36,275 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:50:46,914 - INFO - First attempt failed for product 12LN000BUS, refreshing page...
+2024-09-26 00:53:44,529 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:54:27,506 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:55:29,436 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:56:18,837 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:57:23,708 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 00:59:49,492 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:00:48,458 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:01:16,725 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x0000000100fa8d68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x0000000100fa062a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000100b43d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000100b9030f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000100b903f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000100bd5464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000100bb49dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000100bd2a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000100bb4753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000100b83635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000100b83e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000100f6f050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000100f73f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000100f74635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000100f51af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000100f74929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000100f43094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000100f90a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000100f90c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x0000000100fa022e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:01:18,807 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x0000000100fa8d68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x0000000100fa062a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000100b43d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000100b9030f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000100b903f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000100bd5464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000100bb49dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000100bd2a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000100bb4753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000100b83635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000100b83e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000100f6f050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000100f73f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000100f74635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000100f51af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000100f74929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000100f43094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000100f90a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000100f90c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x0000000100fa022e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:01:20,894 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x0000000100fa8d68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x0000000100fa062a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000100b43d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000100b9030f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000100b903f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000100bd5464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000100bb49dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000100bd2a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000100bb4753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000100b83635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000100b83e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000100f6f050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000100f73f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000100f74635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000100f51af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000100f74929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000100f43094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000100f90a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000100f90c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x0000000100fa022e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:01:22,992 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x0000000100fa8d68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x0000000100fa062a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000100b43d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000100b9030f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000100b903f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000100bd5464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000100bb49dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000100bd2a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000100bb4753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000100b83635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000100b83e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000100f6f050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000100f73f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000100f74635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000100f51af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000100f74929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000100f43094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000100f90a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000100f90c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x0000000100fa022e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:01:25,100 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x0000000100fa8d68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x0000000100fa062a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000100b43d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000100b9030f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000100b903f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000100bd5464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000100bb49dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000100bd2a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000100bb4753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000100b83635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000100b83e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000100f6f050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000100f73f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000100f74635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000100f51af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000100f74929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000100f43094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000100f90a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000100f90c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x0000000100fa022e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:01:25,425 - INFO - Scanning complete
+2024-09-26 01:03:04,499 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:03:16,877 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:03:48,047 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x00000001050e0d68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x00000001050d862a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000104c7bd10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000104cc830f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000104cc83f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000104d0d464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000104cec9dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000104d0aa00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000104cec753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000104cbb635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000104cbbe5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x00000001050a7050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x00000001050abf68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x00000001050ac635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000105089af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x00000001050ac929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x000000010507b094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x00000001050c8a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x00000001050c8c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x00000001050d822e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:03:50,134 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x00000001050e0d68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x00000001050d862a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000104c7bd10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000104cc830f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000104cc83f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000104d0d464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000104cec9dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000104d0aa00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000104cec753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000104cbb635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000104cbbe5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x00000001050a7050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x00000001050abf68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x00000001050ac635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000105089af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x00000001050ac929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x000000010507b094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x00000001050c8a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x00000001050c8c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x00000001050d822e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:03:52,214 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x00000001050e0d68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x00000001050d862a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000104c7bd10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000104cc830f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000104cc83f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000104d0d464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000104cec9dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000104d0aa00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000104cec753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000104cbb635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000104cbbe5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x00000001050a7050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x00000001050abf68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x00000001050ac635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000105089af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x00000001050ac929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x000000010507b094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x00000001050c8a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x00000001050c8c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x00000001050d822e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:03:54,315 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x00000001050e0d68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x00000001050d862a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000104c7bd10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000104cc830f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000104cc83f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000104d0d464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000104cec9dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000104d0aa00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000104cec753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000104cbb635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000104cbbe5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x00000001050a7050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x00000001050abf68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x00000001050ac635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000105089af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x00000001050ac929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x000000010507b094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x00000001050c8a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x00000001050c8c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x00000001050d822e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:03:54,633 - INFO - Scanning complete
+2024-09-26 01:04:37,162 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:04:50,295 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:04:54,105 - INFO - Scanning complete
+2024-09-26 01:07:15,385 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:07:27,819 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:07:52,133 - INFO - Scanning complete
+2024-09-26 01:10:12,927 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:10:25,300 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:10:48,021 - INFO - Scanning complete
+2024-09-26 01:12:28,427 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:12:40,763 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:13:04,862 - INFO - Scanning complete
+2024-09-26 01:13:37,979 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:13:41,773 - INFO - Scanning complete
+2024-09-26 01:14:00,278 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:14:07,242 - INFO - Scanning complete
+2024-09-26 01:18:47,878 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:18:51,679 - INFO - Scanning complete
+2024-09-26 01:19:13,903 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:19:20,918 - INFO - Scanning complete
+2024-09-26 01:21:26,930 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:21:30,727 - INFO - Scanning complete
+2024-09-26 01:21:55,717 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:22:02,874 - INFO - Scanning complete
+2024-09-26 01:24:27,188 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:24:39,349 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:25:00,003 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 182, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x0000000100e8bd68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x0000000100e8362a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000100a26d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000100a7330f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000100a733f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000100ab8464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000100a979dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000100ab5a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000100a97753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000100a66635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000100a66e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000100e52050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000100e56f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000100e57635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000100e34af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000100e57929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000100e26094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000100e73a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000100e73c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x0000000100e8322e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:25:05,033 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 182, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x0000000100e8bd68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x0000000100e8362a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000100a26d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000100a7330f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000100a733f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000100ab8464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000100a979dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000100ab5a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000100a97753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000100a66635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000100a66e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000100e52050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000100e56f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000100e57635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000100e34af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000100e57929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000100e26094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000100e73a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000100e73c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x0000000100e8322e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:25:07,128 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 182, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x0000000100e8bd68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x0000000100e8362a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000100a26d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000100a7330f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000100a733f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000100ab8464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000100a979dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000100ab5a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000100a97753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000100a66635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000100a66e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000100e52050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000100e56f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000100e57635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000100e34af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000100e57929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000100e26094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000100e73a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000100e73c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x0000000100e8322e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:25:12,448 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 182, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x0000000100e8bd68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x0000000100e8362a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000100a26d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000100a7330f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000100a733f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000100ab8464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000100a979dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000100ab5a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000100a97753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000100a66635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000100a66e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000100e52050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000100e56f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000100e57635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000100e34af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000100e57929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000100e26094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000100e73a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000100e73c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x0000000100e8322e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:25:12,747 - INFO - Scanning complete
+2024-09-26 01:26:10,322 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:26:22,667 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:26:43,230 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 184, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x000000010279dd68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x000000010279562a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000102338d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x000000010238530f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x00000001023853f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x00000001023ca464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x00000001023a99dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x00000001023c7a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x00000001023a9753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000102378635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000102378e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000102764050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000102768f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000102769635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000102746af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000102769929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000102738094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000102785a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000102785c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x000000010279522e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:26:45,317 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 184, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x000000010279dd68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x000000010279562a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000102338d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x000000010238530f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x00000001023853f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x00000001023ca464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x00000001023a99dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x00000001023c7a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x00000001023a9753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000102378635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000102378e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000102764050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000102768f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000102769635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000102746af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000102769929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000102738094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000102785a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000102785c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x000000010279522e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:26:47,403 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 184, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x000000010279dd68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x000000010279562a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000102338d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x000000010238530f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x00000001023853f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x00000001023ca464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x00000001023a99dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x00000001023c7a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x00000001023a9753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000102378635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000102378e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000102764050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000102768f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000102769635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000102746af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000102769929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000102738094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000102785a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000102785c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x000000010279522e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:26:49,483 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 184, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x000000010279dd68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x000000010279562a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000102338d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x000000010238530f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x00000001023853f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x00000001023ca464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x00000001023a99dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x00000001023c7a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x00000001023a9753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000102378635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000102378e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000102764050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000102768f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000102769635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000102746af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000102769929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000102738094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000102785a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000102785c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x000000010279522e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:26:51,568 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 184, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x000000010279dd68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x000000010279562a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000102338d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x000000010238530f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x00000001023853f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x00000001023ca464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x00000001023a99dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x00000001023c7a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x00000001023a9753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000102378635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000102378e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000102764050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000102768f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000102769635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000102746af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000102769929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000102738094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000102785a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000102785c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x000000010279522e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:26:53,651 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 184, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x000000010279dd68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x000000010279562a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000102338d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x000000010238530f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x00000001023853f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x00000001023ca464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x00000001023a99dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x00000001023c7a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x00000001023a9753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000102378635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000102378e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000102764050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000102768f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000102769635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000102746af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000102769929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000102738094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000102785a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000102785c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x000000010279522e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:26:53,951 - INFO - Scanning complete
+2024-09-26 01:27:22,746 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:27:35,322 - INFO - patching driver executable /Users/lukasfaulkner/Library/Application Support/undetected_chromedriver/undetected_chromedriver
+2024-09-26 01:28:00,345 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 182, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x000000010502ad68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x000000010502262a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000104bc5d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000104c1230f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000104c123f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000104c57464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000104c369dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000104c54a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000104c36753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000104c05635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000104c05e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000104ff1050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000104ff5f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000104ff6635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000104fd3af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000104ff6929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000104fc5094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000105012a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000105012c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x000000010502222e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:28:05,472 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 182, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x000000010502ad68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x000000010502262a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000104bc5d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000104c1230f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000104c123f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000104c57464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000104c369dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000104c54a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000104c36753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000104c05635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000104c05e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000104ff1050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000104ff5f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000104ff6635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000104fd3af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000104ff6929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000104fc5094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000105012a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000105012c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x000000010502222e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:28:07,567 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/direct_dial_scraper.py", line 182, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "/Users/lukasfaulkner/GitHub Projects/PFV-App/.venv/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+0   undetected_chromedriver             0x000000010502ad68 undetected_chromedriver + 4996456
+1   undetected_chromedriver             0x000000010502262a undetected_chromedriver + 4961834
+2   undetected_chromedriver             0x0000000104bc5d10 undetected_chromedriver + 388368
+3   undetected_chromedriver             0x0000000104c1230f undetected_chromedriver + 701199
+4   undetected_chromedriver             0x0000000104c123f1 undetected_chromedriver + 701425
+5   undetected_chromedriver             0x0000000104c57464 undetected_chromedriver + 984164
+6   undetected_chromedriver             0x0000000104c369dd undetected_chromedriver + 850397
+7   undetected_chromedriver             0x0000000104c54a00 undetected_chromedriver + 973312
+8   undetected_chromedriver             0x0000000104c36753 undetected_chromedriver + 849747
+9   undetected_chromedriver             0x0000000104c05635 undetected_chromedriver + 648757
+10  undetected_chromedriver             0x0000000104c05e5e undetected_chromedriver + 650846
+11  undetected_chromedriver             0x0000000104ff1050 undetected_chromedriver + 4759632
+12  undetected_chromedriver             0x0000000104ff5f68 undetected_chromedriver + 4779880
+13  undetected_chromedriver             0x0000000104ff6635 undetected_chromedriver + 4781621
+14  undetected_chromedriver             0x0000000104fd3af9 undetected_chromedriver + 4639481
+15  undetected_chromedriver             0x0000000104ff6929 undetected_chromedriver + 4782377
+16  undetected_chromedriver             0x0000000104fc5094 undetected_chromedriver + 4579476
+17  undetected_chromedriver             0x0000000105012a58 undetected_chromedriver + 4897368
+18  undetected_chromedriver             0x0000000105012c53 undetected_chromedriver + 4897875
+19  undetected_chromedriver             0x000000010502222e undetected_chromedriver + 4960814
+20  libsystem_pthread.dylib             0x00007ff81a037253 _pthread_start + 99
+21  libsystem_pthread.dylib             0x00007ff81a032bef thread_start + 15
+
+
+2024-09-26 01:28:11,188 - INFO - Scanning complete
