@@ -104,34 +104,28 @@ class DirectDialScraper:
     def extract_product_info(self, products_html):
         soup = BeautifulSoup(products_html, 'lxml')
         products = soup.find_all('li', class_="product list-view")
-        products = [products[0]]
+        products = products[0:10]
         for product in products:
-            br_tags = product.find_all('br')
-            for br in br_tags[5:]:
-                if br.previous_sibling.get_text().strip() == '':
-                    br_tags.remove(br)
-            print(br_tags)
-                #print(br.get_text())
-            #print(sku)
-            #price = self.extract_price(product)
-            #msrp = self.extract_msrp(product)
-            #stock = self.extract_stock(product)
-            #rebate = self.extract_rebate(product)
-            #sale = self.extract_sale(product)
-            #brand = self.extract_brand(product)
-            #url = self.extract_url(product)
-            #updated = datetime.now().strftime("%m/%d/%Y")
-            #discovered = datetime.now().strftime("%m/%d/%Y")
-            #if "notebook" in self.url or "laptop" in self.url:
-            #    type = "notebook"
-            #elif "desktop" in self.url:
-            #    type = "desktop"
-            #elif 'workstation' in self.url:
-            #    type = "workstation"
-            #else:
-            #    type = "N/A"
-            #product_manager = ProductManager('sqlite:///direct_dial.db')
-            #product_manager.add_direct_dial_product(sku, stock, price, msrp, rebate, sale, brand, type, url, updated, discovered)
+            sku = self.extract_sku(product)
+            price = self.extract_price(product)
+            msrp = self.extract_msrp(product)
+            stock = self.extract_stock(product)
+            rebate = self.extract_rebate(product)
+            sale = self.extract_sale(product)
+            brand = self.extract_brand(product)
+            url = self.extract_url(product)
+            updated = datetime.now().strftime("%m/%d/%Y")
+            discovered = datetime.now().strftime("%m/%d/%Y")
+            if "notebook" in self.url.lower() or "laptop" in self.url.lower():
+                type = "notebook"
+            elif "desktop" in self.url.lower():
+                type = "desktop"
+            elif 'workstation' in self.url.lower():
+                type = "workstation"
+            else:
+                type = "N/A"
+            product_manager = ProductManager('sqlite:///direct_dial.db')
+            product_manager.add_direct_dial_product(sku, stock, price, msrp, rebate, sale, brand, type, url, updated, discovered)
 
     def scrape_individual_products(self):
         engine = create_engine('sqlite:///direct_dial.db')
@@ -157,20 +151,21 @@ class DirectDialScraper:
             specs = {}
             driver.get(url)
             time.sleep(2)
-            #item_class = ".entry-content"
-            #try:
-                #self.wait_for_elements(driver, item_class, timeout=5)
-            #except TimeoutException:
-                #logging.info(f"First attempt failed for product {product.sku}, refreshing page...")
-                #driver.refresh()
-                #try:
-                    #self.wait_for_elements(driver, item_class, timeout=5)
-                #except TimeoutException:
-                    #logging.error(f"Second attempt failed for product {product.sku}, moving on...")
-                    #product.scanned = True
-                    #product.error = True
-                    #session.commit()
-                    #return
+            item_class=".site-content"
+            try:
+                self.wait_for_elements(driver, item_class, timeout=5)
+            except TimeoutException:
+                logging.info(f"First attempt failed for product {product.sku}, refreshing page...")
+                driver.refresh()
+                try:
+                    time.sleep(1)
+                    self.wait_for_elements(driver, item_class, timeout=5)
+                except TimeoutException:
+                    logging.error(f"Second attempt failed for product {product.sku}, moving on...")
+                    product.scanned = True
+                    product.error = True
+                    session.commit()
+                    return
             self.extract_product_specs(driver, specs, product.type, product.sku)
             self.update_product_in_db(product, specs, session)
         
@@ -194,7 +189,6 @@ class DirectDialScraper:
                     label = columns[0].get_text(strip=True).replace(':', '')
                     value = columns[1].get_text(strip=True)
                     unrefined_data[label] = value
-            #specs['brand'] = self.extract_brand(unrefined_data)
             specs['name'] = self.extract_name(unrefined_data, sku)
             specs['form_factor'] = self.extract_form_factor(unrefined_data, type)
             specs['cpu'] = self.extract_cpu(unrefined_data)
@@ -230,6 +224,7 @@ class DirectDialScraper:
             specs['screen_size'] = specs.get('screen_size', 'N/A')
             specs['screen_type'] = specs.get('screen_type', 'N/A')
             specs['touch'] = specs.get('touch', 'N/A')
+            time.sleep(1)
 
     def update_product_in_db(self, product, specs, session):
         try:
@@ -261,13 +256,16 @@ class DirectDialScraper:
 
     @classmethod
     def extract_sku(cls, product):
-        divs = product.find_all('div', class_='col-6')
-        if divs and divs[0]:
-            text = divs[0].get_text(strip=True)
-            return text if text else 'N/A'
-        else:
-            return 'N/A'
-        
+        return product.find_all('div', class_='col-6')[0].find(text=True).strip() if product.find_all('div', class_='col-6')[0] else 'N/A'
+    
+    @classmethod
+    def extract_brand(cls, product):
+        return product.find('div', style="background-color:#ddd; display:none;").find(text=lambda text: 'item.brand:' in text).find_next(text=True).strip() if product.find('div', style="background-color:#ddd; display:none;").find(text=lambda text: 'item.brand:' in text) else 0
+
+    @classmethod
+    def extract_stock(cls, product):
+        return product.find_all('div', class_='col-6')[1].find(text=True).strip().replace('Stock: ', '').replace(',', '') if product.find_all('div', class_='col-6')[1] else 0
+
     @classmethod
     def extract_price(cls, product):
         return product.find('div', class_='col amount-list').find(text=True).strip().replace('$', '') if product.find('div', class_='col amount-list') else 0
@@ -277,18 +275,23 @@ class DirectDialScraper:
         return product.find('div', style="background-color:#ddd; display:none;").find(text=lambda text: 'item.msrp:' in text).find_next(text=True).strip() if product.find('div', style="background-color:#ddd; display:none;").find(text=lambda text: 'item.msrp:' in text) else 0
 
     @classmethod
-    def extract_stock(cls, product):
-        return product.find_all('div', class_='col-6')[1].find(text=True).strip().replace('Stock: ', '').replace(',', '') if product.find_all('div', class_='col-6')[1] else 0
-
-    @classmethod
     def extract_rebate(cls, product):
+        # Try to find the 'div' containing the rebate info
         rebate_div = product.find('div', class_='in-stock item-alert w-100')
+        
+        # Check if the div exists
         if rebate_div:
+            # Try to find the 'span' inside the div with specific styling
             rebate_span = rebate_div.find('span', style="color:#333e48; font-weight:bold;")
+            
+            # Check if the span exists
             if rebate_span:
+                # Try to find the text inside the span and clean it
                 rebate_text = rebate_span.find(text=True)
                 if rebate_text:
                     return rebate_text.replace('$', '').strip()
+    
+    # Return 0 if no rebate info is found
         return 0
     
     @classmethod
@@ -310,12 +313,8 @@ class DirectDialScraper:
         return 0
 
     @classmethod
-    def extract_brand(cls, product):
-        return product.find('div', style="background-color:#ddd; display:none;").find(text=lambda text: 'item.brand:' in text).find_next(text=True).strip() if product.find('div', style="background-color:#ddd; display:none;").find(text=lambda text: 'item.brand:' in text) else 0
-
-    @classmethod
     def extract_url(cls, product):
-        return "https://www.directdial.com"+product.find('div', class_='col-xs-12').find('a', href=True)['href']
+        return "https://www.directdial.com" +product.find('div', class_='col-xs-12').find('a', href=True)['href']
 
     @classmethod
     def extract_name(cls, product, sku):
@@ -340,34 +339,30 @@ class DirectDialScraper:
 
     @classmethod
     def extract_form_factor(cls, product, type):
-            print(type)
-            if type == "desktop":
-                form_factor = product.get('Form Factor', "N/A").lower().strip()
-                form_factor_map = {
-                    "desktop mini": "Tiny",
-                    "ultra small form factor": "Tiny",
-                    "micro pc": "Tiny",
-                    "tiny": "Tiny",
-                    "mini pc": "Tiny",
-                    "mini-tower": "SFF",
-                    "mini tower": "SFF",
-                    "small form factor": "SFF",
-                    "sff": "SFF",
-                    "ultra small": "SFF",
-                    "tower": "Tower",
-                    "desktop": "All-in-One",
-                    "all-in-one": "All-in-One"
-                }
-                return form_factor_map.get(form_factor, "N/A")
-            elif type == "notebook":
-                screen_size = product.get('Screen Size', None)
-                if screen_size:
-                    return int(float(screen_size.lower().replace('"', '').replace('inch','').strip()))
-                else:
-                    return "N/A"
-            else:
-                return "N/A"
+        if type == "notebook":
+            screen_size = product.get('Screen Size', None)
+            if screen_size:
+                return int(float(screen_size.replace('"', '').strip()))
+        if type == "desktop":
+            form_factor = product.get('Form Factor', "N/A").strip()
+            form_factor_map = {
+                "Desktop Mini": "Tiny",
+                "Micro PC": "Tiny",
+                "Tiny": "Tiny",
+                "Mini PC": "Tiny",
+                "Mini-tower": "SFF",
+                "Small Form Factor": "SFF",
+                "SFF": "SFF",
+                "Ultra Small": "SFF",
+                "Tower": "Tower",
+                "Desktop": "All-in-One"
+            }
 
+            # Return the mapped value or "N/A" if form factor is not found
+            return form_factor_map.get(form_factor, "N/A")
+        else:
+            return "N/A"
+    
     @classmethod
     def extract_cpu(cls, product):
         processor_manufacturer = product.get('Processor Manufacturer', None)
@@ -382,10 +377,28 @@ class DirectDialScraper:
         return cpu
 
     @classmethod
+    def extract_gpu(cls, product):
+        graphics_controller_manufacturer = product.get('Graphics Controller Manufacturer', None)
+        graphics_controller_model = product.get('Graphics Controller Model', None)
+        graphics_memory_accessibility = product.get('Graphics Memory Accessibility', None)
+        if graphics_memory_accessibility == "Shared":
+            return "Integrated"
+        elif graphics_memory_accessibility == "Dedicated":
+            return graphics_controller_manufacturer+" "+graphics_controller_model
+        elif "," in graphics_memory_accessibility:
+            graphics_memory_accessibility = graphics_memory_accessibility.split(',')
+            if graphics_memory_accessibility[0].strip() == "Dedicated":
+                position = 0
+            else:
+                position = 1
+            return graphics_controller_manufacturer.split(',')[position].strip()+" "+graphics_controller_model.split(',')[position].strip()
+
+    @classmethod
     def extract_ram(cls, product):
+        ram = product.get('Standard Memory', product.get('Total Installed System Memory', 'N/A'))
         try:
-            if "GB" in product.get('Standard Memory').upper():
-                return product.get('Total Installed System Memory').replace("GB", "").strip()
+            if "GB" in ram:
+                return product.get('Standard Memory').replace("GB", "").strip()
             else:
                 return 0
         except:
@@ -426,27 +439,6 @@ class DirectDialScraper:
         return product.get('Operating System Platform', "N/A")
 
     @classmethod
-    def extract_gpu(cls, product):
-        graphics_controller_manufacturer = product.get('Graphics Controller Manufacturer', None)
-        graphics_controller_model = product.get('Graphics Controller Model', None)
-        graphics_memory_accessibility = product.get('Graphics Memory Accessibility', None)
-        if graphics_memory_accessibility == "Shared":
-            return "Integrated"
-        elif graphics_memory_accessibility == "Dedicated":
-            return graphics_controller_manufacturer+" "+graphics_controller_model
-        elif "," in graphics_memory_accessibility:
-            graphics_memory_accessibility = graphics_memory_accessibility.split(',')
-            if graphics_memory_accessibility[0].strip() == "Dedicated":
-                position = 0
-            else:
-                position = 1
-            return graphics_controller_manufacturer.split(',')[position].strip()+" "+graphics_controller_model.split(',')[position].strip()
-
-    @classmethod
-    def extract_vram(cls, product):
-        pass
-
-    @classmethod
     def extract_screen_res(cls, product):
         return product.get('Screen Mode', "N/A")
     
@@ -480,8 +472,9 @@ class DirectDialScraper:
 
     @classmethod
     def extract_warranty(cls, product):
+        warranty = product.get('Warranty', "N/A").lower()
+        if "year" in warranty.lower():
+            warranty = warranty.split(' ').strip()
+            if warranty.isdigit():
+                return int(warranty)
         return product.get('Limited Warranty', "N/A")
-
-    @classmethod    
-    def extract_warranty_desc(cls, product):
-        return product.get('Additional Warranty Information', "N/A")

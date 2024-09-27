@@ -302,3 +302,190 @@
 2024-09-26 14:37:27,369 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
 2024-09-26 14:37:55,837 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
 2024-09-26 15:12:04,481 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 15:24:14,415 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 15:24:24,635 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 15:24:26,047 - INFO - Scanning complete
+2024-09-27 15:25:54,025 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 15:26:03,376 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 15:26:04,752 - INFO - Scanning complete
+2024-09-27 15:43:10,371 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 15:43:57,565 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 15:44:24,975 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 15:49:01,610 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 15:49:52,670 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 15:53:18,405 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 15:54:19,901 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 16:25:26,531 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 16:26:28,610 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 16:26:37,932 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 16:29:16,831 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 16:29:26,722 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 16:29:31,130 - INFO - Scanning complete
+2024-09-27 16:36:49,978 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 16:36:59,323 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 16:37:03,880 - INFO - Scanning complete
+2024-09-27 16:38:45,057 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 16:38:54,479 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 16:39:19,470 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "c:\Users\lukas\Documents\GitHub Projects\PFV-App\direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lukas\Documents\GitHub Projects\PFV-App\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lukas\Documents\GitHub Projects\PFV-App\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\lukas\Documents\GitHub Projects\PFV-App\.venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x01016AB3+25587]
+	(No symbol) [0x00FA9C54]
+	(No symbol) [0x00EA2113]
+	(No symbol) [0x00EE6F62]
+	(No symbol) [0x00EE71AB]
+	(No symbol) [0x00F27852]
+	(No symbol) [0x00F0ABE4]
+	(No symbol) [0x00F25370]
+	(No symbol) [0x00F0A936]
+	(No symbol) [0x00EDBA73]
+	(No symbol) [0x00EDC4CD]
+	GetHandleVerifier [0x012F4C63+3032483]
+	GetHandleVerifier [0x01346B99+3368153]
+	GetHandleVerifier [0x010A8F62+624802]
+	GetHandleVerifier [0x010B07DC+655644]
+	(No symbol) [0x00FB260D]
+	(No symbol) [0x00FAF6D8]
+	(No symbol) [0x00FAF875]
+	(No symbol) [0x00FA1CA6]
+	BaseThreadInitThunk [0x762B7BA9+25]
+	RtlInitializeExceptionChain [0x7791C11B+107]
+	RtlClearBits [0x7791C09F+191]
+
+
+2024-09-27 16:39:21,539 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "c:\Users\lukas\Documents\GitHub Projects\PFV-App\direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lukas\Documents\GitHub Projects\PFV-App\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lukas\Documents\GitHub Projects\PFV-App\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\lukas\Documents\GitHub Projects\PFV-App\.venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x01016AB3+25587]
+	(No symbol) [0x00FA9C54]
+	(No symbol) [0x00EA2113]
+	(No symbol) [0x00EE6F62]
+	(No symbol) [0x00EE71AB]
+	(No symbol) [0x00F27852]
+	(No symbol) [0x00F0ABE4]
+	(No symbol) [0x00F25370]
+	(No symbol) [0x00F0A936]
+	(No symbol) [0x00EDBA73]
+	(No symbol) [0x00EDC4CD]
+	GetHandleVerifier [0x012F4C63+3032483]
+	GetHandleVerifier [0x01346B99+3368153]
+	GetHandleVerifier [0x010A8F62+624802]
+	GetHandleVerifier [0x010B07DC+655644]
+	(No symbol) [0x00FB260D]
+	(No symbol) [0x00FAF6D8]
+	(No symbol) [0x00FAF875]
+	(No symbol) [0x00FA1CA6]
+	BaseThreadInitThunk [0x762B7BA9+25]
+	RtlInitializeExceptionChain [0x7791C11B+107]
+	RtlClearBits [0x7791C09F+191]
+
+
+2024-09-27 16:39:27,035 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "c:\Users\lukas\Documents\GitHub Projects\PFV-App\direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lukas\Documents\GitHub Projects\PFV-App\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lukas\Documents\GitHub Projects\PFV-App\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\lukas\Documents\GitHub Projects\PFV-App\.venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x01016AB3+25587]
+	(No symbol) [0x00FA9C54]
+	(No symbol) [0x00EA2113]
+	(No symbol) [0x00EE6F62]
+	(No symbol) [0x00EE71AB]
+	(No symbol) [0x00F27852]
+	(No symbol) [0x00F0ABE4]
+	(No symbol) [0x00F25370]
+	(No symbol) [0x00F0A936]
+	(No symbol) [0x00EDBA73]
+	(No symbol) [0x00EDC4CD]
+	GetHandleVerifier [0x012F4C63+3032483]
+	GetHandleVerifier [0x01346B99+3368153]
+	GetHandleVerifier [0x010A8F62+624802]
+	GetHandleVerifier [0x010B07DC+655644]
+	(No symbol) [0x00FB260D]
+	(No symbol) [0x00FAF6D8]
+	(No symbol) [0x00FAF875]
+	(No symbol) [0x00FA1CA6]
+	BaseThreadInitThunk [0x762B7BA9+25]
+	RtlInitializeExceptionChain [0x7791C11B+107]
+	RtlClearBits [0x7791C09F+191]
+
+
+2024-09-27 16:39:29,108 - ERROR - Error extracting product specs: Traceback (most recent call last):
+  File "c:\Users\lukas\Documents\GitHub Projects\PFV-App\direct_dial_scraper.py", line 181, in extract_product_specs
+    container = driver.find_element(By.ID, 'tab-specification')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lukas\Documents\GitHub Projects\PFV-App\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lukas\Documents\GitHub Projects\PFV-App\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\lukas\Documents\GitHub Projects\PFV-App\.venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="tab-specification"]"}
+  (Session info: chrome=129.0.6668.70); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x01016AB3+25587]
+	(No symbol) [0x00FA9C54]
+	(No symbol) [0x00EA2113]
+	(No symbol) [0x00EE6F62]
+	(No symbol) [0x00EE71AB]
+	(No symbol) [0x00F27852]
+	(No symbol) [0x00F0ABE4]
+	(No symbol) [0x00F25370]
+	(No symbol) [0x00F0A936]
+	(No symbol) [0x00EDBA73]
+	(No symbol) [0x00EDC4CD]
+	GetHandleVerifier [0x012F4C63+3032483]
+	GetHandleVerifier [0x01346B99+3368153]
+	GetHandleVerifier [0x010A8F62+624802]
+	GetHandleVerifier [0x010B07DC+655644]
+	(No symbol) [0x00FB260D]
+	(No symbol) [0x00FAF6D8]
+	(No symbol) [0x00FAF875]
+	(No symbol) [0x00FA1CA6]
+	BaseThreadInitThunk [0x762B7BA9+25]
+	RtlInitializeExceptionChain [0x7791C11B+107]
+	RtlClearBits [0x7791C09F+191]
+
+
+2024-09-27 16:39:29,309 - INFO - Scanning complete
+2024-09-27 17:12:01,317 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 17:12:11,370 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 17:12:57,332 - INFO - First attempt failed for product 11T8001CUS, refreshing page...
+2024-09-27 17:13:03,474 - ERROR - Second attempt failed for product 11T8001CUS, moving on...
+2024-09-27 17:13:17,216 - INFO - First attempt failed for product 12JF0002US, refreshing page...
+2024-09-27 17:13:27,278 - INFO - First attempt failed for product W1JF2, refreshing page...
+2024-09-27 17:13:30,457 - INFO - Scanning complete
+2024-09-27 17:14:25,410 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 17:14:34,773 - INFO - patching driver executable C:\Users\lukas\appdata\roaming\undetected_chromedriver\undetected_chromedriver.exe
+2024-09-27 17:14:51,455 - INFO - Scanning complete
