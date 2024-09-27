@@ -76,14 +76,14 @@ class DirectDialScraper:
     def extract_product_info(self, products_html):
         soup = BeautifulSoup(products_html, 'lxml')
         products = soup.find_all('li', class_="product list-view")
+        products = [products[0]]
         for product in products:
             br_tags = product.find_all('br')
+            for br in br_tags[5:]:
+                if br.previous_sibling.get_text().strip() == '':
+                    br_tags.remove(br)
             print(br_tags)
-            for br in br_tags:
-                print(type(br))
-                print(br)
-                print(br.previous_sibling)
-                print(br.get_text())
+                #print(br.get_text())
             #print(sku)
             #price = self.extract_price(product)
             #msrp = self.extract_msrp(product)
