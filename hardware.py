@@ -36,15 +36,12 @@ class HardwareManager:
         return self.Session()
 
     def add_hardware(self, name, score, hardware_class):
-        """General method to add or update CPU or GPU."""
         session = self.get_session()
         try:
-            # Query the specific hardware table (CPU or GPU)
             hardware = session.query(hardware_class).filter_by(name=name).first()
             if hardware:
                 hardware.score = score
             else:
-                # Create a new instance for CPU or GPU
                 hardware = hardware_class(name=name, score=score)
                 session.add(hardware)
             session.commit()
@@ -55,7 +52,6 @@ class HardwareManager:
             session.close()
 
     def get_all_hardware_scores(self, hardware_type):
-        """Extracts all hardware names and their scores for the given type (CPU or GPU)."""
         session = self.get_session()
         try:
             hardware_list = session.query(hardware_type).all()
@@ -72,7 +68,6 @@ class HardwareScraper:
         self.url = url
 
     def scrape_hardware(self):
-        """General scraping method to retrieve names and scores from the page."""
         print(f"Scraping Hardware Scores from: {self.url}")
         options = uc.ChromeOptions() 
         options.headless = True
@@ -94,10 +89,8 @@ class HardwareScraper:
         for item in hardware:
             name = item.find('a').text.split('@')[0].strip() if item.find('a') else None
             score = int(item.find_all('td')[1].text.replace(',', '')) if len(item.find_all('td')) > 1 else None
-            
             if name and score:
                 hardware_manager = HardwareManager('sqlite:///hardware.db')
-                
                 if 'cpu' in self.url:
                     hardware_manager.add_hardware(name, score, CPU)
                 elif 'gpu' in self.url:

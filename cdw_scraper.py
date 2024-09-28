@@ -18,8 +18,9 @@ import traceback
 import logging
 
 class CDWScraper:
-    def __init__(self, url):
+    def __init__(self, url, db):
         self.url = url
+        self.db = db
 
     def scrape_product_page(self):
         print('Scraping product page')
@@ -55,14 +56,13 @@ class CDWScraper:
     def extract_product_info(self, products_html):
         soup = BeautifulSoup(products_html, 'lxml')
         products = soup.find_all('div', class_='search-result')
-        products = products[0:15]
         for product in products:
             sku = self.extract_sku(product)
             price = self.extract_price(product)
             url = self.extract_url(product)
             updated = datetime.now().strftime("%m/%d/%Y")
             discovered = datetime.now().strftime("%m/%d/%Y")
-            product_manager = ProductManager('sqlite:///cdw.db')
+            product_manager = ProductManager(self.db)
             if "notebook" in self.url or "laptop" in self.url:
                 type = "notebook"
             elif "desktop" in self.url:
@@ -80,7 +80,7 @@ class CDWScraper:
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, item_class)))
 
     def scrape_individual_products(self):
-        engine = create_engine('sqlite:///cdw.db')
+        engine = create_engine(self.db)
         session = sessionmaker(bind=engine)()
         driver = self.setup_driver()
         while True:
@@ -266,7 +266,7 @@ class CDWScraper:
 
     @classmethod
     def extract_url(cls, product):
-        return "https://www.cdw.com"+product.find('a', class_='search-result-product-url')['href']
+        return "https://www.cdw.ca"+product.find('a', class_='search-result-product-url')['href']
 
     @classmethod
     def extract_name(cls, product, brand):

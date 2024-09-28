@@ -1,78 +1,63 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
-from selenium.webdriver.support.ui import Select
-import undetected_chromedriver as uc
+# Standard Library Imports
 import time
-from datetime import datetime
-from products import ProductManager, Product
-from bs4 import BeautifulSoup
-from hardware import HardwareManager, CPU, GPU
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
-from selenium_stealth import stealth
 import re
 import traceback
 import logging
 import math
+from datetime import datetime
 
+# Third-party Libraries
+from bs4 import BeautifulSoup
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait, Select
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+import undetected_chromedriver as uc
+from selenium_stealth import stealth
+
+# Local Modules
+from products import ProductManager, Product
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from driver_manager import DriverManager
+from html_tags import DIRECT_DIAL
 
 class DirectDialScraper:
     def __init__(self, url):
         self.url = url
+        self.db = 'sqlite:///direct_dial_ca.db'
 
     def scrape_product_page(self):
-        print('Scraping product page')
-        driver = self.setup_driver()
-        self.navigate_to_page(driver, self.url)
-        self.page_setup(driver)
-        item = '.tab-content'
-        self.wait_for_elements(driver, item, timeout=5)
-        products_html = ''
-        products_html = self.extract_html(driver)
-        num_pages = self.pagination(driver)
-        print(f"Number of pages: {num_pages}")
-        while num_pages > 1:
-            url_parts = self.url.split('?')
-            base_url = url_parts[0]
-            query_params = '&' + url_parts[1]
-            paginated_url = base_url + f'?page={num_pages}' + query_params
-            self.navigate_to_page(driver, paginated_url)
-            item = '.tab-content'
-            self.wait_for_elements(driver, item, timeout=5)
-            products_html += self.extract_html(driver)
-            num_pages -= 1
-        driver.quit()
-        self.extract_product_info(products_html)
-
-    def setup_driver(self):
-        options = uc.ChromeOptions()
-        options.headless = False
-        driver = uc.Chrome(use_subprocess=True, options=options)
-        stealth(driver,
-            languages=["en-US", "en"],
-            vendor="Google Inc.",
-            platform="Win32",
-            webgl_vendor="Intel Inc.",
-            renderer="Intel Iris OpenGL Engine",
-            fix_hairline=True)
-        return driver
+        logging.info('Scraping product page')
+        with DriverManager() as driver:
+            self.navigate_to_page(driver, self.url)
+            self.page_setup(driver)
+            self.wait_for_elements(driver, DIRECT_DIAL['product_tab_content'], timeout=5)
+            products_html = self.extract_html(driver)
+            num_pages = self.pagination(driver)
+            logging.info(f"Number of pages: {num_pages}")
+            while num_pages > 1:
+                url_parts = self.url.split('?')
+                base_url = url_parts[0]
+                query_params = '&' + url_parts[1]
+                paginated_url = base_url + f'?page={num_pages}' + query_params
+                self.navigate_to_page(driver, paginated_url)
+                self.wait_for_elements(driver, DIRECT_DIAL['product_tab_content'], timeout=5)
+                products_html += self.extract_html(driver)
+                num_pages -= 1
+            self.extract_product_info(products_html)
 
     def navigate_to_page(self, driver, url):
         driver.get(url)
 
     def page_setup(self, driver):
-        item = '.gridlist-view-button'
-        self.wait_for_elements(driver, item, timeout=5)
-        driver.find_element(By.XPATH, '//*[@id="list-btn-top"]').click()
-        item = ".ais-HitsPerPage"
-        self.wait_for_elements(driver, item, timeout=5)
+        self.wait_for_elements(driver, DIRECT_DIAL['gridlist_button'], timeout=5)
+        driver.find_element(By.XPATH, DIRECT_DIAL['list_view_button_xpath']).click()
+        self.wait_for_elements(driver, DIRECT_DIAL['hits_per_page_element'], timeout=5)
         time.sleep(2)
-        dropdown = Select(driver.find_element(By.XPATH, '//*[@id="hits-per-page"]/div/select'))
+        dropdown = Select(driver.find_element(By.XPATH, DIRECT_DIAL['hits_per_page_xpath']))
         dropdown.select_by_value("60")
-        item = '.products'
-        self.wait_for_elements(driver, item, timeout=5)
+        self.wait_for_elements(driver, DIRECT_DIAL['products_container'], timeout=5)
         time.sleep(2)
 
     def wait_for_elements(self, driver, item_class, timeout):
@@ -82,8 +67,8 @@ class DirectDialScraper:
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, item_class)))
 
     def extract_html(self, driver):
-        self.wait_for_elements(driver, '.tab-content', timeout=5)
-        container = driver.find_element(By.CLASS_NAME, 'tab-content')
+        self.wait_for_elements(driver, DIRECT_DIAL['tab_content_css'], timeout=5)
+        container = driver.find_element(By.CLASS_NAME, DIRECT_DIAL["tab_content_class"])
         return container.get_attribute("innerHTML")
     
     def pagination(self, driver):
@@ -96,15 +81,14 @@ class DirectDialScraper:
                 rounded_result = math.ceil(results / 60)
                 return rounded_result
             except ValueError:
-                print("Could not convert the results to an integer")
+                logging.info("Could not convert the results to an integer")
                 return 0
         else:
-            print("No results found")
+            logging.info("No results found")
     
     def extract_product_info(self, products_html):
         soup = BeautifulSoup(products_html, 'lxml')
-        products = soup.find_all('li', class_="product list-view")
-        products = [products[20]]
+        products = soup.find_all('li', class_=DIRECT_DIAL["product_list_view_class"])
         for product in products:
             sku = self.extract_sku(product)
             price = self.extract_price(product)
@@ -124,25 +108,24 @@ class DirectDialScraper:
                 type = "workstation"
             else:
                 type = "N/A"
-            product_manager = ProductManager('sqlite:///direct_dial.db')
+            product_manager = ProductManager(self.db)
             product_manager.add_direct_dial_product(sku, stock, price, msrp, rebate, sale, brand, type, url, updated, discovered)
 
     def scrape_individual_products(self):
-        engine = create_engine('sqlite:///direct_dial.db')
-        session = sessionmaker(bind=engine)()
-        driver = self.setup_driver()
-        while True:
-            num_products = session.query(Product).filter_by(scanned=False).count()
-            if num_products == 0:
-                print("All products have been scanned.")
-                break
-            print(f"Remaining products to scan: {num_products}")
-            products = session.query(Product).filter_by(scanned=False).yield_per(1)
-            for product in products:
-                print(f"Scanning product {product.sku}")
-                self.scan_product(driver, product, session)
-        driver.quit()
-        session.close()
+        engine = create_engine(self.db)
+        Session = sessionmaker(bind=engine)
+        with Session() as session:
+            with DriverManager() as driver: 
+                while True:
+                    num_products = session.query(Product).filter_by(scanned=False).count()
+                    if num_products == 0:
+                        logging.info("All products have been scanned.")
+                        break
+                    logging.info(f"Remaining products to scan: {num_products}")
+                    products = session.query(Product).filter_by(scanned=False).yield_per(1)
+                    for product in products:
+                        logging.info(f"Scanning product {product.sku}")
+                        self.scan_product(driver, product, session)
         logging.info("Scanning complete")
 
     def scan_product(self, driver, product, session):
@@ -162,8 +145,8 @@ class DirectDialScraper:
                     self.wait_for_elements(driver, item_class, timeout=5)
                 except TimeoutException:
                     logging.error(f"Second attempt failed for product {product.sku}, moving on...")
-                    product.scanned = True
-                    product.error = True
+                    #product.scanned = True
+                    #product.error = True
                     session.commit()
                     return
             self.extract_product_specs(driver, specs, product.type, product.sku)
@@ -179,17 +162,17 @@ class DirectDialScraper:
         """Extracts the product specs using Selenium and BeautifulSoup."""
         unrefined_data = {}
         try:
-            container = driver.find_element(By.ID, 'tab-specification')
+            container = driver.find_element(By.ID, DIRECT_DIAL["specification_tab"])
             specs_html = container.get_attribute("innerHTML")
             soup = BeautifulSoup(specs_html, 'html.parser')
-            for element in soup(["script", "style"]):
-                element.extract()
-            for comment in soup.findAll(text=lambda text: isinstance(text, str) and text.startswith("<!--")):
-                comment.extract()
-            text = soup.get_text(separator=" ")
-            cleaned_text = re.sub(r'\s+', ' ', text).strip()
-            cleaned_text = re.sub(r'[^\w\s.,!?]', '', cleaned_text)
-            print(cleaned_text)
+            #for element in soup(["script", "style"]):
+            #    element.extract()
+            #for comment in soup.findAll(text=lambda text: isinstance(text, str) and text.startswith("<!--")):
+            #    comment.extract()
+            #text = soup.get_text(separator=" ")
+            #cleaned_text = re.sub(r'\s+', ' ', text).strip()
+            #cleaned_text = re.sub(r'[^\w\s.,!?]', '', cleaned_text)
+            #print(cleaned_text)
             rows = soup.find_all('tr')
             for row in rows:
                 columns = row.find_all('td')
@@ -213,6 +196,7 @@ class DirectDialScraper:
             specs['screen_type'] = self.extract_screen_type(unrefined_data)
             specs['screen_size'] = self.extract_screen_size(unrefined_data)
             specs['touch'] = self.extract_touch(unrefined_data)
+            time.sleep(3)
 
         except NoSuchElementException as e:
             logging.error(f"Error extracting product specs: {traceback.format_exc()}")
@@ -255,7 +239,7 @@ class DirectDialScraper:
             product.touch = specs.get('touch', 'N/A')
 
             product.scanned = True
-            if product.cpu == "N/A" or product.gpu == "N/A" or product.storage == 0 or product.ram == 0:
+            if product.cpu == "N/A" or product.gpu == "N/A" or product.storage == 0 or product.ram == 0 or product.form_factor == "N/A":
                 product.error = True
             session.commit()
         except Exception as e:
@@ -370,36 +354,81 @@ class DirectDialScraper:
             return form_factor_map.get(form_factor, "N/A")
         else:
             return "N/A"
-    
+        
     @classmethod
     def extract_cpu(cls, product):
-        processor_manufacturer = product.get('Processor Manufacturer', None)
-        processor_type = product.get('Processor Type', None)
-        processor_model = product.get('Processor Model', None)
-        if processor_model.lower().startswith(processor_type.split()[-1].lower()):
-            # Concatenate manufacturer and processor_model directly to avoid redundancy
-            cpu = processor_manufacturer+" "+processor_type+processor_model[len(processor_type.split()[-1]):].strip()
-        else:
-            # Otherwise, concatenate all components
-            cpu = processor_manufacturer+" "+processor_type+" "+processor_model
-        return cpu
+        try:
+            # Attempt to get processor attributes, default to empty strings if not found
+            processor_manufacturer = product.get('Processor Manufacturer', product.get('Chipset Manufacturer', ''))
+            processor_type = product.get('Processor Type', '')
+            processor_model = product.get('Processor Model', '')
+
+            # Check for missing or empty attributes and log warnings
+            if not processor_manufacturer:
+                logging.warning("Processor Manufacturer not found for product.")
+            if not processor_type:
+                logging.warning("Processor Type not found for product.")
+            if not processor_model:
+                logging.warning("Processor Model not found for product.")
+
+            # Construct CPU string based on attribute values
+            if processor_model.lower().startswith(processor_type.split()[-1].lower()):
+                cpu = f"{processor_manufacturer} {processor_type}{processor_model[len(processor_type.split()[-1]):].strip()}"
+            else:
+                cpu = f"{processor_manufacturer} {processor_type} {processor_model}"
+
+            # Return the constructed CPU string, ensuring no leading/trailing spaces
+            return cpu.strip()
+
+        except AttributeError as e:
+            logging.error(f"AttributeError while extracting CPU information: {str(e)}")
+            return "N/A"
+        except Exception as e:
+            logging.error(f"Unexpected error while extracting CPU information: {str(e)}")
+            return "N/A"
 
     @classmethod
     def extract_gpu(cls, product):
-        graphics_controller_manufacturer = product.get('Graphics Controller Manufacturer', None)
-        graphics_controller_model = product.get('Graphics Controller Model', None)
-        graphics_memory_accessibility = product.get('Graphics Memory Accessibility', None)
-        if graphics_memory_accessibility == "Shared":
-            return "Integrated"
-        elif graphics_memory_accessibility == "Dedicated":
-            return graphics_controller_manufacturer+" "+graphics_controller_model
-        elif "," in graphics_memory_accessibility:
-            graphics_memory_accessibility = graphics_memory_accessibility.split(',')
-            if graphics_memory_accessibility[0].strip() == "Dedicated":
-                position = 0
+        try:
+            graphics_controller_manufacturer = product.get('Graphics Controller Manufacturer', None)
+            graphics_controller_model = product.get('Graphics Controller Model', None)
+            graphics_memory_accessibility = product.get('Graphics Memory Accessibility', None)
+
+            # Check for None values to avoid attribute errors
+            if not graphics_memory_accessibility:
+                logging.warning("Graphics Memory Accessibility not found for product.")
+                return "N/A"
+
+            if graphics_memory_accessibility == "Shared":
+                return "Integrated"
+            elif graphics_memory_accessibility == "Dedicated":
+                return f"{graphics_controller_manufacturer} {graphics_controller_model}"
+
+            # Handle cases where memory accessibility contains multiple values
+            elif "," in graphics_memory_accessibility:
+                graphics_memory_accessibility = graphics_memory_accessibility.split(',')
+                position = 0 if graphics_memory_accessibility[0].strip() == "Dedicated" else 1
+
+                # Check if manufacturer and model contain multiple values separated by commas
+                manufacturer_list = graphics_controller_manufacturer.split(',') if graphics_controller_manufacturer else []
+                model_list = graphics_controller_model.split(',') if graphics_controller_model else []
+
+                if len(manufacturer_list) > position and len(model_list) > position:
+                    return f"{manufacturer_list[position].strip()} {model_list[position].strip()}"
+                else:
+                    logging.error("Mismatch between manufacturer and model lists or invalid position for GPU extraction.")
+                    return "N/A"
+
             else:
-                position = 1
-            return graphics_controller_manufacturer.split(',')[position].strip()+" "+graphics_controller_model.split(',')[position].strip()
+                logging.warning("Unexpected value for Graphics Memory Accessibility.")
+                return "N/A"
+
+        except AttributeError as e:
+            logging.error(f"AttributeError while extracting GPU information: {str(e)}")
+            return "N/A"
+        except Exception as e:
+            logging.error(f"Unexpected error while extracting GPU information: {str(e)}")
+            return "N/A"
 
     @classmethod
     def extract_ram(cls, product):

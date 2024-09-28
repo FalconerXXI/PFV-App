@@ -46,7 +46,6 @@ class Product(Base):
     error = Column("error", Boolean, default=False)
     scanned = Column("scanned", Boolean, default=False)
 
-
     def __repr__(self):
         return f"Product({self.sku}, {self.price}, {self.url}, {self.updated})"
 
@@ -71,8 +70,7 @@ class ProductManager:
                 product.discovered = discovered
             else:
                 product = Product(sku=sku, price=price, type=type, url=url, updated=updated, discovered=discovered)
-                session.add(product)
-                
+                session.add(product)   
             session.commit()
         except Exception as e:
             session.rollback()
@@ -97,8 +95,7 @@ class ProductManager:
                 product.discovered = discovered
             else:
                 product = Product(sku=sku, price=price, stock=stock, msrp=msrp, rebate=rebate, sale=sale, brand=brand,type=type, url=url, updated=updated, discovered=discovered)
-                session.add(product)
-                
+                session.add(product)  
             session.commit()
         except Exception as e:
             session.rollback()
@@ -107,9 +104,6 @@ class ProductManager:
             session.close()
 
     def get_products(self):
-        """
-        Fetches and returns a list of all products from the database.
-        """
         session = self.get_session()
         products = session.query(Product).all()
         session.close()
@@ -138,50 +132,22 @@ class ProductManager:
 
 class DatabaseExporter:
     def __init__(self, db_path):
-        """
-        Initializes the exporter with the SQLite database path.
-        
-        Parameters:
-        db_path (str): Path to the SQLite database file.
-        """
-        self.db_path = db_path
 
+        self.db_path = db_path
     def export_table_to_csv(self, table_name, csv_file_path):
-        """
-        Exports data from an SQLite database table to a CSV file.
-        
-        Parameters:
-        table_name (str): The name of the table to export.
-        csv_file_path (str): The path where the CSV file will be saved.
-        """
-        # Connect to the SQLite database
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
-
         try:
-            # Query all data from the specified table
             cursor.execute(f"SELECT * FROM {table_name}")
-
-            # Fetch all rows and column names
             rows = cursor.fetchall()
             column_names = [description[0] for description in cursor.description]
-
-            # Write data to CSV file
             with open(csv_file_path, mode='w', newline='', encoding='utf-8') as csv_file:
                 writer = csv.writer(csv_file)
-
-                # Write column headers
                 writer.writerow(column_names)
-
-                # Write all rows
                 writer.writerows(rows)
-
             print(f"Data from table '{table_name}' has been exported to '{csv_file_path}'.")
-
         except Exception as e:
             print(f"Error exporting table '{table_name}': {e}")
-        
         finally:
-            # Close the database connection
             conn.close()
 
