@@ -1,11 +1,13 @@
-from langchain_ollama import OllamaLLM
-from langchain_core.prompts import ChatPromptTemplate
+from dotenv import load_dotenv
+from langchain.chains import (create_extraction_chain, create_extraction_chain_pydantic)
+from langchain.chat_models import ChatOpenAI
+import os
 
 class AiScrapper:
     def __init__(self, html):
-        self.model = OllamaLLM(model="llama3.1")
+        load_dotenv()
         self.html = html
-
+        self.llm = ChatOpenAI(temperature=0, model="gpt-4o-mini", openai_api_key=os.getenv("OPENAI_API_KEY"))
         self.prompt = (
     "You are tasked with extracting computer specifications from a webpage. The webpage contains one computer"
     "Please follow these instructions carefully: \n\n"
@@ -31,12 +33,12 @@ class AiScrapper:
     "Touch: Yes (Yes or No)\n"
     "4. **Direct Data Only:** Your output should contain only the data that is explicitly requested, with no other text."
 )
+
     
 
-    def parse_with_ollama(self):
-        prompt = ChatPromptTemplate.from_template(self.prompt)
-        chain = prompt | self.model
-        response = chain.invoke({"html_content": self.html, "parse_description": self.prompt})
+    def parse_with_chatgpt(self):
+        chain = self.prompt | self.model
+        response = create_extraction_chain()
         return response
     
     

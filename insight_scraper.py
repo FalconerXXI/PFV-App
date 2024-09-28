@@ -18,7 +18,7 @@ import logging
 import math
 
 
-class DirectDialScraper:
+class InsightScraper:
     def __init__(self, url):
         self.url = url
 
@@ -26,23 +26,22 @@ class DirectDialScraper:
         print('Scraping product page')
         driver = self.setup_driver()
         self.navigate_to_page(driver, self.url)
-        self.page_setup(driver)
-        item = '.tab-content'
+        #self.page_setup(driver)
+        item = '.c-search-products'
         self.wait_for_elements(driver, item, timeout=5)
-        products_html = ''
         products_html = self.extract_html(driver)
-        num_pages = self.pagination(driver)
-        print(f"Number of pages: {num_pages}")
-        while num_pages > 1:
-            url_parts = self.url.split('?')
-            base_url = url_parts[0]
-            query_params = '&' + url_parts[1]
-            paginated_url = base_url + f'?page={num_pages}' + query_params
-            self.navigate_to_page(driver, paginated_url)
-            item = '.tab-content'
-            self.wait_for_elements(driver, item, timeout=5)
-            products_html += self.extract_html(driver)
-            num_pages -= 1
+        #num_pages = self.pagination(driver)
+        #print(f"Number of pages: {num_pages}")
+        #while num_pages > 1:
+        #    url_parts = self.url.split('?')
+        #    base_url = url_parts[0]
+        #    query_params = '&' + url_parts[1]
+        #    paginated_url = base_url + f'?page={num_pages}' + query_params
+        #    self.navigate_to_page(driver, paginated_url)
+        #    item = '.c-search-products'
+        #    self.wait_for_elements(driver, item, timeout=5)
+        #    products_html += self.extract_html(driver)
+        #    num_pages -= 1
         driver.quit()
         self.extract_product_info(products_html)
 
@@ -82,8 +81,9 @@ class DirectDialScraper:
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, item_class)))
 
     def extract_html(self, driver):
-        self.wait_for_elements(driver, '.tab-content', timeout=5)
-        container = driver.find_element(By.CLASS_NAME, 'tab-content')
+        self.wait_for_elements(driver, '.c-search-products', timeout=5)
+        time.sleep(5)
+        container = driver.find_element(By.CLASS_NAME, 'c-search-products')
         return container.get_attribute("innerHTML")
     
     def pagination(self, driver):
@@ -100,35 +100,31 @@ class DirectDialScraper:
                 return 0
         else:
             print("No results found")
-    
+       
     def extract_product_info(self, products_html):
         soup = BeautifulSoup(products_html, 'lxml')
-        products = soup.find_all('li', class_="product list-view")
-        products = [products[20]]
+        test = soup.find('div', class_="c-list-item__product-details__info")
+        products = soup.find_all('div', class_="c-list-item")
+        products = products[:5]
         for product in products:
             sku = self.extract_sku(product)
             price = self.extract_price(product)
-            msrp = self.extract_msrp(product)
-            stock = self.extract_stock(product)
-            rebate = self.extract_rebate(product)
-            sale = self.extract_sale(product)
-            brand = self.extract_brand(product)
             url = self.extract_url(product)
             updated = datetime.now().strftime("%m/%d/%Y")
             discovered = datetime.now().strftime("%m/%d/%Y")
-            if "notebook" in self.url.lower() or "laptop" in self.url.lower():
+            product_manager = ProductManager('sqlite:///insight_ca.db')
+            if "notebook" in self.url or "laptop" in self.url:
                 type = "notebook"
-            elif "desktop" in self.url.lower():
+            elif "desktop" in self.url:
                 type = "desktop"
-            elif 'workstation' in self.url.lower():
+            elif 'workstation' in self.url:
                 type = "workstation"
             else:
                 type = "N/A"
-            product_manager = ProductManager('sqlite:///direct_dial.db')
-            product_manager.add_direct_dial_product(sku, stock, price, msrp, rebate, sale, brand, type, url, updated, discovered)
+            product_manager.add_cdw_product(sku, price, type, url, updated, discovered)
 
     def scrape_individual_products(self):
-        engine = create_engine('sqlite:///direct_dial.db')
+        engine = create_engine('sqlite:///insight_ca.db')
         session = sessionmaker(bind=engine)()
         driver = self.setup_driver()
         while True:
@@ -182,14 +178,6 @@ class DirectDialScraper:
             container = driver.find_element(By.ID, 'tab-specification')
             specs_html = container.get_attribute("innerHTML")
             soup = BeautifulSoup(specs_html, 'html.parser')
-            for element in soup(["script", "style"]):
-                element.extract()
-            for comment in soup.findAll(text=lambda text: isinstance(text, str) and text.startswith("<!--")):
-                comment.extract()
-            text = soup.get_text(separator=" ")
-            cleaned_text = re.sub(r'\s+', ' ', text).strip()
-            cleaned_text = re.sub(r'[^\w\s.,!?]', '', cleaned_text)
-            print(cleaned_text)
             rows = soup.find_all('tr')
             for row in rows:
                 columns = row.find_all('td')
@@ -264,7 +252,9 @@ class DirectDialScraper:
 
     @classmethod
     def extract_sku(cls, product):
-        return product.find_all('div', class_='col-6')[0].find(text=True).strip() if product.find_all('div', class_='col-6')[0] else 'N/A'
+        sku_element = product.find("span", text="Mfr #:").find_next("span", class_="c-structured-list__description") if product else None
+        sku = sku_element.text.strip() if sku_element else None
+        return sku
     
     @classmethod
     def extract_brand(cls, product):
@@ -276,8 +266,11 @@ class DirectDialScraper:
 
     @classmethod
     def extract_price(cls, product):
-        return product.find('div', class_='col amount-list').find(text=True).strip().replace('$', '') if product.find('div', class_='col amount-list') else 0
-
+        price_element = product.find("span", class_="c-currency__price-value") if product else None
+        price = float(price_element.find("span", class_="c-currency__value").text.strip().replace('$', '').replace(',', '')) if price_element else None
+        print(price)
+        return price
+    
     @classmethod
     def extract_msrp(cls, product):
         return product.find('div', style="background-color:#ddd; display:none;").find(text=lambda text: 'item.msrp:' in text).find_next(text=True).strip() if product.find('div', style="background-color:#ddd; display:none;").find(text=lambda text: 'item.msrp:' in text) else 0
@@ -322,7 +315,7 @@ class DirectDialScraper:
 
     @classmethod
     def extract_url(cls, product):
-        return "https://www.directdial.com" +product.find('div', class_='col-xs-12').find('a', href=True)['href']
+        return "https://ca.insight.com"+product.find('a', href=True)['href'] if product else None
 
     @classmethod
     def extract_name(cls, product, sku):

@@ -30,3 +30,5 @@ websocket-client==1.8.0
 websockets==13.0.1
 wsproto==1.2.0
 fuzzywuzzy==0.18.0
+langchain
+dotenv

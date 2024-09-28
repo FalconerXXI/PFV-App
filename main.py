@@ -1,5 +1,6 @@
 from direct_dial_scraper import DirectDialScraper
 from cdw_scraper import CDWScraper
+from insight_scraper import InsightScraper
 from products import DatabaseExporter
 from hardware import HardwareScraper
 from score import Score
@@ -38,10 +39,15 @@ def main():
     #cdw_score = Score('sqlite:///cdw.db', 'sqlite:///hardware.db')
     #cdw_score.calculate_scores()
 
-    # Scrape Desktops Specs
+    # Scrape DirectDial
     products = DirectDialScraper('https://www.directdial.com/ca/search/computer-systems?instock=true&productType=Desktop%20Computer&brand=Dell&brand=Lenovo&brand=HP')
     products.scrape_product_page()
     products.scrape_individual_products()
+
+    # Scrape Insight
+    #products = InsightScraper('https://ca.insight.com/en_CA/search.html?country=CA&q=*%3A*&instockOnly=false&selectedFacet=Header_Manufacturer_A00630_en_US_s%3ALenovo%7CDell%7C%22HP+Inc.%22%2CCategoryPath_en_US_ss_lowest_s%3ALaptops%7C%22Mobile+Workstations%22%7CWorkstations%7CDesktops%7C%22Thin+Client+Desktops%22%7CChromebooks%7C%22Small+Form+Factor+Desktops%22%7C%22Mini+Desktops%22%7CUltrabooks%7C%22All-in-One+Computers%22%7C%22Thin+Client+Laptops%22%7C%22Desktops+Tower%22%7C%22Flip+Design+Laptops%22&start=0&salesOrg=4100&lang=en_US&rows=1000&userSegment=CES&tabType=products')
+    #products.scrape_product_page()
+    #products.scrape_individual_products()
 
     #exporter = DatabaseExporter('products.db')
     #exporter.export_table_to_csv('products', 'products.csv')
