@@ -1,3 +1,4 @@
+
 import dash
 from dash import dcc, html, dash_table
 from dash.dependencies import Input, Output, State
@@ -39,104 +40,129 @@ app.layout = dbc.Container(
             html.Label("Select a Brand:", style={'fontWeight': 'bold', 'fontSize': '16px'}),
             dcc.Dropdown(
                 id='brand-dropdown',
+                options=[],  # Options populated dynamically
                 placeholder="Select a Brand",
                 style={'width': '50%'}
             ),
         ], style={'marginBottom': '20px'}),
 
-        # Third Dropdown: Select SKU (dynamically populated, allows typing)
+        # Third Dropdown: Select SKU (dynamically populated)
         html.Div([
-            html.Label("Select or Type an SKU:", style={'fontWeight': 'bold', 'fontSize': '16px'}),
+            html.Label("Select a SKU:", style={'fontWeight': 'bold', 'fontSize': '16px'}),
             dcc.Dropdown(
                 id='sku-dropdown',
-                placeholder="Select or Type an SKU",
-                style={'width': '50%'},
-                searchable=True,  # Allow typing/searching SKUs
-                clearable=True,  # Allow clearing the selected SKU
+                options=[],  # Options populated dynamically
+                placeholder="Select a SKU",
+                style={'width': '50%'}
             ),
-        ], style={'marginBottom': '30px'}),
+        ], style={'marginBottom': '20px'}),
 
-        # Table to display selected SKU information
+        # Main Product Table
         dash_table.DataTable(
-            id='sku-table',
-            columns=[],  # Columns will be dynamically set
-            data=[],     # Data will be dynamically set
-            style_table={
-                'width': '100%',  # Make the table take the full width of the container
-                'maxHeight': '70vh',  # Adjust the height to fit the screen
-                'overflowY': 'auto',
-                'padding': '10px'  # Add padding around the table
-            },
-            style_cell={
-                'textAlign': 'left',
-                'padding': '5px',
-                'fontSize': '12px',  # Smaller text size to fit more content
-                'fontFamily': 'Arial, sans-serif'
-            },
-            style_header={
-                'fontWeight': 'bold',
-                'fontSize': '14px',  # Smaller text size for header
-                'backgroundColor': '#e1e1e1',  # Light background for header
-                'color': '#333333'  # Dark text color for header
-            }
-        )
+            id='product-table',
+            columns=[],  # Columns populated dynamically
+            data=[],  # Data populated dynamically
+            style_table={'height': '300px', 'overflowY': 'auto'},
+            style_cell={'textAlign': 'left', 'minWidth': '100px', 'maxWidth': '300px'},
+        ),
+
+        # Price History Table
+        html.Div([
+            html.H3("Price History", style={'marginTop': '30px'}),
+            dash_table.DataTable(
+                id='price-history-table',
+                columns=[],  # Columns populated dynamically
+                data=[],  # Data populated dynamically
+                style_table={'height': '300px', 'overflowY': 'auto'},
+                style_cell={'textAlign': 'left', 'minWidth': '100px', 'maxWidth': '300px'},
+            )
+        ]),
+
+        # Stock History Table
+        html.Div([
+            html.H3("Stock History", style={'marginTop': '30px'}),
+            dash_table.DataTable(
+                id='stock-history-table',
+                columns=[],  # Columns populated dynamically
+                data=[],  # Data populated dynamically
+                style_table={'height': '300px', 'overflowY': 'auto'},
+                style_cell={'textAlign': 'left', 'minWidth': '100px', 'maxWidth': '300px'},
+            )
+        ])
     ]
 )
 
-
-# Callback to populate the Brand dropdown based on selected table
+# Callbacks for interactivity
 @app.callback(
-    Output('brand-dropdown', 'options'),
-    Input('table-dropdown', 'value')
+    [Output('brand-dropdown', 'options')],
+    [Input('table-dropdown', 'value')]
 )
 def update_brand_dropdown(selected_table):
     if selected_table:
-        # Query the database to get brands for the selected table
+        # Fetch distinct brands from the selected table
         query = f"SELECT DISTINCT brand FROM {selected_table}"
         df = pd.read_sql(query, engine)
+        return [[{'label': brand, 'value': brand} for brand in df['brand']]]
+    return [[]]
 
-        # Return a list of options for the Brand dropdown
-        return [{'label': brand, 'value': brand} for brand in df['brand'].unique()]
-    return []
-
-
-# Callback to populate the SKU dropdown based on selected table and brand
 @app.callback(
-    Output('sku-dropdown', 'options'),
-    Input('table-dropdown', 'value'),
-    Input('brand-dropdown', 'value')
+    [Output('sku-dropdown', 'options')],
+    [Input('brand-dropdown', 'value'),
+     Input('table-dropdown', 'value')]
 )
-def update_sku_dropdown(selected_table, selected_brand):
-    if selected_table and selected_brand:
-        # Query the database to get SKUs for the selected table and brand
-        query = f"SELECT sku FROM {selected_table} WHERE brand = '{selected_brand}'"
+def update_sku_dropdown(selected_brand, selected_table):
+    if selected_brand and selected_table:
+        # Fetch distinct SKUs based on selected brand
+        query = f"SELECT DISTINCT sku FROM {selected_table} WHERE brand = '{selected_brand}'"
         df = pd.read_sql(query, engine)
+        return [[{'label': sku, 'value': sku} for sku in df['sku']]]
+    return [[]]
 
-        # Return a list of options for the SKU dropdown
-        return [{'label': sku, 'value': sku} for sku in df['sku'].unique()]
-    return []
-
-
-# Callback to display the selected SKU information
 @app.callback(
-    [Output('sku-table', 'columns'), Output('sku-table', 'data')],
-    Input('table-dropdown', 'value'),
-    Input('sku-dropdown', 'value')
+    [Output('product-table', 'columns'),
+     Output('product-table', 'data')],
+    [Input('sku-dropdown', 'value'),
+     Input('table-dropdown', 'value')]
 )
-def display_sku_data(selected_table, selected_sku):
-    if selected_table and selected_sku:
-        # Query the database to get the selected SKU data
+def update_product_table(selected_sku, selected_table):
+    if selected_sku and selected_table:
+        # Fetch products based on selected SKU
         query = f"SELECT * FROM {selected_table} WHERE sku = '{selected_sku}'"
         df = pd.read_sql(query, engine)
-
-        # Define the columns and data for the table
-        columns = [{'name': col, 'id': col} for col in df.columns]
-        data = df.to_dict('records')
-
-        return columns, data
+        columns = [{"name": i, "id": i} for i in df.columns]
+        return columns, df.to_dict('records')
     return [], []
 
+@app.callback(
+    [Output('price-history-table', 'columns'),
+     Output('price-history-table', 'data')],
+    [Input('sku-dropdown', 'value'),
+     Input('table-dropdown', 'value')]
+)
+def update_price_history_table(selected_sku, selected_table):
+    if selected_sku and selected_table:
+        history_table = f"{selected_table}History"
+        query = f"SELECT date, price FROM {history_table} WHERE sku = '{selected_sku}'"
+        df = pd.read_sql(query, engine)
+        columns = [{"name": i, "id": i} for i in df.columns]
+        return columns, df.to_dict('records')
+    return [], []
 
-# Run the Dash application
+@app.callback(
+    [Output('stock-history-table', 'columns'),
+     Output('stock-history-table', 'data')],
+    [Input('sku-dropdown', 'value'),
+     Input('table-dropdown', 'value')]
+)
+def update_stock_history_table(selected_sku, selected_table):
+    if selected_sku and selected_table:
+        history_table = f"{selected_table}History"
+        query = f"SELECT date, stock FROM {history_table} WHERE sku = '{selected_sku}'"
+        df = pd.read_sql(query, engine)
+        columns = [{"name": i, "id": i} for i in df.columns]
+        return columns, df.to_dict('records')
+    return [], []
+
+# Run the application
 if __name__ == '__main__':
     app.run_server(debug=True)

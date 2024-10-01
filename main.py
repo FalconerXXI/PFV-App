@@ -23,6 +23,7 @@ def main():
     for category in ["Direct_Dial_CA_Notebooks", "Direct_Dial_CA_Desktops", "Direct_Dial_US_Notebooks", "Direct_Dial_US_Desktops"]:
         search_request = APIScraper(website_info, category)
         search_request.execute_search()
+    
     try:
         # Create an engine and session factory
         engine = create_engine('sqlite:///products.db', echo=False)
@@ -40,6 +41,11 @@ def main():
         product_manager.load_products_from_json(f'save/DirectDial_CA_Notebooks_{datetime.now().strftime("%Y-%m-%d")}.json', DirectDialCA)
         product_manager.load_products_from_json(f'save/DirectDial_US_Notebooks_{datetime.now().strftime("%Y-%m-%d")}.json', DirectDialUS)
         product_manager.load_products_from_json(f'save/DirectDial_US_Desktops_{datetime.now().strftime("%Y-%m-%d")}.json', DirectDialUS)
+
+        #product_manager.load_products_from_json(f'save/DirectDial_CA_Desktops_2024-09-30.json', DirectDialCA)
+        #product_manager.load_products_from_json(f'save/DirectDial_CA_Notebooks_2024-09-30.json', DirectDialCA)
+        #product_manager.load_products_from_json(f'save/DirectDial_US_Notebooks_2024-09-30.json', DirectDialUS)
+        #product_manager.load_products_from_json(f'save/DirectDial_US_Desktops_2024-09-30.json', DirectDialUS)
 
     except Exception as e:
         logger.exception("An error occurred in the main function.")

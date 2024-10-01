@@ -10,6 +10,13 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Define the base class for SQLAlchemy models
+from sqlalchemy import Float
+
+from sqlalchemy import Float, Integer, String, Column
+
+from sqlalchemy import Float, Integer, String, Column, DateTime, Boolean
+from sqlalchemy.sql import func
+
 class DirectDialBase(Base):
     __abstract__ = True  # Mark this class as an abstract class
     sku = Column(String, primary_key=True, unique=True, nullable=False)  # Use sku as the primary key
@@ -20,6 +27,7 @@ class DirectDialBase(Base):
     brand = Column(String)
     price = Column(Float)
     msrp = Column(Float)
+    stock = Column(Integer)  # Stock tracking column - placed beside 'msrp'
     processorManufacturer = Column(String)
     chipset = Column(String)
     processorType = Column(String)
@@ -42,7 +50,22 @@ class DirectDialBase(Base):
     wirelessLanStandard = Column(String)
     wwanSupported = Column(String)
     url = Column(String)
-    stock = Column(Integer)  # Stock tracking column
+
+    # New columns for product scores
+    ff_score = Column(Float)       # Form factor score
+    cpu_score = Column(Float)      # CPU score
+    gpu_score = Column(Float)      # GPU score
+    storage_score = Column(Float)  # Storage score
+    ram_score = Column(Float)      # RAM score
+    total_score = Column(Float)    # Total score
+
+    # New columns for tracking and error handling
+    date_added = Column(DateTime, default=func.now())  # Set the date when the product is first added
+    date_updated = Column(DateTime, onupdate=func.now())  # Automatically update to current timestamp when the row is updated
+    in_stock = Column(Boolean, default=True)  # Boolean flag to indicate if the product is in stock
+    errors = Column(String)  # Column to store error messages or issues encountered during data processing
+
+
 
 class DirectDialUS(DirectDialBase):
     __tablename__ = 'DirectDialUS'
