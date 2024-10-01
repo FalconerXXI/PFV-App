@@ -142,7 +142,8 @@ def update_product_table(selected_sku, selected_table):
 def update_price_history_table(selected_sku, selected_table):
     if selected_sku and selected_table:
         history_table = f"{selected_table}History"
-        query = f"SELECT date, price FROM {history_table} WHERE sku = '{selected_sku}'"
+        # Use 'timestamp' instead of 'date'
+        query = f"SELECT timestamp, price FROM {history_table} WHERE sku = '{selected_sku}'"
         df = pd.read_sql(query, engine)
         columns = [{"name": i, "id": i} for i in df.columns]
         return columns, df.to_dict('records')
@@ -157,7 +158,8 @@ def update_price_history_table(selected_sku, selected_table):
 def update_stock_history_table(selected_sku, selected_table):
     if selected_sku and selected_table:
         history_table = f"{selected_table}History"
-        query = f"SELECT date, stock FROM {history_table} WHERE sku = '{selected_sku}'"
+        # Use 'timestamp' instead of 'date'
+        query = f"SELECT timestamp, stock FROM {history_table} WHERE sku = '{selected_sku}'"
         df = pd.read_sql(query, engine)
         columns = [{"name": i, "id": i} for i in df.columns]
         return columns, df.to_dict('records')
