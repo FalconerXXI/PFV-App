@@ -1,153 +1,146 @@
-from sqlalchemy import create_engine, Column, String, Float, Integer, PrimaryKeyConstraint, Boolean
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-import sqlite3
-import csv
+import logging
+import json
+from sqlalchemy import create_engine, Column, Integer, String, Float
+from sqlalchemy.orm import sessionmaker, relationship
+from base import Base  # Import Base from base.py
+from history import DirectDialUSHistory, DirectDialCAHistory, HistoryManager  # Import history models and manager
 
-Base = declarative_base()
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-class Product(Base):
-    __tablename__ = 'products'
-    sku = Column("SKU", String, primary_key=True)
-    type = Column("type", String, default="N/A")
-    name = Column("name", String, default="N/A")
-    brand = Column("brand", String, default="N/A")   
-    form_factor = Column("form factor", String, default="N/A")
-    stock = Column("stock", Integer, default=0)
-    price = Column("price", Float, default=0.0)
-    msrp = Column("msrp", Float, default=0.0)
-    rebate = Column("rebate", Float, default=0.0)
-    sale = Column("sale", Float, default=0.0)
-    cpu = Column("CPU", String, default="N/A")
-    gpu = Column("GPU", String, default="N/A")
-    storage = Column("storage", Integer, default=0)
-    ram = Column("RAM", Integer, default=0)
-    ddr = Column("DDR", String, default="N/A")
-    os = Column("OS", String, default="N/A")
-    keyboard = Column("keyboard", String, default="N/A")
-    ethernet = Column("ethernet", String, default="N/A")
-    wifi = Column("WiFi", String, default="N/A")
-    warranty = Column("warranty", Integer, default=0)
-    screen_res = Column("screen res.", String, default="N/A")
-    screen_type = Column("screen type", String, default="N/A")
-    screen_size = Column("screen size", String, default="N/A")
-    touch = Column("touch", String, default="N/A") 
-    cpu_score = Column("cpu score", Integer, default=0)
-    gpu_score = Column("gpu score", Integer, default=0)
-    ff_score = Column("ff score", Integer, default=0)
-    ram_score = Column("ram score", Integer, default=0)
-    storage_score = Column("storage score", Integer, default=0)
-    score = Column("score", Integer, default=0)
-    url = Column("url", String, default="N/A")
-    orig_cpu = Column("orig. cpu", String, default="N/A")
-    orig_gpu = Column("orig. gpu", String, default="N/A")
-    updated = Column("updated", String, default="N/A")
-    discovered = Column("discovered", String, default="N/A")
-    error = Column("error", Boolean, default=False)
-    scanned = Column("scanned", Boolean, default=False)
+# Define the base class for SQLAlchemy models
+class DirectDialBase(Base):
+    __abstract__ = True  # Mark this class as an abstract class
+    sku = Column(String, primary_key=True, unique=True, nullable=False)  # Use sku as the primary key
+    name = Column(String)
+    category = Column(String)
+    formFactor = Column(String)
+    categories = Column(String)
+    brand = Column(String)
+    price = Column(Float)
+    msrp = Column(Float)
+    processorManufacturer = Column(String)
+    chipset = Column(String)
+    processorType = Column(String)
+    processorModel = Column(String)
+    graphicsControllerManufacturer = Column(String)
+    graphicsControllerModel = Column(String)
+    graphicsMemoryAccessibility = Column(String)
+    graphicsMemoryTechnology = Column(String)
+    limitedWarrantyDuration = Column(String)
+    operatingSystem = Column(String)
+    standardMemory = Column(String)
+    totalInstalledSystemMemory = Column(String)
+    screenSize = Column(String)
+    screenResolution = Column(String)
+    screenMode = Column(String)
+    touchscreen = Column(String)
+    keyboardLocalization = Column(String)
+    totalSolidStateDriveCapacity = Column(String)
+    flashMemoryCapacity = Column(String)
+    wirelessLanStandard = Column(String)
+    wwanSupported = Column(String)
+    url = Column(String)
+    stock = Column(Integer)  # Stock tracking column
 
-    def __repr__(self):
-        return f"Product({self.sku}, {self.price}, {self.url}, {self.updated})"
+class DirectDialUS(DirectDialBase):
+    __tablename__ = 'DirectDialUS'
+    history = relationship("DirectDialUSHistory", back_populates="product")
+
+class DirectDialCA(DirectDialBase):
+    __tablename__ = 'DirectDialCA'
+    history = relationship("DirectDialCAHistory", back_populates="product")
 
 class ProductManager:
-    def __init__(self, db_url):
-        self.engine = create_engine(db_url, echo=False)
-        Base.metadata.create_all(self.engine)
-        self.Session = sessionmaker(bind=self.engine)
+    def __init__(self, session):
+        """Initialize the ProductManager with a database session."""
+        self.session = session
+        self.history_manager = HistoryManager(session)
 
-    def get_session(self):
-        return self.Session()
-
-    def add_cdw_product(self, sku, price, type, url, updated, discovered):
-        session = self.get_session()
+    def insert_or_update_product(self, product_data, table_class):
+        """Insert a new product or update the existing one in the specified table."""
         try:
-            product = session.query(Product).filter_by(sku=sku).first()
-            if product:
-                product.price = price
-                product.type = type
-                product.url = url
-                product.updated = updated
-                product.discovered = discovered
+            def flatten_field(field):
+                if isinstance(field, list):
+                    return ", ".join(field)
+                return field
+
+            # Check for SKU and skip if missing or empty
+            sku = product_data.get("id")
+            if not sku:
+                logger.warning("Skipping product without SKU.")
+                return
+
+            existing_product = self.session.query(table_class).filter_by(sku=sku).first()
+
+            new_data = {
+                'sku': sku,
+                'name': flatten_field(product_data.get("_Product_Family")),
+                'category': flatten_field(product_data.get("productType")),
+                'stock': int(product_data.get("stock", 0)) if product_data.get("stock") else None,
+                'formFactor': flatten_field(product_data.get("_Form_Factor")),
+                'categories': flatten_field(product_data.get("categories")[1]) if product_data.get("categories") and len(product_data.get("categories")) > 1 else None,
+                'brand': flatten_field(product_data.get("brand")),
+                'price': float(product_data.get("price", 0)) if product_data.get("price") else None,
+                'msrp': float(product_data.get("msrp", 0)) if product_data.get("msrp") else None,
+                'processorManufacturer': flatten_field(product_data.get("_Processor_Manufacturer")),
+                'chipset': flatten_field(product_data.get("_Chipset")),
+                'processorType': flatten_field(product_data.get("_Processor_Type")),
+                'processorModel': flatten_field(product_data.get("_Processor_Model")),
+                'graphicsControllerManufacturer': flatten_field(product_data.get("_Graphics_Controller_Manufacturer")),
+                'graphicsControllerModel': flatten_field(product_data.get("_Graphics_Controller_Model")),
+                'graphicsMemoryAccessibility': flatten_field(product_data.get("_Graphics_Memory_Accessibility")),
+                'graphicsMemoryTechnology': flatten_field(product_data.get("_Graphics_Memory_Technology")),
+                'limitedWarrantyDuration': flatten_field(product_data.get("_Limited_Warranty_Duration")),
+                'operatingSystem': flatten_field(product_data.get("_Operating_System")),
+                'standardMemory': flatten_field(product_data.get("_Standard_Memory")),
+                'totalInstalledSystemMemory': flatten_field(product_data.get("_Total_Installed_System_Memory")),
+                'screenSize': flatten_field(product_data.get("_Screen_Size")),
+                'screenResolution': flatten_field(product_data.get("_Screen_Resolution")),
+                'screenMode': flatten_field(product_data.get("_Screen_Mode")),
+                'touchscreen': flatten_field(product_data.get("_Touchscreen")),
+                'keyboardLocalization': flatten_field(product_data.get("_Keyboard_Localization")),
+                'totalSolidStateDriveCapacity': flatten_field(product_data.get("_Total_Solid_State_Drive_Capacity")),
+                'flashMemoryCapacity': flatten_field(product_data.get("_Flash_Memory_Capacity")),
+                'wirelessLanStandard': flatten_field(product_data.get("_Wireless_LAN_Standard")),
+                'wwanSupported': flatten_field(product_data.get("_WWAN_Supported")),
+                'url': flatten_field(product_data.get("url"))
+            }
+
+            if existing_product:
+                # Update existing product
+                for key, value in new_data.items():
+                    if getattr(existing_product, key) in [None, ''] or key in ['price', 'stock']:
+                        setattr(existing_product, key, value)
+                logger.info(f"Updated product with SKU: {sku}")
             else:
-                product = Product(sku=sku, price=price, type=type, url=url, updated=updated, discovered=discovered)
-                session.add(product)   
-            session.commit()
-        except Exception as e:
-            session.rollback()
-            print(f"Error adding/updating product: {e}")
-        finally:
-            session.close()
+                # Create a new product record
+                existing_product = table_class(**new_data)
+                self.session.add(existing_product)
+                logger.info(f"Inserted new product with SKU: {sku}")
 
-    def add_direct_dial_product(self, sku, stock, price, msrp, rebate, sale, brand, type, url, updated, discovered):
-        session = self.get_session()
+            # Log history using HistoryManager
+            self.history_manager.log_price_stock_history(existing_product, table_class)
+
+            # Commit the session after insertion or update
+            self.session.commit()
+        except Exception as e:
+            logger.exception(f"Error inserting or updating product with SKU: {sku}")
+            self.session.rollback()
+
+    def load_products_from_json(self, file_path, table_class):
+        """Load products from a JSON file and insert or update them in the specified table."""
         try:
-            product = session.query(Product).filter_by(sku=sku).first()
-            if product:
-                product.price = price
-                product.stock = stock
-                product.msrp = msrp
-                product.rebate = rebate
-                product.sale = sale
-                product.brand = brand
-                product.type = type
-                product.url = url
-                product.updated = updated
-                product.discovered = discovered
-            else:
-                product = Product(sku=sku, price=price, stock=stock, msrp=msrp, rebate=rebate, sale=sale, brand=brand,type=type, url=url, updated=updated, discovered=discovered)
-                session.add(product)  
-            session.commit()
+            with open(file_path, 'r') as file:
+                data = json.load(file)
+                for item in data:
+                    product_data = item.get('document')  # Extracting product info
+                    if product_data:
+                        self.insert_or_update_product(product_data, table_class)
+                    else:
+                        logger.warning("No 'document' key found in JSON item.")
+            logger.info(f"Loaded products from {file_path} into {table_class.__tablename__}")
         except Exception as e:
-            session.rollback()
-            print(f"Error adding/updating product: {e}")
-        finally:
-            session.close()
-
-    def get_products(self):
-        session = self.get_session()
-        products = session.query(Product).all()
-        session.close()
-        return products
-    
-#class Price(Base):
-#    __tablename__ = 'prices'
-#    sku = Column("sku", String)
-#    date = Column("date", String)
-#    price = Column("price", Float)
-#    __table_args__ = (PrimaryKeyConstraint('sku', 'date'),)
-
-#    def __repr__(self):
-#        return f"PriceTracker(SKU: {self.sku}, Date: {self.date}, Price: {self.price})"
-    
-#class Stock(Base):
-#
-#    __tablename__ = 'stocks'
-#    sku = Column("sku", String)
-#    date = Column("date", String)
-#    stock = Column("stock", Float)
-#    __table_args__ = (PrimaryKeyConstraint('sku', 'date'),)#
-
-#    def __repr__(self):
-#        return f"PriceTracker(SKU: {self.sku}, Date: {self.date}, Stock: {self.stock})"
-
-class DatabaseExporter:
-    def __init__(self, db_path):
-
-        self.db_path = db_path
-    def export_table_to_csv(self, table_name, csv_file_path):
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        try:
-            cursor.execute(f"SELECT * FROM {table_name}")
-            rows = cursor.fetchall()
-            column_names = [description[0] for description in cursor.description]
-            with open(csv_file_path, mode='w', newline='', encoding='utf-8') as csv_file:
-                writer = csv.writer(csv_file)
-                writer.writerow(column_names)
-                writer.writerows(rows)
-            print(f"Data from table '{table_name}' has been exported to '{csv_file_path}'.")
-        except Exception as e:
-            print(f"Error exporting table '{table_name}': {e}")
-        finally:
-            conn.close()
-
+            logger.exception(f"Error loading products from {file_path}")
+            self.session.rollback()

@@ -1,0 +1,99 @@
+{
+    "shared_headers": {
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Connection": "keep-alive",
+        "Content-Type": "application/json",
+        "Origin": "https://www.directdial.com",
+        "Referer": "https://www.directdial.com/",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-site",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\""
+    },
+    "Direct_Dial_CA_Desktops": {
+        "url": "https://searchqd.directdial.com/multi_search",
+        "querystring": {
+            "x-typesense-api-key": "hYDsFlzrUCuL15lO5XY0LyeuXCJDcwvA"
+        },
+        "search_query": {
+            "query_by": "concat",
+            "sort_by": "instock:desc,popularity:desc,_text_match:desc",
+            "prioritize_exact_match": false,
+            "num_typos": 0,
+            "drop_tokens_threshold": 0,
+            "typo_tokens_threshold": 0,
+            "highlight_fields": "description, name, concat",
+            "enable_highlight_v1": false,
+            "highlight_full_fields": "description,name",
+            "collection": "idx_ddca",
+            "q": "*",
+            "facet_by": "_Chipset,_DisplayPort,_Energy_Star,_Environmentally_Friendly,_Form_Factor,_Graphics_Controller_Manufacturer,_Graphics_Controller_Model,_Graphics_Memory_Accessibility,_Graphics_Memory_Technology,_Keyboard_Localization,_Limited_Warranty_Duration,_Maximum_Power_Supply_Wattage,_Memory_Technology,_Operating_System,_Operating_System_Language,_Operating_System_Platform,_Processor_Core,_Processor_Generation,_Processor_Manufacturer,_Processor_Model,_Processor_Speed,_Processor_Type,_Product_Color,_Product_Family,_Standard_Memory,_TCO_Certified,_Total_Number_of_USB_Ports,_Total_Solid_State_Drive_Capacity,_USB_Type-C,_Wireless_LAN_Standard,attrib.lvl0,brand,categories.lvl0,categories2,categoriez,instock,ir,price,pricestr,productType,brand,instock,productType",
+            "filter_by": "(categoriez:computer systems) && brand:[`Dell`,`HP`,`Lenovo`] && instock:[true] && productType:[`All-in-One Computer`,`Chromebox`,`Desktop Computer`,`Gaming Desktop Computer`,`Industrial Computer`,`Thin Client`,`Workstation`]",
+            "max_facet_values": 40,
+            "page": 1,
+            "per_page": 240
+        },
+        "country": "CA",
+        "website": "DirectDial",
+        "form_type": "Desktops",
+        "save_directory": "save"
+    },
+    "Direct_Dial_CA_Notebooks": {
+        "url": "https://searchqd.directdial.com/multi_search",
+        "querystring": {
+            "x-typesense-api-key": "hYDsFlzrUCuL15lO5XY0LyeuXCJDcwvA"
+        },
+        "search_query": {
+            "query_by": "concat",
+            "sort_by": "instock:desc,popularity:desc,_text_match:desc",
+            "prioritize_exact_match": false,
+            "num_typos": 0,
+            "drop_tokens_threshold": 0,
+            "typo_tokens_threshold": 0,
+            "highlight_fields": "description, name, concat",
+            "enable_highlight_v1": false,
+            "highlight_full_fields": "description,name",
+            "collection": "idx_ddca",
+            "q": "*",
+            "facet_by": "_Bluetooth,_Chipset,_Drive_Type,_Energy_Star,_Finger_Print_Reader,_Graphics_Controller_Manufacturer,_Graphics_Controller_Model,_Graphics_Memory_Accessibility,_HDMI,_Keyboard_Backlight,_Keyboard_Localization,_Limited_Warranty_Duration,_Maximum_Power_Supply_Wattage,_Operating_System,_Operating_System_Platform,_Processor_Core,_Processor_Manufacturer,_Processor_Model,_Processor_Type,_Product_Color,_Product_Family,_Screen_Mode,_Screen_Resolution,_Screen_Size,_Total_Installed_System_Memory,_Total_Number_of_USB_Ports,_Total_Solid_State_Drive_Capacity,_Touchscreen,_Weight_Approximate,_Wireless_LAN_Standard,attrib.lvl0,brand,categories.lvl0,categories2,categoriez,instock,ir,price,pricestr,productType",
+            "filter_by": "(categoriez:computer systems) && brand:[`Dell`,`HP`,`Lenovo`] && instock:[true] && productType:[`2 in 1 Chromebook`,`2 in 1 Notebook`,`2 in 1 Ultrabook`,`Chromebook`,`Gaming Notebook`,`Mobile Workstation`,`Netbook`,`Notebook`,`Thin Client Notebook`,`Ultrabook`]",
+            "max_facet_values": 40,
+            "page": 1,
+            "per_page": 240
+        },
+        "country": "CA",
+        "website": "DirectDial",
+        "form_type": "Notebooks"
+    },
+    "Direct_Dial_US_Notebooks": {
+        "url": "https://searchqd.directdial.com/multi_search",
+        "querystring": {
+            "x-typesense-api-key": "hYDsFlzrUCuL15lO5XY0LyeuXCJDcwvA"
+        },
+        "search_query": {
+            "query_by": "concat",
+            "sort_by": "stock:desc",
+            "prioritize_exact_match": false,
+            "num_typos": 0,
+            "drop_tokens_threshold": 0,
+            "typo_tokens_threshold": 0,
+            "highlight_fields": "description, name, concat",
+            "enable_highlight_v1": false,
+            "highlight_full_fields": "description,name",
+            "collection": "idx_ddus",
+            "q": "*",
+            "facet_by": "brand,instock,productType,_Bluetooth,_Chipset,_Drive_Type,_Energy_Star,_Finger_Print_Reader,_Graphics_Controller_Manufacturer,_Graphics_Controller_Model,_Graphics_Memory_Accessibility,_HDMI,_Keyboard_Backlight,_Keyboard_Localization,_Limited_Warranty_Duration,_Maximum_Power_Supply_Wattage,_Number_of_Cells,_Operating_System,_Operating_System_Platform,_Processor_Core,_Processor_Manufacturer,_Processor_Model,_Processor_Type,_Product_Family,_Screen_Mode,_Screen_Resolution,_Screen_Size,_Total_Installed_System_Memory,_Total_Number_of_USB_Ports,_Total_Solid_State_Drive_Capacity,_Touchscreen,_Weight_Approximate,_Wireless_LAN_Standard,attrib.lvl0,categories.lvl0,categories2,categoriez,ir,price,pricestr",
+            "filter_by": "(categoriez:computer systems) && brand:[Dell,HP,Lenovo] && instock:[true] && productType:[2 in 1 Chromebook,2 in 1 Notebook,Chromebook,Gaming Notebook,Mobile Workstation,Netbook,Notebook,Thin Client Notebook,Ultrabook]",
+            "max_facet_values": 40,
+            "page": 1,
+            "per_page": 240
+        },
+        "country": "US",
+        "website": "DirectDial",
+        "form_type": "Notebooks"
+    }
+}
