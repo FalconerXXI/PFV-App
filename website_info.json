@@ -67,7 +67,8 @@
         },
         "country": "CA",
         "website": "DirectDial",
-        "form_type": "Notebooks"
+        "form_type": "Notebooks",
+        "save_directory": "save"
     },
     "Direct_Dial_US_Notebooks": {
         "url": "https://searchqd.directdial.com/multi_search",
@@ -94,6 +95,39 @@
         },
         "country": "US",
         "website": "DirectDial",
-        "form_type": "Notebooks"
+        "form_type": "Notebooks",
+        "save_directory": "save"
+    },
+    "Direct_Dial_US_Desktops": {
+        "url": "https://searchqd.directdial.com/multi_search",
+        "querystring": {
+            "x-typesense-api-key": "hYDsFlzrUCuL15lO5XY0LyeuXCJDcwvA"
+        },
+        "search_query": {
+            "query_by": "concat",
+            "sort_by": "stock:desc",
+            "prioritize_exact_match": false,
+            "num_typos": 0,
+            "drop_tokens_threshold": 0,
+            "typo_tokens_threshold": 0,
+            "highlight_fields": "description, name, concat",
+            "enable_highlight_v1": false,
+            "highlight_full_fields": "description,name",
+            "collection": "idx_ddus",
+            "q": "*",
+            "facet_by": "_Chipset,_Energy_Star,_Environmentally_Friendly,_Form_Factor,_Graphics_Controller_Manufacturer,_Graphics_Controller_Model,_Graphics_Memory_Accessibility,_Graphics_Memory_Technology,_Keyboard_Localization,_Limited_Warranty_Duration,_Maximum_Power_Supply_Wattage,_Memory_Technology,_Operating_System,_Operating_System_Language,_Operating_System_Platform,_Processor_Core,_Processor_Generation,_Processor_Manufacturer,_Processor_Model,_Processor_Speed,_Processor_Type,_Product_Color,_Product_Family,_Solid_State_Drive_Interface,_Standard_Memory,_TCO_Certified,_Total_Number_of_USB_Ports,_Total_Solid_State_Drive_Capacity,_USB_Type-C,_Wireless_LAN_Standard,attrib.lvl0,brand,categories.lvl0,categories2,categoriez,instock,ir,price,pricestr,productType",
+            "filter_by": "(categoriez:computer systems) && brand:[`Dell`,`HP`,`Lenovo`] && instock:[true] && productType:[`All-in-One Computer`,`Chromebox`,`Desktop Computer`,`Gaming Desktop Computer`,`Thin Client`,`Workstation`]",
+            "max_facet_values": 40,
+            "page": 1,
+            "per_page": 240
+        },
+        "country": "US",
+        "website": "DirectDial",
+        "form_type": "Desktops",
+        "save_directory": "save"
     }
 }
+
+
+
+
