@@ -2,10 +2,10 @@ import logging
 import json
 from api_scraper import APIScraper
 from products import ProductManager, DirectDialUS, DirectDialCA
-from datetime import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from base import Base
+from datetime import datetime, timedelta
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -37,15 +37,18 @@ def main():
         product_manager = ProductManager(session)
 
         # Load products
+        
+        #product_manager.load_products_from_json(f'save/DirectDial_CA_Desktops_{(datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")}.json', DirectDialCA)
+        #product_manager.load_products_from_json(f'save/DirectDial_US_Desktops_{(datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")}.json', DirectDialUS)
+        #product_manager.load_products_from_json(f'save/DirectDial_CA_Notebooks_{(datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")}.json', DirectDialCA)
+        #product_manager.load_products_from_json(f'save/DirectDial_US_Notebooks_{(datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")}.json', DirectDialUS)
+
+
         product_manager.load_products_from_json(f'save/DirectDial_CA_Desktops_{datetime.now().strftime("%Y-%m-%d")}.json', DirectDialCA)
+        product_manager.load_products_from_json(f'save/DirectDial_US_Desktops_{datetime.now().strftime("%Y-%m-%d")}.json', DirectDialUS)
         product_manager.load_products_from_json(f'save/DirectDial_CA_Notebooks_{datetime.now().strftime("%Y-%m-%d")}.json', DirectDialCA)
         product_manager.load_products_from_json(f'save/DirectDial_US_Notebooks_{datetime.now().strftime("%Y-%m-%d")}.json', DirectDialUS)
-        product_manager.load_products_from_json(f'save/DirectDial_US_Desktops_{datetime.now().strftime("%Y-%m-%d")}.json', DirectDialUS)
 
-        #product_manager.load_products_from_json(f'save/DirectDial_CA_Desktops_2024-09-30.json', DirectDialCA)
-        #product_manager.load_products_from_json(f'save/DirectDial_CA_Notebooks_2024-09-30.json', DirectDialCA)
-        #product_manager.load_products_from_json(f'save/DirectDial_US_Notebooks_2024-09-30.json', DirectDialUS)
-        #product_manager.load_products_from_json(f'save/DirectDial_US_Desktops_2024-09-30.json', DirectDialUS)
 
     except Exception as e:
         logger.exception("An error occurred in the main function.")

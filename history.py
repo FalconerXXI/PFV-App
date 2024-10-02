@@ -1,8 +1,9 @@
 import logging
-from sqlalchemy import Column, Integer, Float, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, Float, String, DateTime, ForeignKey, Date
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from base import Base  # Import Base from base.py
+from datetime import datetime
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -12,7 +13,7 @@ class DirectDialHistoryBase(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     price = Column(Float, nullable=False)
     stock = Column(Integer, nullable=False)
-    timestamp = Column(DateTime, default=datetime.utcnow)
+    timestamp = Column(Date, default=datetime.utcnow().date)
 
 class DirectDialUSHistory(DirectDialHistoryBase):
     __tablename__ = 'DirectDialUSHistory'

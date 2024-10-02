@@ -2,14 +2,12 @@ import logging
 import json
 from sqlalchemy import create_engine, Column, Integer, String, Float
 from sqlalchemy.orm import sessionmaker, relationship
-from base import Base  # Import Base from base.py
-from history import DirectDialUSHistory, DirectDialCAHistory, HistoryManager  # Import history models and manager
+from base import Base
+from history import DirectDialUSHistory, DirectDialCAHistory, HistoryManager
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Define the base class for SQLAlchemy models
 from sqlalchemy import Float
 
 from sqlalchemy import Float, Integer, String, Column
@@ -18,8 +16,8 @@ from sqlalchemy import Float, Integer, String, Column, DateTime, Boolean
 from sqlalchemy.sql import func
 
 class DirectDialBase(Base):
-    __abstract__ = True  # Mark this class as an abstract class
-    sku = Column(String, primary_key=True, unique=True, nullable=False)  # Use sku as the primary key
+    __abstract__ = True
+    sku = Column(String, primary_key=True, unique=True, nullable=False)
     name = Column(String)
     category = Column(String)
     formFactor = Column(String)
@@ -27,7 +25,7 @@ class DirectDialBase(Base):
     brand = Column(String)
     price = Column(Float)
     msrp = Column(Float)
-    stock = Column(Integer)  # Stock tracking column - placed beside 'msrp'
+    stock = Column(Integer)
     processorManufacturer = Column(String)
     chipset = Column(String)
     processorType = Column(String)
@@ -50,20 +48,16 @@ class DirectDialBase(Base):
     wirelessLanStandard = Column(String)
     wwanSupported = Column(String)
     url = Column(String)
-
-    # New columns for product scores
-    ff_score = Column(Float)       # Form factor score
-    cpu_score = Column(Float)      # CPU score
-    gpu_score = Column(Float)      # GPU score
-    storage_score = Column(Float)  # Storage score
-    ram_score = Column(Float)      # RAM score
-    total_score = Column(Float)    # Total score
-
-    # New columns for tracking and error handling
-    date_added = Column(DateTime, default=func.now())  # Set the date when the product is first added
-    date_updated = Column(DateTime, onupdate=func.now())  # Automatically update to current timestamp when the row is updated
-    in_stock = Column(Boolean, default=True)  # Boolean flag to indicate if the product is in stock
-    errors = Column(String)  # Column to store error messages or issues encountered during data processing
+    ff_score = Column(Float)
+    cpu_score = Column(Float)
+    gpu_score = Column(Float)
+    storage_score = Column(Float)
+    ram_score = Column(Float)
+    total_score = Column(Float)
+    date_added = Column(DateTime, default=func.now())
+    date_updated = Column(DateTime, onupdate=func.now())
+    in_stock = Column(Boolean, default=True)
+    errors = Column(String)
 
 
 
@@ -77,19 +71,15 @@ class DirectDialCA(DirectDialBase):
 
 class ProductManager:
     def __init__(self, session):
-        """Initialize the ProductManager with a database session."""
         self.session = session
         self.history_manager = HistoryManager(session)
 
     def insert_or_update_product(self, product_data, table_class):
-        """Insert a new product or update the existing one in the specified table."""
         try:
             def flatten_field(field):
                 if isinstance(field, list):
                     return ", ".join(field)
                 return field
-
-            # Check for SKU and skip if missing or empty
             sku = product_data.get("id")
             if not sku:
                 logger.warning("Skipping product without SKU.")
@@ -132,33 +122,26 @@ class ProductManager:
             }
 
             if existing_product:
-                # Update existing product
                 for key, value in new_data.items():
                     if getattr(existing_product, key) in [None, ''] or key in ['price', 'stock']:
                         setattr(existing_product, key, value)
                 logger.info(f"Updated product with SKU: {sku}")
             else:
-                # Create a new product record
                 existing_product = table_class(**new_data)
                 self.session.add(existing_product)
                 logger.info(f"Inserted new product with SKU: {sku}")
-
-            # Log history using HistoryManager
             self.history_manager.log_price_stock_history(existing_product, table_class)
-
-            # Commit the session after insertion or update
             self.session.commit()
         except Exception as e:
             logger.exception(f"Error inserting or updating product with SKU: {sku}")
             self.session.rollback()
 
     def load_products_from_json(self, file_path, table_class):
-        """Load products from a JSON file and insert or update them in the specified table."""
         try:
             with open(file_path, 'r') as file:
                 data = json.load(file)
                 for item in data:
-                    product_data = item.get('document')  # Extracting product info
+                    product_data = item.get('document') 
                     if product_data:
                         self.insert_or_update_product(product_data, table_class)
                     else:
