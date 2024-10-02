@@ -33,7 +33,6 @@ app.layout = html.Div([
     html.Div(id='page-content')
 ])
 
-# Home Page Layout
 home_layout = dbc.Container(
     fluid=True,
     style={'padding': '20px'},
@@ -52,10 +51,75 @@ home_layout = dbc.Container(
                         ]
                     )
                 ])
-            ], width=12)
-        ])
+            ], width=12),
+        ]),
+        dbc.Row([
+            dbc.Col([
+                dbc.Card([
+                    dbc.CardHeader("Top 10 Largest Price Changes (US)", style={'fontWeight': 'bold'}),
+                    dbc.CardBody(
+                        dash_table.DataTable(
+                            id='top-10-price-change-us',
+                            columns=[{'name': 'SKU', 'id': 'sku'}, {'name': 'Price Change', 'id': 'price_change'}],
+                            data=[],  # Data populated dynamically
+                            style_table={'height': '300px', 'overflowY': 'auto'},
+                            style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
+                            style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
+                        )
+                    )
+                ])
+            ], width=6),
+            dbc.Col([
+                dbc.Card([
+                    dbc.CardHeader("Top 10 Largest Price Changes (CA)", style={'fontWeight': 'bold'}),
+                    dbc.CardBody(
+                        dash_table.DataTable(
+                            id='top-10-price-change-ca',
+                            columns=[{'name': 'SKU', 'id': 'sku'}, {'name': 'Price Change', 'id': 'price_change'}],
+                            data=[],  # Data populated dynamically
+                            style_table={'height': '300px', 'overflowY': 'auto'},
+                            style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
+                            style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
+                        )
+                    )
+                ])
+            ], width=6),
+        ]),
+        dbc.Row([
+            dbc.Col([
+                dbc.Card([
+                    dbc.CardHeader("Top 10 Largest Stock Changes (US)", style={'fontWeight': 'bold'}),
+                    dbc.CardBody(
+                        dash_table.DataTable(
+                            id='top-10-stock-change-us',
+                            columns=[{'name': 'SKU', 'id': 'sku'}, {'name': 'stock_change', 'id': 'stock_change'}],
+                            data=[],  # Data populated dynamically
+                            style_table={'height': '300px', 'overflowY': 'auto'},
+                            style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
+                            style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
+                        )
+                    )
+                ])
+            ], width=6),
+            dbc.Col([
+                dbc.Card([
+                    dbc.CardHeader("Top 10 Largest Stock Changes (CA)", style={'fontWeight': 'bold'}),
+                    dbc.CardBody(
+                        dash_table.DataTable(
+                            id='top-10-stock-change-ca',
+                            columns=[{'name': 'SKU', 'id': 'sku'}, {'name': 'stock_change', 'id': 'stock_change'}],
+                            data=[],  # Data populated dynamically
+                            style_table={'height': '300px', 'overflowY': 'auto'},
+                            style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
+                            style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
+                        )
+                    )
+                ])
+            ], width=6),
+        ]),
     ]
 )
+
 
 # Page 1 Layout - Product Analysis
 page1_layout = dbc.Container(
@@ -337,17 +401,21 @@ def display_page(pathname):
         return page3_layout
     else:
         return html.H1('404 - Page Not Found', style={'textAlign': 'center'})
-
-# Callback for Home Page to display database stats
 @app.callback(
     [Output('total-days-tracked', 'children'),
      Output('last-update-time', 'children'),
      Output('total-products', 'children'),
-     Output('total-brands', 'children')],
+     Output('total-brands', 'children'),
+     Output('top-10-price-change-us', 'data'),
+     Output('top-10-price-change-ca', 'data'),
+     Output('top-10-stock-change-us', 'data'),
+     Output('top-10-stock-change-ca', 'data')],
     [Input('url', 'pathname')]
 )
 def update_home_stats(pathname):
     if pathname == '/':
+        print("Home page detected. Starting data fetch...")
+
         # Get min and max timestamps from history tables
         query_us = "SELECT MIN(timestamp) as min_time, MAX(timestamp) as max_time FROM DirectDialUSHistory"
         query_ca = "SELECT MIN(timestamp) as min_time, MAX(timestamp) as max_time FROM DirectDialCAHistory"
@@ -355,23 +423,35 @@ def update_home_stats(pathname):
         df_us = pd.read_sql(query_us, engine)
         df_ca = pd.read_sql(query_ca, engine)
 
-        min_time_us = df_us['min_time'].iloc[0]
-        max_time_us = df_us['max_time'].iloc[0]
-        min_time_ca = df_ca['min_time'].iloc[0]
-        max_time_ca = df_ca['max_time'].iloc[0]
+        print("Query for US history: ", query_us)
+        print("Query for CA history: ", query_ca)
+        print("US History Dataframe:\n", df_us)
+        print("CA History Dataframe:\n", df_ca)
 
-        min_time = min(filter(None, [min_time_us, min_time_ca]))
-        max_time = max(filter(None, [max_time_us, max_time_ca]))
+        # Convert timestamps to datetime objects
+        min_time_us = pd.to_datetime(df_us['min_time'].iloc[0], errors='coerce')
+        max_time_us = pd.to_datetime(df_us['max_time'].iloc[0], errors='coerce')
+        min_time_ca = pd.to_datetime(df_ca['min_time'].iloc[0], errors='coerce')
+        max_time_ca = pd.to_datetime(df_ca['max_time'].iloc[0], errors='coerce')
+
+        print("Min and Max Time (US):", min_time_us, max_time_us)
+        print("Min and Max Time (CA):", min_time_ca, max_time_ca)
+
+        # Determine the overall min and max times
+        min_time = min(filter(pd.notna, [min_time_us, min_time_ca]))
+        max_time = max(filter(pd.notna, [max_time_us, max_time_ca]))
 
         if min_time and max_time:
-            total_days_tracked = (pd.to_datetime(max_time) - pd.to_datetime(min_time)).days + 1
+            total_days_tracked = (max_time - min_time).days + 1
         else:
             total_days_tracked = 0
         total_days_tracked_text = f"Total number of days tracked: {total_days_tracked}"
+        print("Total days tracked:", total_days_tracked_text)
 
         # Last update time
         last_update_time = max_time if max_time else 'No data available'
         last_update_time_text = f"Last update time: {last_update_time}"
+        print("Last update time:", last_update_time_text)
 
         # Total number of products
         query_products_us = "SELECT COUNT(DISTINCT sku) as total_products FROM DirectDialUS"
@@ -380,8 +460,12 @@ def update_home_stats(pathname):
         df_products_us = pd.read_sql(query_products_us, engine)
         df_products_ca = pd.read_sql(query_products_ca, engine)
 
+        print("US Products Dataframe:\n", df_products_us)
+        print("CA Products Dataframe:\n", df_products_ca)
+
         total_products = df_products_us['total_products'].iloc[0] + df_products_ca['total_products'].iloc[0]
         total_products_text = f"Total number of products: {total_products}"
+        print("Total products:", total_products_text)
 
         # Total number of brands
         query_brands_us = "SELECT COUNT(DISTINCT brand) as total_brands FROM DirectDialUS"
@@ -390,12 +474,81 @@ def update_home_stats(pathname):
         df_brands_us = pd.read_sql(query_brands_us, engine)
         df_brands_ca = pd.read_sql(query_brands_ca, engine)
 
+        print("US Brands Dataframe:\n", df_brands_us)
+        print("CA Brands Dataframe:\n", df_brands_ca)
+
         total_brands = max(df_brands_us['total_brands'].iloc[0], df_brands_ca['total_brands'].iloc[0])
         total_brands_text = f"Total number of brands: {total_brands}"
+        print("Total brands:", total_brands_text)
 
-        return total_days_tracked_text, last_update_time_text, total_products_text, total_brands_text
+        # Calculate start date dynamically using datetime objects
+        start_date_us = min_time_us if min_time_us and min_time_us >= max_time_us - pd.Timedelta(days=7) else max_time_us - pd.Timedelta(days=7)
+        start_date_ca = min_time_ca if min_time_ca and min_time_ca >= max_time_ca - pd.Timedelta(days=7) else max_time_ca - pd.Timedelta(days=7)
+
+        # Convert datetime to string in the format required for SQL queries
+        start_date_us_str = start_date_us.strftime('%Y-%m-%d')
+        start_date_ca_str = start_date_ca.strftime('%Y-%m-%d')
+        print("Start date US:", start_date_us_str)
+        print("Start date CA:", start_date_ca_str)
+
+        # Top 10 Largest Price Changes in US
+        query_price_change_us = f"""
+            SELECT sku, MAX(price) - MIN(price) as price_change
+            FROM DirectDialUSHistory
+            WHERE timestamp >= '{start_date_us_str}'
+            GROUP BY sku
+            ORDER BY price_change DESC
+            LIMIT 10
+        """
+        df_price_change_us = pd.read_sql(query_price_change_us, engine)
+        top_10_price_change_us = df_price_change_us.to_dict('records')
+        print("Top 10 Price Changes (US):\n", top_10_price_change_us)
+
+        # Top 10 Largest Price Changes in CA
+        query_price_change_ca = f"""
+            SELECT sku, MAX(price) - MIN(price) as price_change
+            FROM DirectDialCAHistory
+            WHERE timestamp >= '{start_date_ca_str}'
+            GROUP BY sku
+            ORDER BY price_change DESC
+            LIMIT 10
+        """
+        df_price_change_ca = pd.read_sql(query_price_change_ca, engine)
+        top_10_price_change_ca = df_price_change_ca.to_dict('records')
+        print("Top 10 Price Changes (CA):\n", top_10_price_change_ca)
+
+        # Top 10 Largest Stock Changes in US
+        query_stock_change_us = f"""
+            SELECT sku, MAX(stock) - MIN(stock) as stock_change
+            FROM DirectDialUSHistory
+            WHERE timestamp >= '{start_date_us_str}'
+            GROUP BY sku
+            ORDER BY stock_change DESC
+            LIMIT 10
+        """
+        df_stock_change_us = pd.read_sql(query_stock_change_us, engine)
+        top_10_stock_change_us = df_stock_change_us.to_dict('records')
+        print("Top 10 Stock Changes (US):\n", top_10_stock_change_us)
+
+        # Top 10 Largest Stock Changes in CA
+        query_stock_change_ca = f"""
+            SELECT sku, MAX(stock) - MIN(stock) as stock_change
+            FROM DirectDialCAHistory
+            WHERE timestamp >= '{start_date_ca_str}'
+            GROUP BY sku
+            ORDER BY stock_change DESC
+            LIMIT 10
+        """
+        df_stock_change_ca = pd.read_sql(query_stock_change_ca, engine)
+        top_10_stock_change_ca = df_stock_change_ca.to_dict('records')
+        print("Top 10 Stock Changes (CA):\n", top_10_stock_change_ca)
+
+        return (total_days_tracked_text, last_update_time_text, total_products_text, total_brands_text,
+                top_10_price_change_us, top_10_price_change_ca, top_10_stock_change_us, top_10_stock_change_ca)
     else:
         return dash.no_update
+
+
 
 # Callback for Page 2 to display the overview table
 @app.callback(
@@ -521,7 +674,6 @@ def update_stock_history_table(selected_sku, selected_table, granularity):
 
         return columns, data
     return [], []
-
 @app.callback(
     Output('page-1-price-history-graph', 'figure'),
     [Input('page-1-sku-dropdown', 'value'),
@@ -530,29 +682,53 @@ def update_stock_history_table(selected_sku, selected_table, granularity):
 def update_price_history_graph(selected_sku, selected_table):
     if not selected_sku or not selected_table:
         return {}
+
+    # Use dynamic table name based on the selected table
     history_table = f"{selected_table}History"
     query = f"SELECT sku, timestamp, price FROM {history_table} WHERE sku = '{selected_sku}'"
     df_price = pd.read_sql(query, engine)
+
+    # Pivot and prepare the data for the graph
     pivot_df = df_price.pivot_table(index='sku', columns='timestamp', values='price', aggfunc='first')
     pivot_df.reset_index(inplace=True)
     pivot_df = pivot_df.sort_index(axis=1, ascending=False)
+    
     if pivot_df.empty or selected_sku not in pivot_df['sku'].values:
         return {}
 
     sku_data = pivot_df[pivot_df['sku'] == selected_sku].iloc[0, 1:]
+
+    # Set Y-axis range dynamically with buffer
+    y_min = (min(sku_data.values) // 10) * 10 - 10  # Round down to the nearest 10 and subtract 10
+    y_max = (max(sku_data.values) // 10) * 10 + 10  # Round up to the nearest 10 and add 10
+
+    # Create figure with formatted x-axis and y-axis
     figure = {
         'data': [
             {
-                'x': list(sku_data.index),
-                'y': sku_data.values,
+                'x': list(sku_data.index),  # Dates on the X-axis
+                'y': sku_data.values,  # Price values on the Y-axis
                 'type': 'line',
                 'name': 'Price'
             }
         ],
         'layout': {
-            'xaxis': {'title': 'Date'},
-            'yaxis': {'title': 'Price'},
-            'height': 450
+            'title': 'Price History Over Time',
+            'xaxis': {
+                'title': 'Date',
+                'tickformat': '%b %d, %Y',  # Display date as 'Sep 30, 2024'
+                'tickmode': 'linear',
+                'dtick': 86400000.0,  # Interval of one day in milliseconds
+            },
+            'yaxis': {
+                'title': 'Price',
+                'tickformat': ',d',  # Format to display as whole dollars
+                'tickmode': 'linear',
+                'dtick': 10,  # Show tick marks every 10 units (10 dollars)
+                'range': [y_min, y_max]  # Set the Y-axis range dynamically
+            },
+            'height': 450,
+            'margin': {'t': 50, 'b': 50, 'l': 50, 'r': 50}  # Adjust margins as needed
         }
     }
     return figure
@@ -565,29 +741,62 @@ def update_price_history_graph(selected_sku, selected_table):
 def update_stock_history_graph(selected_sku, selected_table):
     if not selected_sku or not selected_table:
         return {}
+
+    # Use dynamic table name based on the selected table
     history_table = f"{selected_table}History"
     query = f"SELECT sku, timestamp, stock FROM {history_table} WHERE sku = '{selected_sku}'"
     df_stock = pd.read_sql(query, engine)
+
+    # Pivot and prepare the data for the graph
     pivot_df = df_stock.pivot_table(index='sku', columns='timestamp', values='stock', aggfunc='first')
     pivot_df.reset_index(inplace=True)
     pivot_df = pivot_df.sort_index(axis=1, ascending=False)
+
     if pivot_df.empty or selected_sku not in pivot_df['sku'].values:
         return {}
 
     sku_data = pivot_df[pivot_df['sku'] == selected_sku].iloc[0, 1:]
+
+    # Calculate Y-axis range dynamically
+    y_min = min(sku_data.values) - 5  # Subtract a buffer from the minimum
+    y_max = max(sku_data.values) + 5  # Add a buffer to the maximum
+
+    # Calculate a suitable dtick based on the range of values
+    range_diff = y_max - y_min
+    if range_diff <= 10:
+        dtick = 1  # Use a small interval for smaller ranges
+    elif range_diff <= 50:
+        dtick = 5  # Medium interval for moderate ranges
+    else:
+        dtick = 10  # Larger interval for larger ranges
+
+    # Create the figure with dynamic Y-axis range and tick settings
     figure = {
         'data': [
             {
-                'x': list(sku_data.index),
-                'y': sku_data.values,
+                'x': list(sku_data.index),  # Dates on the X-axis
+                'y': sku_data.values,  # Stock values on the Y-axis
                 'type': 'line',
                 'name': 'Stock'
             }
         ],
         'layout': {
-            'xaxis': {'title': 'Date'},
-            'yaxis': {'title': 'Stock'},
-            'height': 450
+            'title': 'Stock History Over Time',
+            'xaxis': {
+                'title': 'Date',
+                'tickformat': '%b %d, %Y',  # Display date as 'Sep 30, 2024'
+                'tickmode': 'linear',
+                'dtick': 86400000.0,  # Interval of one day in milliseconds
+            },
+            'yaxis': {
+                'title': 'Stock',
+                'tickformat': ',d',  # Format to display as whole numbers
+                'tickmode': 'linear',
+                'dtick': dtick,  # Set the dynamic tick interval
+                'range': [y_min, y_max]  # Set the dynamic Y-axis range
+            },
+            'height': 450,
+            'margin': {'t': 50, 'b': 50, 'l': 50, 'r': 50}  # Adjust margins as needed
         }
     }
     return figure
