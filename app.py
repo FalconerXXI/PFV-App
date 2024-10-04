@@ -6,18 +6,17 @@ from sqlalchemy import create_engine
 import dash_bootstrap_components as dbc
 import pandas as pd
 from dash.dcc import send_data_frame
+from sqlalchemy.orm import sessionmaker
+from contextlib import contextmanager
 
-# Set up SQLite connection
-DB_PATH = 'sqlite:///products.db'  # Use the path to your SQLite database
-engine = create_engine(DB_PATH)
 
-# Create a Dash application with multi-page support
+
+DB_PATH = 'sqlite:///products.db'
+engine = create_engine(DB_PATH, pool_size=10, max_overflow=20, pool_pre_ping=True)
 app = dash.Dash(__name__, suppress_callback_exceptions=True, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-# Application layout with navigation
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
-    # Navigation bar
     dbc.NavbarSimple(
         brand="PFV Analysis Application",
         brand_href="/",
@@ -32,7 +31,6 @@ app.layout = html.Div([
     ),
     html.Div(id='page-content')
 ])
-
 home_layout = dbc.Container(
     fluid=True,
     style={'padding': '20px'},
@@ -50,8 +48,18 @@ home_layout = dbc.Container(
                             html.P(id='total-brands', style={'fontSize': '18px'}),
                         ]
                     )
-                ])
-            ], width=12),
+                ], style={'marginBottom': '30px'})  # Margin added here
+            ], width=6),
+            dbc.Col([
+                dbc.Card([
+                    dbc.CardHeader("Weekly Statistics", style={'fontWeight': 'bold'}),
+                    dbc.CardBody(
+                        [
+                            html.P(id='total-new-products', style={'fontSize': '18px'}),
+                        ]
+                    )
+                ], style={'marginBottom': '30px'})  # Margin added here
+            ], width=6),
         ]),
         dbc.Row([
             dbc.Col([
@@ -61,13 +69,13 @@ home_layout = dbc.Container(
                         dash_table.DataTable(
                             id='top-10-price-change-us',
                             columns=[{'name': 'SKU', 'id': 'sku'}, {'name': 'Price Change', 'id': 'price_change'}],
-                            data=[],  # Data populated dynamically
-                            style_table={'height': '300px', 'overflowY': 'auto'},
+                            data=[],
+                            style_table={'height': '350px', 'overflowY': 'auto'},
                             style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
                             style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
                         )
                     )
-                ])
+                ], style={'marginBottom': '30px'})  # Margin added here
             ], width=6),
             dbc.Col([
                 dbc.Card([
@@ -76,13 +84,13 @@ home_layout = dbc.Container(
                         dash_table.DataTable(
                             id='top-10-price-change-ca',
                             columns=[{'name': 'SKU', 'id': 'sku'}, {'name': 'Price Change', 'id': 'price_change'}],
-                            data=[],  # Data populated dynamically
-                            style_table={'height': '300px', 'overflowY': 'auto'},
+                            data=[],
+                            style_table={'height': '350px', 'overflowY': 'auto'},
                             style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
                             style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
                         )
                     )
-                ])
+                ], style={'marginBottom': '30px'})  # Margin added here
             ], width=6),
         ]),
         dbc.Row([
@@ -93,13 +101,13 @@ home_layout = dbc.Container(
                         dash_table.DataTable(
                             id='top-10-stock-change-us',
                             columns=[{'name': 'SKU', 'id': 'sku'}, {'name': 'stock_change', 'id': 'stock_change'}],
-                            data=[],  # Data populated dynamically
-                            style_table={'height': '300px', 'overflowY': 'auto'},
+                            data=[],
+                            style_table={'height': '350px', 'overflowY': 'auto'},
                             style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
                             style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
                         )
                     )
-                ])
+                ], style={'marginBottom': '30px'})  # Margin added here
             ], width=6),
             dbc.Col([
                 dbc.Card([
@@ -108,27 +116,23 @@ home_layout = dbc.Container(
                         dash_table.DataTable(
                             id='top-10-stock-change-ca',
                             columns=[{'name': 'SKU', 'id': 'sku'}, {'name': 'stock_change', 'id': 'stock_change'}],
-                            data=[],  # Data populated dynamically
-                            style_table={'height': '300px', 'overflowY': 'auto'},
+                            data=[],
+                            style_table={'height': '350px', 'overflowY': 'auto'},
                             style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
                             style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
                         )
                     )
-                ])
+                ], style={'marginBottom': '30px'})  # Margin added here
             ], width=6),
         ]),
     ]
 )
 
-
-# Page 1 Layout - Product Analysis
 page1_layout = dbc.Container(
     fluid=True,
     style={'padding': '20px'},
     children=[
-        # Title
         html.H1("Individual Product Analysis", style={'textAlign': 'center', 'marginBottom': '40px', 'fontSize': '32px', 'fontWeight': 'bold'}),
-        # Filter Section
         dbc.Row([
             dbc.Col([
                 dbc.Card([
@@ -147,14 +151,14 @@ page1_layout = dbc.Container(
                         html.Label("Select a Brand:", style={'fontWeight': 'bold'}),
                         dcc.Dropdown(
                             id='page-1-brand-dropdown',
-                            options=[],  # Options populated dynamically
+                            options=[],
                             placeholder="Select a Brand",
                             style={'marginBottom': '20px'}
                         ),
                         html.Label("Select a SKU:", style={'fontWeight': 'bold'}),
                         dcc.Dropdown(
                             id='page-1-sku-dropdown',
-                            options=[],  # Options populated dynamically
+                            options=[],
                             placeholder="Select a SKU",
                             style={'marginBottom': '20px'}
                         ),
@@ -165,34 +169,29 @@ page1_layout = dbc.Container(
                                 {'label': 'Daily', 'value': 'D'},
                                 {'label': 'Monthly', 'value': 'M'}
                             ],
-                            value='D',  # Default to 'Daily'
+                            value='D',
                             placeholder='Select Date Granularity'
                         ),
-                        # Add a button to collapse/expand the filters
                         dbc.Button("Apply Filters", id='apply-filters-button', color='primary', style={'marginTop': '20px'}),
                     ])
                 ], style={'marginBottom': '30px'})
-            ], width=3),  # Sidebar width reduced
-
-            # Main Product Table
+            ], width=3),
             dbc.Col([
                 dbc.Card([
                     dbc.CardHeader("Product Details", style={'fontWeight': 'bold'}),
                     dbc.CardBody(
                         dash_table.DataTable(
                             id='page-1-product-table',
-                            columns=[],  # Columns populated dynamically
-                            data=[],  # Data populated dynamically
+                            columns=[],
+                            data=[],
                             style_table={'height': '300px', 'overflowY': 'auto'},
                             style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
                             style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
                         ),
                     )
                 ], style={'marginBottom': '30px'})
-            ], width=9)  # Adjust the width of the table column
+            ], width=9)
         ]),
-
-        # Price and Stock History Tables
         dbc.Row([
             dbc.Col([
                 dbc.Card([
@@ -200,8 +199,8 @@ page1_layout = dbc.Container(
                     dbc.CardBody(
                         dash_table.DataTable(
                             id='page-1-price-history-table',
-                            columns=[],  # Columns populated dynamically
-                            data=[],  # Data populated dynamically
+                            columns=[],
+                            data=[],
                             style_table={'height': '200px', 'overflowY': 'auto'},
                             style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
                             style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
@@ -216,8 +215,8 @@ page1_layout = dbc.Container(
                     dbc.CardBody(
                         dash_table.DataTable(
                             id='page-1-stock-history-table',
-                            columns=[],  # Columns populated dynamically
-                            data=[],  # Data populated dynamically
+                            columns=[],
+                            data=[],
                             style_table={'height': '200px', 'overflowY': 'auto'},
                             style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
                             style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
@@ -232,8 +231,8 @@ page1_layout = dbc.Container(
                     dbc.CardHeader("Price History Graph", style={'fontWeight': 'bold'}),
                     dbc.CardBody(
                         dcc.Graph(
-                            id='page-1-price-history-graph',  # Graph ID for Price History
-                            style={'height': '450px'}  # Set the graph height to 500px
+                            id='page-1-price-history-graph',
+                            style={'height': '450px'}
                         )
                     )
                 ], style={'marginBottom': '30px'})
@@ -244,8 +243,8 @@ page1_layout = dbc.Container(
                     dbc.CardHeader("Stock History Graph", style={'fontWeight': 'bold'}),
                     dbc.CardBody(
                         dcc.Graph(
-                            id='page-1-stock-history-graph',  # Graph ID for Stock History
-                            style={'height': '450px'}  # Set the graph height to 500px
+                            id='page-1-stock-history-graph',
+                            style={'height': '450px'}
                         )
                     )
                 ], style={'marginBottom': '30px'})
@@ -253,14 +252,11 @@ page1_layout = dbc.Container(
         ])
     ]
 )
-
-# Page 2 Layout - Database Overview
 page2_layout = dbc.Container(
     fluid=True,
     style={'padding': '20px'},
     children=[
         html.H1("Database Overview", style={'textAlign': 'center', 'marginBottom': '40px', 'fontSize': '32px', 'fontWeight': 'bold'}),
-        # Dropdown to select table
         dbc.Row([
             dbc.Col([
                 html.Label("Select a Table:", style={'fontWeight': 'bold'}),
@@ -275,11 +271,7 @@ page2_layout = dbc.Container(
                 )
             ], width=3),
         ]),
-        # DataTable to display the table data
-        # Search Bar
         dbc.Row([dbc.Col(dbc.Input(id='search-bar', placeholder='Search for products...', type='text', style={'marginBottom': '20px'}), width=12)]),
-
-        # Filters
         dbc.Row([
             dbc.Col([html.Label("Filter by Category:", style={'fontWeight': 'bold'}), dcc.Dropdown(id='category-filter', options=[], placeholder="Select Category", style={'marginBottom': '20px'})], width=3),
             dbc.Col([html.Label("Price Range:", style={'fontWeight': 'bold'}), dcc.RangeSlider(id='price-range-slider', min=0, max=1000, step=10, marks={i: f"${i}" for i in range(0, 1001, 100)}, value=[100, 500])], width=5),
@@ -292,20 +284,19 @@ page2_layout = dbc.Container(
                     dbc.CardBody(
                         dash_table.DataTable(
                             id='overview-table',
-                            columns=[],  # Columns populated dynamically
+                            columns=[],
                             data=[], 
-                            page_size=2000,  # You can adjust the page size based on your needs
-                            virtualization=True, # Data populated dynamically
+                            page_size=2000,
+                            virtualization=True,
                             style_table={'height': '300px', 'overflowY': 'auto'},
                             style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
                             style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
-                            fixed_rows={'headers': True},  # Sticky headers
+                            fixed_rows={'headers': True},
                         ),
                     )
                 ], style={'marginBottom': '30px'})
             ], width=12) 
         ]),
-        # Download button and dcc.Download component
         dbc.Row([
             dbc.Col([
                 dbc.Button("Export to CSV", id="export-csv-button", color="primary", style={'marginTop': '20px'}),
@@ -314,13 +305,11 @@ page2_layout = dbc.Container(
         ])
     ]
 )
-# Page 2 Layout - Database Overview
 page3_layout = dbc.Container(
     fluid=True,
     style={'padding': '20px'},
     children=[
         html.H1("Edit Database", style={'textAlign': 'center', 'marginBottom': '40px', 'fontSize': '32px', 'fontWeight': 'bold'}),
-        # Dropdown to select table
         dbc.Row([
             dbc.Col([
                 html.Label("Select a Table:", style={'fontWeight': 'bold'}),
@@ -335,10 +324,7 @@ page3_layout = dbc.Container(
                 )
             ], width=3),
         ]),
-        # DataTable to display the table data
-        # Search Bar
         dbc.Row([dbc.Col(dbc.Input(id='search-bar', placeholder='Search for products...', type='text', style={'marginBottom': '20px'}), width=12)]),
-         # Editable DataTable for editing data
          
         dbc.Row([
             dbc.Col([
@@ -347,23 +333,21 @@ page3_layout = dbc.Container(
                     dbc.CardBody(
                         dash_table.DataTable(
                             id='edit-overview-table',
-                            columns=[],  # Columns populated dynamically
+                            columns=[],
                             data=[], 
-                            page_size=2000,  # You can adjust the page size based on your needs
-                            virtualization=True, # Data populated dynamically
-                            editable=True,  # Enable table editing
+                            page_size=2000,
+                            virtualization=True,
+                            editable=True,
                             row_deletable=True,
                             style_table={'height': '300px', 'overflowY': 'auto'},
                             style_cell={'textAlign': 'left', 'padding': '5px', 'fontFamily': 'Arial'},
                             style_header={'fontWeight': 'bold', 'backgroundColor': '#f8f9fa'},
-                            fixed_rows={'headers': True},  # Sticky headers
+                            fixed_rows={'headers': True},
                         ),
                     )
                 ], style={'marginBottom': '30px'})
             ], width=12) 
         ]),
-
-        # Buttons for CRUD operations
         dbc.Row([
             dbc.Col([
                 dbc.Button("Add Row", id="add-row-button", color="success", style={'marginTop': '20px', 'marginRight': '10px'}),
@@ -372,10 +356,7 @@ page3_layout = dbc.Container(
                 dcc.Download(id="download-edit-csv")
             ], width=12)
         ]),
-        
-        # Hidden div for storing data for the selected table
         dcc.Store(id='edit-table-store'),
-        # Download button and dcc.Download component
         dbc.Row([
             dbc.Col([
                 dbc.Button("Export to CSV", id="export-csv-button", color="primary", style={'marginTop': '20px'}),
@@ -386,8 +367,6 @@ page3_layout = dbc.Container(
 )
 
 
-
-# Callbacks to render page content based on URL
 @app.callback(Output('page-content', 'children'),
               Input('url', 'pathname'))
 def display_page(pathname):
@@ -406,6 +385,7 @@ def display_page(pathname):
      Output('last-update-time', 'children'),
      Output('total-products', 'children'),
      Output('total-brands', 'children'),
+     Output('total-new-products', 'children'),
      Output('top-10-price-change-us', 'data'),
      Output('top-10-price-change-ca', 'data'),
      Output('top-10-stock-change-us', 'data'),
@@ -413,144 +393,151 @@ def display_page(pathname):
     [Input('url', 'pathname')]
 )
 def update_home_stats(pathname):
-    if pathname == '/':
-        print("Home page detected. Starting data fetch...")
+    if pathname != '/':
+        return dash.no_update
 
-        # Get min and max timestamps from history tables
-        query_us = "SELECT MIN(timestamp) as min_time, MAX(timestamp) as max_time FROM DirectDialUSHistory"
-        query_ca = "SELECT MIN(timestamp) as min_time, MAX(timestamp) as max_time FROM DirectDialCAHistory"
+    # Initialize variables to handle the data aggregation and calculations.
+    total_days_tracked_text = "Total number of days tracked: 0"
+    last_update_time_text = "Last update time: No data available"
+    total_products_text = "Total number of products: 0"
+    total_brands_text = "Total number of brands: 0"
+    total_new_products_text = "Total number of new products: 0"
+    top_10_price_change_us = []
+    top_10_price_change_ca = []
+    top_10_stock_change_us = []
+    top_10_stock_change_ca = []
 
-        df_us = pd.read_sql(query_us, engine)
-        df_ca = pd.read_sql(query_ca, engine)
+    # Calculate today's date and one week before today for filtering
+    today = pd.Timestamp.now().normalize()
+    one_week_ago = today - pd.Timedelta(days=7)
 
-        print("Query for US history: ", query_us)
-        print("Query for CA history: ", query_ca)
-        print("US History Dataframe:\n", df_us)
-        print("CA History Dataframe:\n", df_ca)
+    with get_db_connection() as connection:
+        # Get combined stats and metrics for both US and CA history tables without 'brand'.
+        combined_query = """
+            SELECT 
+                MIN(timestamp) as min_time, 
+                MAX(timestamp) as max_time, 
+                COUNT(DISTINCT sku) as total_products,
+                CASE 
+                    WHEN source = 'DirectDialUSHistory' THEN 'US' 
+                    ELSE 'CA' 
+                END as region
+            FROM (
+                SELECT timestamp, sku, 'DirectDialUSHistory' as source FROM DirectDialUSHistory
+                UNION ALL
+                SELECT timestamp, sku, 'DirectDialCAHistory' as source FROM DirectDialCAHistory
+            )
+            GROUP BY region
+        """
+        df_combined = pd.read_sql(combined_query, connection)
 
-        # Convert timestamps to datetime objects
-        min_time_us = pd.to_datetime(df_us['min_time'].iloc[0], errors='coerce')
-        max_time_us = pd.to_datetime(df_us['max_time'].iloc[0], errors='coerce')
-        min_time_ca = pd.to_datetime(df_ca['min_time'].iloc[0], errors='coerce')
-        max_time_ca = pd.to_datetime(df_ca['max_time'].iloc[0], errors='coerce')
+        # Extract information for US and CA
+        us_data = df_combined[df_combined['region'] == 'US'].iloc[0] if 'US' in df_combined['region'].values else None
+        ca_data = df_combined[df_combined['region'] == 'CA'].iloc[0] if 'CA' in df_combined['region'].values else None
 
-        print("Min and Max Time (US):", min_time_us, max_time_us)
-        print("Min and Max Time (CA):", min_time_ca, max_time_ca)
+        # Calculate total days tracked and last update time
+        min_time_us = pd.to_datetime(us_data['min_time'], errors='coerce') if us_data is not None else None
+        max_time_us = pd.to_datetime(us_data['max_time'], errors='coerce') if us_data is not None else None
+        min_time_ca = pd.to_datetime(ca_data['min_time'], errors='coerce') if ca_data is not None else None
+        max_time_ca = pd.to_datetime(ca_data['max_time'], errors='coerce') if ca_data is not None else None
 
-        # Determine the overall min and max times
+        # Calculate min and max time for all regions and determine tracking period
         min_time = min(filter(pd.notna, [min_time_us, min_time_ca]))
         max_time = max(filter(pd.notna, [max_time_us, max_time_ca]))
-
         if min_time and max_time:
             total_days_tracked = (max_time - min_time).days + 1
-        else:
-            total_days_tracked = 0
-        total_days_tracked_text = f"Total number of days tracked: {total_days_tracked}"
-        print("Total days tracked:", total_days_tracked_text)
+            total_days_tracked_text = f"Total number of days tracked: {total_days_tracked}"
+            last_update_time_text = f"Last update time: {max_time}"
 
-        # Last update time
-        last_update_time = max_time if max_time else 'No data available'
-        last_update_time_text = f"Last update time: {last_update_time}"
-        print("Last update time:", last_update_time_text)
-
-        # Total number of products
-        query_products_us = "SELECT COUNT(DISTINCT sku) as total_products FROM DirectDialUS"
-        query_products_ca = "SELECT COUNT(DISTINCT sku) as total_products FROM DirectDialCA"
-
-        df_products_us = pd.read_sql(query_products_us, engine)
-        df_products_ca = pd.read_sql(query_products_ca, engine)
-
-        print("US Products Dataframe:\n", df_products_us)
-        print("CA Products Dataframe:\n", df_products_ca)
-
-        total_products = df_products_us['total_products'].iloc[0] + df_products_ca['total_products'].iloc[0]
+        # Calculate total products
+        total_products = (us_data['total_products'] if us_data is not None else 0) + (ca_data['total_products'] if ca_data is not None else 0)
         total_products_text = f"Total number of products: {total_products}"
-        print("Total products:", total_products_text)
 
-        # Total number of brands
+        # Query for total brands separately from the `DirectDialUS` and `DirectDialCA` tables
         query_brands_us = "SELECT COUNT(DISTINCT brand) as total_brands FROM DirectDialUS"
         query_brands_ca = "SELECT COUNT(DISTINCT brand) as total_brands FROM DirectDialCA"
-
-        df_brands_us = pd.read_sql(query_brands_us, engine)
-        df_brands_ca = pd.read_sql(query_brands_ca, engine)
-
-        print("US Brands Dataframe:\n", df_brands_us)
-        print("CA Brands Dataframe:\n", df_brands_ca)
-
-        total_brands = max(df_brands_us['total_brands'].iloc[0], df_brands_ca['total_brands'].iloc[0])
+        df_brands_us = pd.read_sql(query_brands_us, connection)
+        df_brands_ca = pd.read_sql(query_brands_ca, connection)
+        total_brands = (df_brands_us['total_brands'].iloc[0] if not df_brands_us.empty else 0) + \
+                       (df_brands_ca['total_brands'].iloc[0] if not df_brands_ca.empty else 0)
         total_brands_text = f"Total number of brands: {total_brands}"
-        print("Total brands:", total_brands_text)
 
-        # Calculate start date dynamically using datetime objects
+        # Calculate the total number of new products added within the last week
+        query_new_products_us = f"""
+            SELECT COUNT(DISTINCT sku) as new_products
+            FROM DirectDialUS
+            WHERE date_added >= '{one_week_ago.strftime('%Y-%m-%d')}'
+        """
+        query_new_products_ca = f"""
+            SELECT COUNT(DISTINCT sku) as new_products
+            FROM DirectDialCA
+            WHERE date_added >= '{one_week_ago.strftime('%Y-%m-%d')}'
+        """
+        df_new_products_us = pd.read_sql(query_new_products_us, connection)
+        df_new_products_ca = pd.read_sql(query_new_products_ca, connection)
+        total_new_products = (df_new_products_us['new_products'].iloc[0] if not df_new_products_us.empty else 0) + \
+                             (df_new_products_ca['new_products'].iloc[0] if not df_new_products_ca.empty else 0)
+        total_new_products_text = f"Total number of new products: {total_new_products}"
+
+        # Calculate start dates for the last 7 days or the min time in case of less data
         start_date_us = min_time_us if min_time_us and min_time_us >= max_time_us - pd.Timedelta(days=7) else max_time_us - pd.Timedelta(days=7)
         start_date_ca = min_time_ca if min_time_ca and min_time_ca >= max_time_ca - pd.Timedelta(days=7) else max_time_ca - pd.Timedelta(days=7)
 
-        # Convert datetime to string in the format required for SQL queries
-        start_date_us_str = start_date_us.strftime('%Y-%m-%d')
-        start_date_ca_str = start_date_ca.strftime('%Y-%m-%d')
-        print("Start date US:", start_date_us_str)
-        print("Start date CA:", start_date_ca_str)
+        # Convert datetime to string format for SQL queries
+        start_date_us_str = start_date_us.strftime('%Y-%m-%d') if start_date_us else None
+        start_date_ca_str = start_date_ca.strftime('%Y-%m-%d') if start_date_ca else None
 
-        # Top 10 Largest Price Changes in US
-        query_price_change_us = f"""
-            SELECT sku, MAX(price) - MIN(price) as price_change
-            FROM DirectDialUSHistory
-            WHERE timestamp >= '{start_date_us_str}'
-            GROUP BY sku
-            ORDER BY price_change DESC
-            LIMIT 10
-        """
-        df_price_change_us = pd.read_sql(query_price_change_us, engine)
-        top_10_price_change_us = df_price_change_us.to_dict('records')
-        print("Top 10 Price Changes (US):\n", top_10_price_change_us)
+        # Queries for top 10 price and stock changes
+        if start_date_us_str:
+            query_price_change_us = f"""
+                SELECT sku, MAX(price) - MIN(price) as price_change
+                FROM DirectDialUSHistory
+                WHERE timestamp >= '{start_date_us_str}'
+                GROUP BY sku
+                ORDER BY price_change DESC
+                LIMIT 10
+            """
+            df_price_change_us = pd.read_sql(query_price_change_us, connection)
+            top_10_price_change_us = df_price_change_us.to_dict('records')
 
-        # Top 10 Largest Price Changes in CA
-        query_price_change_ca = f"""
-            SELECT sku, MAX(price) - MIN(price) as price_change
-            FROM DirectDialCAHistory
-            WHERE timestamp >= '{start_date_ca_str}'
-            GROUP BY sku
-            ORDER BY price_change DESC
-            LIMIT 10
-        """
-        df_price_change_ca = pd.read_sql(query_price_change_ca, engine)
-        top_10_price_change_ca = df_price_change_ca.to_dict('records')
-        print("Top 10 Price Changes (CA):\n", top_10_price_change_ca)
+            query_stock_change_us = f"""
+                SELECT sku, MAX(stock) - MIN(stock) as stock_change
+                FROM DirectDialUSHistory
+                WHERE timestamp >= '{start_date_us_str}'
+                GROUP BY sku
+                ORDER BY stock_change DESC
+                LIMIT 10
+            """
+            df_stock_change_us = pd.read_sql(query_stock_change_us, connection)
+            top_10_stock_change_us = df_stock_change_us.to_dict('records')
 
-        # Top 10 Largest Stock Changes in US
-        query_stock_change_us = f"""
-            SELECT sku, MAX(stock) - MIN(stock) as stock_change
-            FROM DirectDialUSHistory
-            WHERE timestamp >= '{start_date_us_str}'
-            GROUP BY sku
-            ORDER BY stock_change DESC
-            LIMIT 10
-        """
-        df_stock_change_us = pd.read_sql(query_stock_change_us, engine)
-        top_10_stock_change_us = df_stock_change_us.to_dict('records')
-        print("Top 10 Stock Changes (US):\n", top_10_stock_change_us)
+        if start_date_ca_str:
+            query_price_change_ca = f"""
+                SELECT sku, MAX(price) - MIN(price) as price_change
+                FROM DirectDialCAHistory
+                WHERE timestamp >= '{start_date_ca_str}'
+                GROUP BY sku
+                ORDER BY price_change DESC
+                LIMIT 10
+            """
+            df_price_change_ca = pd.read_sql(query_price_change_ca, connection)
+            top_10_price_change_ca = df_price_change_ca.to_dict('records')
 
-        # Top 10 Largest Stock Changes in CA
-        query_stock_change_ca = f"""
-            SELECT sku, MAX(stock) - MIN(stock) as stock_change
-            FROM DirectDialCAHistory
-            WHERE timestamp >= '{start_date_ca_str}'
-            GROUP BY sku
-            ORDER BY stock_change DESC
-            LIMIT 10
-        """
-        df_stock_change_ca = pd.read_sql(query_stock_change_ca, engine)
-        top_10_stock_change_ca = df_stock_change_ca.to_dict('records')
-        print("Top 10 Stock Changes (CA):\n", top_10_stock_change_ca)
+            query_stock_change_ca = f"""
+                SELECT sku, MAX(stock) - MIN(stock) as stock_change
+                FROM DirectDialCAHistory
+                WHERE timestamp >= '{start_date_ca_str}'
+                GROUP BY sku
+                ORDER BY stock_change DESC
+                LIMIT 10
+            """
+            df_stock_change_ca = pd.read_sql(query_stock_change_ca, connection)
+            top_10_stock_change_ca = df_stock_change_ca.to_dict('records')
 
-        return (total_days_tracked_text, last_update_time_text, total_products_text, total_brands_text,
-                top_10_price_change_us, top_10_price_change_ca, top_10_stock_change_us, top_10_stock_change_ca)
-    else:
-        return dash.no_update
+    return (total_days_tracked_text, last_update_time_text, total_products_text, total_brands_text, total_new_products_text,
+            top_10_price_change_us, top_10_price_change_ca, top_10_stock_change_us, top_10_stock_change_ca)
 
 
-
-# Callback for Page 2 to display the overview table
 @app.callback(
     [Output('edit-overview-table', 'columns'),
      Output('edit-overview-table', 'data')],
@@ -559,7 +546,11 @@ def update_home_stats(pathname):
 def update_edit_overview_table(selected_table):
     if selected_table:
         query = f"SELECT * FROM {selected_table}"
-        df = pd.read_sql(query, engine)
+        
+        # Use context manager for database connection
+        with get_db_connection() as connection:
+            df = pd.read_sql(query, connection)
+            
         columns = [{"name": i, "id": i} for i in df.columns]
         data = df.to_dict('records')
         return columns, data
@@ -573,38 +564,15 @@ def update_edit_overview_table(selected_table):
 def update_overview_table(selected_table):
     if selected_table:
         query = f"SELECT * FROM {selected_table}"
-        df = pd.read_sql(query, engine)
+        
+        # Use context manager for database connection
+        with get_db_connection() as connection:
+            df = pd.read_sql(query, connection)
+            
         columns = [{"name": i, "id": i} for i in df.columns]
         data = df.to_dict('records')
         return columns, data
     return [], []
-
-# Callbacks for Page 1 - Product Analysis
-@app.callback(
-    Output('page-1-brand-dropdown', 'options'),
-    Input('page-1-table-dropdown', 'value')
-)
-def update_brand_dropdown(selected_table):
-    if selected_table:
-        query = f"SELECT DISTINCT brand FROM {selected_table}"
-        df = pd.read_sql(query, engine)
-        options = [{'label': brand, 'value': brand} for brand in df['brand']]
-        return options
-    return []
-
-@app.callback(
-    Output('page-1-sku-dropdown', 'options'),
-    [Input('page-1-brand-dropdown', 'value'),
-     Input('page-1-table-dropdown', 'value')]
-)
-def update_sku_dropdown(selected_brand, selected_table):
-    if selected_brand and selected_table:
-        query = f"SELECT DISTINCT sku FROM {selected_table} WHERE brand = :brand"
-        df = pd.read_sql(query, engine, params={"brand": selected_brand})
-
-        options = [{'label': sku, 'value': sku} for sku in df['sku']]
-        return options
-    return []
 
 @app.callback(
     [Output('page-1-product-table', 'columns'),
@@ -615,65 +583,101 @@ def update_sku_dropdown(selected_brand, selected_table):
 def update_product_table(selected_sku, selected_table):
     if selected_sku and selected_table:
         query = f"SELECT * FROM {selected_table} WHERE sku = :sku"
-        df = pd.read_sql(query, engine, params={"sku": selected_sku})
+
+        # Use the updated context manager for the connection
+        with get_db_connection() as connection:
+            # Use the raw connection with pandas.read_sql
+            df = pd.read_sql(query, connection, params={"sku": selected_sku})
+
         columns = [{"name": i, "id": i} for i in df.columns]
         data = df.to_dict('records')
         return columns, data
+
     return [], []
+
+@app.callback(
+    [Output('page-1-brand-dropdown', 'options'),
+     Output('page-1-sku-dropdown', 'options')],
+    [Input('page-1-table-dropdown', 'value'),
+     Input('page-1-brand-dropdown', 'value')]
+)
+def update_dropdowns(selected_table, selected_brand):
+    # Initialize empty options
+    brand_options, sku_options = [], []
+
+    # If a table is selected, query for brand options
+    if selected_table:
+        query_brand = f"SELECT DISTINCT brand FROM {selected_table}"
+        with get_db_connection() as connection:
+            df_brand = pd.read_sql(query_brand, connection)
+        brand_options = [{'label': brand, 'value': brand} for brand in df_brand['brand']]
+
+    # If a brand is selected, query for SKU options
+    if selected_brand and selected_table:
+        query_sku = f"SELECT DISTINCT sku FROM {selected_table} WHERE brand = :brand"
+        with get_db_connection() as connection:
+            df_sku = pd.read_sql(query_sku, connection, params={"brand": selected_brand})
+        sku_options = [{'label': sku, 'value': sku} for sku in df_sku['sku']]
+
+    return brand_options, sku_options
 
 @app.callback(
     [Output('page-1-price-history-table', 'columns'),
-     Output('page-1-price-history-table', 'data')],
-    [Input('page-1-sku-dropdown', 'value'),
-     Input('page-1-table-dropdown', 'value'),
-     Input('page-1-date-granularity-dropdown', 'value')]
-)
-def update_price_history_table(selected_sku, selected_table, granularity):
-    if selected_sku and selected_table and granularity:
-        history_table = f"{selected_table}History"
-        query = f"SELECT sku, timestamp, price FROM {history_table} WHERE sku = '{selected_sku}'"
-        df = pd.read_sql(query, engine)
-        df['timestamp'] = pd.to_datetime(df['timestamp'])
-        df.set_index('timestamp', inplace=True)
-        numeric_df = df[['price']].resample(granularity).mean().reset_index()
-        numeric_df['sku'] = selected_sku
-        pivot_df = numeric_df.pivot_table(index='sku', columns='timestamp', values='price', aggfunc='first')
-        pivot_df.columns = [str(col) for col in pivot_df.columns]
-        pivot_df.reset_index(inplace=True)
-        sorted_columns = ['sku'] + sorted([col for col in pivot_df.columns if col != 'sku'], reverse=True)
-        pivot_df = pivot_df[sorted_columns]
-        columns = [{"name": col, "id": col} for col in pivot_df.columns]
-        data = pivot_df.to_dict('records')
-
-        return columns, data
-    return [], []
-
-@app.callback(
-    [Output('page-1-stock-history-table', 'columns'),
+     Output('page-1-price-history-table', 'data'),
+     Output('page-1-stock-history-table', 'columns'),
      Output('page-1-stock-history-table', 'data')],
     [Input('page-1-sku-dropdown', 'value'),
      Input('page-1-table-dropdown', 'value'),
-     Input('page-1-date-granularity-dropdown', 'value')]
+     Input('page-1-date-granularity-dropdown', 'value')],
+    prevent_initial_call=True
 )
-def update_stock_history_table(selected_sku, selected_table, granularity):
+def update_history_tables(selected_sku, selected_table, granularity):
+    # Initialize empty columns and data for both tables
+    price_columns, price_data = [], []
+    stock_columns, stock_data = [], []
+
     if selected_sku and selected_table and granularity:
         history_table = f"{selected_table}History"
-        query = f"SELECT sku, timestamp, stock FROM {history_table} WHERE sku = '{selected_sku}'"
-        df = pd.read_sql(query, engine)
-        df['timestamp'] = pd.to_datetime(df['timestamp'])
-        df.set_index('timestamp', inplace=True)
-        numeric_df = df[['stock']].resample(granularity).mean().reset_index()
-        numeric_df['sku'] = selected_sku
-        pivot_df = numeric_df.pivot_table(index='sku', columns='timestamp', values='stock', aggfunc='first')
-        pivot_df.columns = [str(col) for col in pivot_df.columns]
-        pivot_df.reset_index(inplace=True)
-        sorted_columns = ['sku'] + sorted([col for col in pivot_df.columns if col != 'sku'], reverse=True)
-        pivot_df = pivot_df[sorted_columns]
-        columns = [{"name": col, "id": col} for col in pivot_df.columns]
-        data = pivot_df.to_dict('records')
 
-        return columns, data
-    return [], []
+        # Price History Query
+        query_price = f"SELECT sku, timestamp, price FROM {history_table} WHERE sku = '{selected_sku}'"
+        # Stock History Query
+        query_stock = f"SELECT sku, timestamp, stock FROM {history_table} WHERE sku = '{selected_sku}'"
+
+        with get_db_connection() as connection:
+            df_price = pd.read_sql(query_price, connection)
+            df_stock = pd.read_sql(query_stock, connection)
+
+        # Process Price History Table
+        if not df_price.empty:
+            df_price['timestamp'] = pd.to_datetime(df_price['timestamp']).dt.normalize()
+            df_price.set_index('timestamp', inplace=True)
+            numeric_price_df = df_price[['price']].resample(granularity).mean().reset_index()
+            numeric_price_df['sku'] = selected_sku
+            pivot_price_df = numeric_price_df.pivot_table(index='sku', columns='timestamp', values='price', aggfunc='first')
+            pivot_price_df.columns = [col.strftime('%Y-%m-%d') for col in pivot_price_df.columns]
+            pivot_price_df.reset_index(inplace=True)
+            sorted_columns = ['sku'] + sorted([col for col in pivot_price_df.columns if col != 'sku'], reverse=True)
+            pivot_price_df = pivot_price_df[sorted_columns]
+            price_columns = [{"name": col, "id": col} for col in pivot_price_df.columns]
+            price_data = pivot_price_df.to_dict('records')
+
+        # Process Stock History Table
+        if not df_stock.empty:
+            df_stock['timestamp'] = pd.to_datetime(df_stock['timestamp']).dt.normalize()
+            df_stock.set_index('timestamp', inplace=True)
+            numeric_stock_df = df_stock[['stock']].resample(granularity).mean().reset_index()
+            numeric_stock_df['sku'] = selected_sku
+            pivot_stock_df = numeric_stock_df.pivot_table(index='sku', columns='timestamp', values='stock', aggfunc='first')
+            pivot_stock_df.columns = [col.strftime('%Y-%m-%d') for col in pivot_stock_df.columns]
+            pivot_stock_df.reset_index(inplace=True)
+            sorted_columns = ['sku'] + sorted([col for col in pivot_stock_df.columns if col != 'sku'], reverse=True)
+            pivot_stock_df = pivot_stock_df[sorted_columns]
+            stock_columns = [{"name": col, "id": col} for col in pivot_stock_df.columns]
+            stock_data = pivot_stock_df.to_dict('records')
+
+    return price_columns, price_data, stock_columns, stock_data
+
 @app.callback(
     Output('page-1-price-history-graph', 'figure'),
     [Input('page-1-sku-dropdown', 'value'),
@@ -682,13 +686,13 @@ def update_stock_history_table(selected_sku, selected_table, granularity):
 def update_price_history_graph(selected_sku, selected_table):
     if not selected_sku or not selected_table:
         return {}
-
-    # Use dynamic table name based on the selected table
     history_table = f"{selected_table}History"
     query = f"SELECT sku, timestamp, price FROM {history_table} WHERE sku = '{selected_sku}'"
-    df_price = pd.read_sql(query, engine)
-
-    # Pivot and prepare the data for the graph
+    
+    # Use context manager to manage the database connection
+    with get_db_connection() as connection:
+        df_price = pd.read_sql(query, connection)
+        
     pivot_df = df_price.pivot_table(index='sku', columns='timestamp', values='price', aggfunc='first')
     pivot_df.reset_index(inplace=True)
     pivot_df = pivot_df.sort_index(axis=1, ascending=False)
@@ -697,17 +701,13 @@ def update_price_history_graph(selected_sku, selected_table):
         return {}
 
     sku_data = pivot_df[pivot_df['sku'] == selected_sku].iloc[0, 1:]
-
-    # Set Y-axis range dynamically with buffer
-    y_min = (min(sku_data.values) // 10) * 10 - 10  # Round down to the nearest 10 and subtract 10
-    y_max = (max(sku_data.values) // 10) * 10 + 10  # Round up to the nearest 10 and add 10
-
-    # Create figure with formatted x-axis and y-axis
+    y_min = (min(sku_data.values) // 10) * 10 - 10
+    y_max = (max(sku_data.values) // 10) * 10 + 10
     figure = {
         'data': [
             {
-                'x': list(sku_data.index),  # Dates on the X-axis
-                'y': sku_data.values,  # Price values on the Y-axis
+                'x': list(sku_data.index),
+                'y': sku_data.values,
                 'type': 'line',
                 'name': 'Price'
             }
@@ -716,19 +716,19 @@ def update_price_history_graph(selected_sku, selected_table):
             'title': 'Price History Over Time',
             'xaxis': {
                 'title': 'Date',
-                'tickformat': '%b %d, %Y',  # Display date as 'Sep 30, 2024'
+                'tickformat': '%b %d, %Y',
                 'tickmode': 'linear',
-                'dtick': 86400000.0,  # Interval of one day in milliseconds
+                'dtick': 86400000.0,  # Adjust for daily tick marks
             },
             'yaxis': {
                 'title': 'Price',
-                'tickformat': ',d',  # Format to display as whole dollars
+                'tickformat': ',d',
                 'tickmode': 'linear',
-                'dtick': 10,  # Show tick marks every 10 units (10 dollars)
-                'range': [y_min, y_max]  # Set the Y-axis range dynamically
+                'dtick': 10,  # Tick interval of 10 units
+                'range': [y_min, y_max]
             },
             'height': 450,
-            'margin': {'t': 50, 'b': 50, 'l': 50, 'r': 50}  # Adjust margins as needed
+            'margin': {'t': 50, 'b': 50, 'l': 50, 'r': 50}
         }
     }
     return figure
@@ -741,41 +741,35 @@ def update_price_history_graph(selected_sku, selected_table):
 def update_stock_history_graph(selected_sku, selected_table):
     if not selected_sku or not selected_table:
         return {}
-
-    # Use dynamic table name based on the selected table
     history_table = f"{selected_table}History"
     query = f"SELECT sku, timestamp, stock FROM {history_table} WHERE sku = '{selected_sku}'"
-    df_stock = pd.read_sql(query, engine)
-
-    # Pivot and prepare the data for the graph
+    
+    # Use context manager for database connection
+    with get_db_connection() as connection:
+        df_stock = pd.read_sql(query, connection)
+    
     pivot_df = df_stock.pivot_table(index='sku', columns='timestamp', values='stock', aggfunc='first')
     pivot_df.reset_index(inplace=True)
     pivot_df = pivot_df.sort_index(axis=1, ascending=False)
-
+    
     if pivot_df.empty or selected_sku not in pivot_df['sku'].values:
         return {}
 
     sku_data = pivot_df[pivot_df['sku'] == selected_sku].iloc[0, 1:]
-
-    # Calculate Y-axis range dynamically
-    y_min = min(sku_data.values) - 5  # Subtract a buffer from the minimum
-    y_max = max(sku_data.values) + 5  # Add a buffer to the maximum
-
-    # Calculate a suitable dtick based on the range of values
+    y_min = min(sku_data.values) - 5
+    y_max = max(sku_data.values) + 5
     range_diff = y_max - y_min
     if range_diff <= 10:
-        dtick = 1  # Use a small interval for smaller ranges
+        dtick = 1
     elif range_diff <= 50:
-        dtick = 5  # Medium interval for moderate ranges
+        dtick = 5
     else:
-        dtick = 10  # Larger interval for larger ranges
-
-    # Create the figure with dynamic Y-axis range and tick settings
+        dtick = 10
     figure = {
         'data': [
             {
-                'x': list(sku_data.index),  # Dates on the X-axis
-                'y': sku_data.values,  # Stock values on the Y-axis
+                'x': list(sku_data.index),
+                'y': sku_data.values,
                 'type': 'line',
                 'name': 'Stock'
             }
@@ -784,19 +778,19 @@ def update_stock_history_graph(selected_sku, selected_table):
             'title': 'Stock History Over Time',
             'xaxis': {
                 'title': 'Date',
-                'tickformat': '%b %d, %Y',  # Display date as 'Sep 30, 2024'
+                'tickformat': '%b %d, %Y',
                 'tickmode': 'linear',
-                'dtick': 86400000.0,  # Interval of one day in milliseconds
+                'dtick': 86400000.0,
             },
             'yaxis': {
                 'title': 'Stock',
-                'tickformat': ',d',  # Format to display as whole numbers
+                'tickformat': ',d',
                 'tickmode': 'linear',
-                'dtick': dtick,  # Set the dynamic tick interval
-                'range': [y_min, y_max]  # Set the dynamic Y-axis range
+                'dtick': dtick,
+                'range': [y_min, y_max]
             },
             'height': 450,
-            'margin': {'t': 50, 'b': 50, 'l': 50, 'r': 50}  # Adjust margins as needed
+            'margin': {'t': 50, 'b': 50, 'l': 50, 'r': 50}
         }
     }
     return figure
@@ -821,14 +815,19 @@ def download_csv(n_clicks, table_data):
 )
 def save_changes_to_db(n_clicks, rows, table_name):
     if n_clicks and table_name:
-        # Convert rows back to DataFrame
         df = pd.DataFrame(rows)
-        
-        # Save changes to the database (this will overwrite the table)
         df.to_sql(table_name, engine, if_exists='replace', index=False)
         return rows
     return rows
-    
-# Run the application
+
+@contextmanager
+def get_db_connection():
+    """Context manager to provide a raw database connection from the engine."""
+    connection = engine.connect()
+    try:
+        yield connection
+    finally:
+        connection.close() 
+        
 if __name__ == '__main__':
     app.run_server(debug=True)
