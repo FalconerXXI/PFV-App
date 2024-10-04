@@ -18,9 +18,9 @@ def main():
         logging.error(f"Error loading configuration file: {e}")
         return
     
-    for category in ["Direct_Dial_CA_Notebooks", "Direct_Dial_CA_Desktops", "Direct_Dial_US_Notebooks", "Direct_Dial_US_Desktops"]:
-        search_request = APIScraper(website_info, category)
-        search_request.execute_search()
+    #for category in ["Direct_Dial_CA_Notebooks", "Direct_Dial_CA_Desktops", "Direct_Dial_US_Notebooks", "Direct_Dial_US_Desktops"]:
+    #    search_request = APIScraper(website_info, category)
+    #    search_request.execute_search()
     
     try:
         engine = create_engine('sqlite:///products.db', echo=False)
