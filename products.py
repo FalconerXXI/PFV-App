@@ -20,8 +20,10 @@ class DirectDialBase(Base):
     categories = Column(String)
     brand = Column(String)
     price = Column(Float)
+    cdw_price = Column(Float)
+    insight_price = Column(Float)
     msrp = Column(Float)
-    stock = Column(Integer)
+    stock = Column(Integer, default=0)
     cpu = Column(String)
     gpu = Column(String)
     gpu_mem = Column(String)
@@ -45,7 +47,7 @@ class DirectDialBase(Base):
     total_score = Column(Float)
     date_added = Column(DateTime, default=func.now())
     date_updated = Column(DateTime, onupdate=func.now())
-    in_stock = Column(Boolean, default=True)
+    instock = Column(Boolean)
     errors = Column(String)
 
 
@@ -71,7 +73,7 @@ class ProductManager:
                 return ", ".join(field) if isinstance(field, list) else field
 
             # Retrieve SKU and handle missing SKU scenarios
-            sku = product_data.get("id")
+            sku = product_data.get("name")
             if not sku:
                 logger.warning("Skipping product without SKU.")
                 return
@@ -104,7 +106,8 @@ class ProductManager:
                 'storage': flatten_field(product_data.get("_Total_Solid_State_Drive_Capacity")) if product_data.get("_Total_Solid_State_Drive_Capacity") else flatten_field(product_data.get("_Flash_Memory_Capacity")),
                 'wifi': True if product_data.get("_Wireless_LAN_Standard") else False,
                 'wwan': True if product_data.get("_WWAN_Supported") else False,
-                'url': f'http://www.directdial.com/{table_class.__tablename__[-2:]}/{flatten_field(product_data.get("url"))}'
+                'url': f'http://www.directdial.com/{table_class.__tablename__[-2:]}{flatten_field(product_data.get("url"))}',
+                'instock': True if product_data.get("instock") else False,
             }
 
             # Update existing product or insert a new one

@@ -1,0 +1,62 @@
+{
+    "shared_headers": {
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Connection": "keep-alive",
+        "Content-Type": "application/json",
+        "Origin": "https://www.insight.com",
+        "priority": "u=1, i",
+        "referer": "https://www.insight.com/en_US/shop/category/desktops/store.html?country=US&q=*%3A*&searchType=category&salesOrg=2400&sessionId=38207037B83E6DE7C753EF65BE1E45B7.appprd6-2&lang=en_US&userSegment=CES&tabType=products",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-site",
+        "cookie": "insight_locale=en_US; insight_current_locale=en_US; _gcl_au=1.1.1299152730.1727621480; _fbp=fb.1.1727621480430.520838391991966011; _mkto_trk=id:835-ZTL-687&token:_mch-insight.com-1727621486412-37020; drift_aid=8715035d-6abc-4351-acce-e502625187ef; driftt_aid=8715035d-6abc-4351-acce-e502625187ef; BVBRANDID=8d76f518-b397-4d02-9a49-053f2f12718a; OptanonAlertBoxClosed=2024-09-29T21:02:54.918Z; __Secure-VqVZpDrwmmPSREEOugGm+yrKFa1GubVsT87TrMTbilTJ=v1AdjegwSDhi9; bm_mi=8F28EBCE3AD76EBDCB0A2F0841F60C33~YAAQBug3F2qsLT6SAQAAsv69XBkfXfpzARgP5AfYkQfkmG7iyEqKH09uaQRe4NZvs60KEOCWDgI8XyePKI/QLsYm6OTDLAqBFvR2gY6l6ZdAgEsgEhsOAY4Hqf0FZGTe0PgOM2cS997tnb/gNuNzRaRl2eX8C4EBCshEJCxX47DjpVnXhMwfmOk7XQ+dehZKih79yD4dL0ZoNAvuO+yAcfnOOYLDpDJ1CzJRlrywRrvaSUiQC4joSGLygkWSk1C3isjjmUbBYFU7+5fmAW2qa+bdM8cM2ho3EFph+YBXjVRQvKIwigfX6egz0X3uEXn0Hgha2zZbpVYOObytA04=~1; JSESSIONID=38207037B83E6DE7C753EF65BE1E45B7.appprd6-2; at_check=true; AMCVS_F14FFF565937D2AA0A495D22%40AdobeOrg=1; AMCV_F14FFF565937D2AA0A495D22%40AdobeOrg=179643557%7CMCIDTS%7C20002%7CMCMID%7C15503888766581144392780431607897991638%7CMCAAMLH-1728737609%7C7%7CMCAAMB-1728737609%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1728140009s%7CNONE%7CvVersion%7C5.5.0; _abck=70B2DA96B2FFA1A9613E6C13023FA1B1~0~YAAQBug3F6GsLT6SAQAAVQO+XAzxM2R4+qpxuukurWR/qh5z7/OEdDW2501afvKs1I+m5a6/bvZPn9rbkuQNVbAmLlnyJK+EBKdQeoahwEa5hFIt/LWSsFxG5S6tAxJZL57iN88llXIgC+4pd/x3PiH8fTqpIP8i+qH/1OvLFarNBNVx9vrrdKsSCkg76TOGdByMOCGWI8P8IoZXmFsGno6uEdAhb1zLud1OR7HMGzsrZQ3Y/gRiJmPwtmlp287df4DkdhIGcRd8XvPFwlPppc/9PHYnSRyLufTndx+IaZQ4hwZtT8Yq21xE/U72j3e5RUD3XaGKq81IvipnTEspuyW4eGHBssHHmVjvaT6qgmJPe4FfSYmjCVru+VcnzXfu/HvfjZM3U/xqmYWamS/c9/mTqFrLGmzgMFCb4V7YOVBKy0KCkfr98ujwMcbrvsWOUiLm5hwUIYwxwg==~-1~-1~1728136409; drift_campaign_refresh=5c2001ca-155b-420b-b129-6621c23bd365; ak_bmsc=2762CDB3169A4CEB28EC4C2EB4AE30FE~000000000000000000000000000000~YAAQBug3F7isLT6SAQAAnwS+XBm5duw6CNQHArStyzVRmSsGucF79+xJW0kZVm8bsLmm7tOvJA7PSGnSogzDp8Ftm2daxsvbFkDSEZ+s1f0/bP7rKrkcZgMO9lOTLJRY8GT/MQm169Tw7/Q1c+ELhxRRNEfGziKXgj4QCF5dy/nnKv+c+GHGHet3Ktk9Jra/JCWYLMFVQeYdV98i++kj33HW6SpBMxa8KXSflDpKbUvGJxsQMu2Z1wpz6wSNGG8+tD6ZgJgjYA9TNKV1tcZNryS/nWPWY4B+mXDkyLB33LER/mcWuc4uZgoZny2+O4EZx65BFet3JFMK1UXvZyLxo9gGeN8AEtOmYr25EJ6Eh2wVsFMKTP+KsVeIKXjeiuWA5xYFOBVNb6ZF40UWmV6gs7OyRuY+th8VYHNGSADHSpDEGn+Ro6kfUQYZlW4ObM98jrvfpnyfzyso3TDnNJBuH4AleSBUhOt7O2uIaWZ852uMfOpA2Npmsuar1pyWoCdurQ==; _gid=GA1.2.1947696467.1728132810; s_cc=true; _clck=k78nap%7C2%7Cfpr%7C0%7C1733; gpv_Page=www.insight.com%7CNA%7CUS%7Cen%7CBuy%20Desktop%20Computers%20-%20Buy%20Desktop%20PC%20-%20Insight; __Secure-VqVZpDrwmmPSREEOugGm+yrKFa1GubVsT8rBqZeBqAmKAAjBA+yMqQetyGo_=v1P9jegwSDpm6; s_plt=1.37; s_pltp=www.insight.com%7CNA%7CUS%7Cen%7CBuy%20Desktop%20Computers%20-%20Buy%20Desktop%20PC%20-%20Insight; s_ips=839; s_ppv=www.insight.com%257CNA%257CUS%257Cen%257CBuy%2520Desktop%2520Computers%2520-%2520Buy%2520Desktop%2520PC%2520-%2520Insight%2C1%2C0%2C2846%2C3%2C278; s_nr30=1728133838114-Repeat; s_tp=230861; _clsk=1hwlzgl%7C1728133844787%7C35%7C1%7Cr.clarity.ms%2Fcollect; bm_sz=548669136D1A9151F618BDD9BADD3A79~YAAQBug3F24oLj6SAQAAiTfOXBl+ZS5h4nKFYzv52T3KqrYQ72EAoQUxj6axuvK3lg1+3eqy9jFEz5J3jWUYdRy+00pqDdy4cjlkCBQ0glb/p/1bmTM6PsrqbDfQRXuEFSBp714UPeSqOexSOsPB6k4w1oVrqKP5CLMyBtoo631CFlRfSqgw5b9uTQ1Vf49K4iokAxWKX/4aycxktrCPSMUSgxW/rIEirsJnFSVETzgPakaaORkvA3TK0Pg7ya5xh6sH3VE+ISGLVgQ62NS17g68r24SOcoPhrkmPjuJca5W9RvjfytPugaO4dLwIYjwS0ZFqTryE3jxt9DiogMev8ZV7hlpSgRntipNKtwi3ZKfHsuuZM7D/woE0BninWdQlS9MpHwsFJRNXiXE9JyKWIMzWkqo5zFZX16MZ7TCAg/qoGWHptcBK9CnRBY+8Xpsuw==~3290678~4535105; mbox=PC#9506c9dcfccc42679a0c9ab6625a5b56.34_0#1791378674|session#196219b483344db5b0cdd8e8ea3e44bc#1728135734; RT='z=1&dm=insight.com&si=f10c669f-3648-4707-a391-3e841d6565de&ss=m1w5nkgg&sl=z&tt=1nm7&bcn=%2F%2F173bf110.akstat.io%2F'; OptanonConsent=isGpcEnabled=0&datestamp=Sat+Oct+05+2024+09%3A11%3A13+GMT-0400+(Eastern+Daylight+Time)&version=202408.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&consentId=8dfc55b4-e1bd-4f5a-9423-ae7cb22f39d9&interactionCount=2&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&AwaitingReconsent=false&intType=3&geolocation=CA%3BON; bm_sv=7FB5C087BCA6F9C58BC374388AA254A5~YAAQBug3F8koLj6SAQAATD/OXBmkLmprIUsjwCjKHnKJ9QyKg9eBdTZSm6bw2S199/VVq8wnXtJk9yY0HVkmU1QLI3LqPjV5t/VLYiWMBh1jhrBtxJedIzBDVUWVWlafoWMUdOPWnjSbNQK06V7zd7xI3f/JjXd0uIYeZ+6KG01A9tD9AVd1e1pFPH+o3BDwed7KuZ/PbvgZVgXeprpeskdEYjTHmN03Etf5KonNuXvGUo1SnLkugvszsxmUnyw9NY8=~1; _ga=GA1.1.304920334.1727621480; _ga_1EGWYNRCN5=GS1.1.1728132809.8.1.1728133873.0.0.0", 
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\""
+    },
+
+    "Insight_US": {
+        "url": "https://www.insight.com/gapi/product-search/search",
+        "querystring": {
+            "country":"US",
+            "q":"*:*",
+            "instockOnly":"true",
+            "selectedFacet":"Header_Manufacturer_A00630_en_US_s:Lenovo|Dell|\"HP Inc.\"|\"Lenovo \"|\"HP inc.\"|\"HP Inc\"|HP,CategoryPath_en_US_ss_lowest_s:Laptops|Desktops|Workstations|\"Mini Desktops\"|Ultrabooks|\"Mobile Workstations\"|\"Desktops Tower\"|\"Small Form Factor Desktops\"|\"Thin Client Desktops\"|Chromebooks|\"Flip Design Laptops\"|\"2 in 1 Laptops\"|\"All-in-One Computers\"",
+            "searchType":"category",
+            "start":"0",
+            "salesOrg":"2400",
+            "lang":"en_US",
+            "rows":"1000",
+            "tabType":"products",
+            "locale":"en_US",
+            "userSegment":"CES",
+            "sessionId":"38207037B83E6DE7C753EF65BE1E45B7.appprd6-2"
+        },
+        "country": "US",
+        "website": "Insight",
+        "save_directory": "save"
+    },
+
+    "Insight_CA": {
+        "url": "https://www.insight.com/gapi/product-search/search",
+        "querystring": {
+            "country":"CA",
+            "q":"*:*",
+            "instockOnly":"true",
+            "selectedFacet":"Header_Manufacturer_A00630_en_US_s:\"Lenovo \"|Lenovo|\"HP Inc.\"|\"HP Inc\"|Dell",
+            "start":"0",
+            "salesOrg":"4100",
+            "lang":"en_US",
+            "rows":"10000",
+            "tabType":"products",
+            "locale":"en_CA",
+            "userSegment":"CES",
+            "sessionId":"89184EE9140AA1B03065D169A7C29CD1.appprd5-2"
+        },
+        "country": "CA",
+        "website": "Insight",
+        "save_directory": "save"
+    }
+}

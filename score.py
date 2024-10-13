@@ -1,4 +1,3 @@
-
 from hardware import CPU, GPU, Hardware
 from products import ProductManager, Product
 from sqlalchemy.orm import sessionmaker

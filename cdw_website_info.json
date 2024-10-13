@@ -1,0 +1,18 @@
+{
+    "CDW_CA": {
+        "url": "https://www.cdw.ca/category/computers/?w=C&b=LVO.CPQ.DLE&maxrecords=4000&instock=1",
+        "country": "CA",
+        "website": "CDW",
+        "save_directory": "save"
+    },
+    "CDW_US": {
+        "url": "https://www.cdw.com/category/computers/?w=C&b=LVO.DLE.CPQ&instock=1&maxrecords=1000",
+        "country": "US",
+        "website": "CDW",
+        "save_directory": "save"
+    }
+}
+
+
+
+

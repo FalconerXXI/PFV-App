@@ -537,7 +537,6 @@ def update_home_stats(pathname):
     return (total_days_tracked_text, last_update_time_text, total_products_text, total_brands_text, total_new_products_text,
             top_10_price_change_us, top_10_price_change_ca, top_10_stock_change_us, top_10_stock_change_ca)
 
-
 @app.callback(
     [Output('edit-overview-table', 'columns'),
      Output('edit-overview-table', 'data')],
